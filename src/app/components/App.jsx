@@ -1,6 +1,7 @@
-import React from "react";
+// @flow
+import * as React from "react";
 import { Route, Link } from "react-router-dom";
-import Board from "./Board";
+import Board from "./Board/Board";
 import Header from "./Header";
 import Home from "./Home";
 import Topics from "./Topics";
