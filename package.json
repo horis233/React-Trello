@@ -10,7 +10,8 @@
     "analyze-bundle": "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
     "lint": "eslint --ext .js,.jsx src/",
     "format": "prettier --write '**/*.{js,jsx,css,scss,json,md}'",
-    "flow": "flow"
+    "flow": "flow",
+    "start": "webpack --watch && nodemon dist/server.js"
   },
   "author": "Horis Hu <horis233@gmail.com>",
   "license": "MIT",

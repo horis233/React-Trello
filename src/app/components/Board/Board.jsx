@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import List from "./List";
 import "./Board.scss";
 
-
 type State = {
   lists: Array<{
     title: string,
@@ -12,8 +11,7 @@ type State = {
   }>
 };
 
-
- class Board extends Component {	class Board extends Component {
+class Board extends Component<{}, State> {
   constructor() {
     super();
     this.state = {
@@ -34,19 +32,22 @@ type State = {
               title: "Do some stuff"
             },
             {
-              title: "Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?"
+              title:
+                "Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?"
             }
           ]
         }
       ]
     };
   }
-  render = () => (	  render = () => (
-    <div className="board">	    <div className="board">
-      <Helmet>	      <Helmet>
-        <title>Board name | Trello</title>	        <title>Board name | Trello</title>
-      </Helmet>	      </Helmet>
-      <h1>Hello its me your board</h1>	      {this.state.lists.map(list => <List list={list} />)}
-    </div>	    </div>
-  );	  );
-}	}
+  render = () => (
+    <div className="board">
+      <Helmet>
+        <title>Board name | Trello</title>
+      </Helmet>
+      {this.state.lists.map(list => <List list={list} />)}
+    </div>
+  );
+}
+
+export default Board;

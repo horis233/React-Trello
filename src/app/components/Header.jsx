@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import trelloLogo from "../assets/trello-logo.jpg";
+import trelloLogo from "../assets/trello-logo-white.svg";
  class Header extends Component {
   render = () => (
     <header style={{ background: "#026aa7", padding: 5 }}>
