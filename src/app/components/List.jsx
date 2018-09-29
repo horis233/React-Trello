@@ -1,5 +1,14 @@
+// @flow
 import React, { Component } from "react";
- class List extends Component {
+
+type Props = {
+  list: {
+    title: string,
+    cards: Array<{ title: string }>
+  }
+};
+
+class List extends Component<Props> {
   render = () => {
     const { list } = this.props;
     return (
@@ -9,4 +18,5 @@ import React, { Component } from "react";
     );
   };
 }
- export default List;
+
+export default List;
