@@ -21,6 +21,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
+    "react-icons": "^2.2.7",
     "react-onclickoutside": "^6.7.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
@@ -28,7 +29,8 @@
     "react-textarea-autosize": "^5.2.1",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "slugify": "^1.2.9"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",

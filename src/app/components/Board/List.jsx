@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {connect} from "react-redux";
+import FaPencil from "react-icons/lib/fa/pencil";
 import NewCardForm from "./NewCardForm";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
@@ -76,6 +77,9 @@ class List extends React.Component<Props, State> {
       {
         cards.map(card => (<div key={card.id} className="card-title">
           {card.title}
+          <button className="edit-card-button">
+            <FaPencil/>
+          </button>
         </div>))
       }
       {
