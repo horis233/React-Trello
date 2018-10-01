@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import gandalfGif from "../assets/gandalf.gif";
 
 class Home extends Component {
@@ -26,4 +26,5 @@ class Home extends Component {
 const mapStateToProps = state => ({
   boards: Object.values(state.boards)
 });
- export default connect(mapStateToProps)(Home);
+
+export default connect(mapStateToProps)(Home);
