@@ -1,8 +1,21 @@
 @import "../../variables.scss";
- .board {
+
+.board-header {
+  color: white;
+  margin: 8px 8px 4px;
+}
+
+.board-title {
+  font-size: 18px;
+  margin: 0 0 0 8px;
+}
+
+.lists {
+  display: flex;
   display: flex;
 }
- .list {
+
+.list {
   width: 270px;
   background: grey;
   color: black;
@@ -11,15 +24,17 @@
   font-size: 14px;
   display: flex;
   flex-direction: column;
-  margin: 8px;
+  margin: 4px 8px 8px 8px;
 }
- .list-title {
+
+.list-title {
   margin: 8px;
   font-weight: 700;
 }
- .card-title {
+
+.card-title {
   background: white;
   border-radius: 3px;
   padding: 6px;
-  margin: 0 8px 8px 8px;
+  margin: 0 8px 8px;
 }
