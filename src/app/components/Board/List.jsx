@@ -17,6 +17,7 @@ type State = {
   cardComposerIsOpen: boolean,
   newCardText: string
 };
+
 class List extends React.Component<Props, State> {
   constructor() {
     super();
@@ -25,6 +26,7 @@ class List extends React.Component<Props, State> {
       newCardText: ""
     };
   }
+
   openCardComposer = () => this.setState({cardComposerIsOpen: true});
   handleCardComposerChange = (event : {
     target: {
@@ -33,8 +35,9 @@ class List extends React.Component<Props, State> {
   }): void => {
     this.setState({newCardText: event.target.value});
   };
+
   render = () => {
-    const {card, list} = this.props;
+    const {cards, list} = this.props;
     const {cardComposerIsOpen, newCardText} = this.state;
     return (<div className="list">
       <div className="list-title">{list.title}</div>
@@ -62,4 +65,5 @@ const mapStateToProps = (state, ownProps) => {
     cards: ownProps.list.cards.map(cardId => state.cards[cardId])
   };
 };
+
 export default connect(mapStateToProps)(List);
