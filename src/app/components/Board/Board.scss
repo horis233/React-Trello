@@ -60,6 +60,9 @@ $list-margin: 8px;
 }
 
 .list textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
   border-radius: 3px;
   padding: 6px;
   margin: 0 $list-margin $list-margin;
