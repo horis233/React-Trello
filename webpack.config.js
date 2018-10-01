@@ -56,7 +56,7 @@ module.exports = [
       ]
     },
     plugins: [
-      new ExtractTextPlugin("bundle.css"), new DashboardPlugin()
+      new ExtractTextPlugin("bundle.css"),
     ],
     resolve: {
       extensions: [".js", ".jsx"]
