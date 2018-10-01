@@ -21,8 +21,7 @@ module.exports = [
             loader: "babel-loader"
           },
           exclude: /node_modules/
-        },
-        {
+        }, {
           test: /\.(css|scss)$/,
           use: ExtractTextPlugin.extract([
             {
@@ -30,20 +29,17 @@ module.exports = [
               options: {
                 importLoaders: 1
               }
-            },
-            {
+            }, {
               loader: "postcss-loader",
               options: {
                 ident: "postcss",
                 plugins: [autoprefixer()]
               }
-            },
-            {
+            }, {
               loader: "sass-loader"
             }
           ])
-        },
-        {
+        }, {
           test: /\.(png|jpg|gif|svg)$/,
           use: [
             {
@@ -52,20 +48,20 @@ module.exports = [
                 name: "[name].[ext]",
                 outputPath: "assets/"
               }
-            },
-            {
+            }, {
               loader: "image-webpack-loader"
             }
           ]
         }
       ]
     },
-    plugins: [new ExtractTextPlugin("bundle.css")],
+    plugins: [
+      new ExtractTextPlugin("bundle.css"), new DashboardPlugin()
+    ],
     resolve: {
       extensions: [".js", ".jsx"]
     }
-  },
-  {
+  }, {
     name: "server",
     target: "node",
     externals: [nodeExternals()],
@@ -83,12 +79,10 @@ module.exports = [
             loader: "babel-loader"
           },
           exclude: /node_modules/
-        },
-        {
+        }, {
           test: /\.(css|scss)$/,
           loader: "ignore-loader"
-        },
-        {
+        }, {
           test: /\.(png|jpg|gif|svg)$/,
           use: [
             {

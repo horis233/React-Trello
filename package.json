@@ -1,10 +1,10 @@
 {
-  "name": "twitter",
+  "name": "trello",
   "version": "0.1.0",
-  "description": "A twitter clone built with React",
+  "description": "A trello built with React",
   "main": "dist/server.js",
   "scripts": {
-    "build": "webpack --watch",
+    "build": "webpack-dashboard -- webpack --watch",
     "build:prod": "webpack -p",
     "serve": "nodemon dist/server.js",
     "analyze-bundle": "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
@@ -64,6 +64,7 @@
     "sass-loader": "^6.0.6",
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.9.2",
+    "webpack-dashboard": "^1.0.2",
     "webpack-node-externals": "^1.6.0"
   }
 }
