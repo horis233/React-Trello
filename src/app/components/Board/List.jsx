@@ -1,13 +1,17 @@
 // @flow
 import * as React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import Textarea from "react-textarea-autosize";
+import shortid from "shortid";
 
 type Props = {
   list: {
     title: string
   },
-  cards: Array<{ title: string, id: string }>
+  cards: Array < {
+    title: string,
+    id: string
+  } >
 };
 
 type State = {
@@ -24,53 +28,51 @@ class List extends React.Component<Props, State> {
     };
   }
 
-  openCardComposer = () => this.setState({ cardComposerIsOpen: true });
-  handleCardComposerChange = (event: { target: { value: string } }): void => {
-    this.setState({ newCardTitle: event.target.value });
+  openCardComposer = () => this.setState({cardComposerIsOpen: true});
+  handleCardComposerChange = (event : {
+    target: {
+      value: string
+    }
+  }): void => {
+    this.setState({newCardTitle: event.target.value});
   };
 
   handleSubmitCard = event => {
     event.preventDefault();
-    const { newCardTitle } = this.state;
-    const { list, dispatch } = this.props;
+    const {newCardTitle} = this.state;
+    const {list, dispatch} = this.props;
     dispatch({
       type: "ADD_CARD",
-      payload: { cardTitle: newCardTitle, cardId: "oijer9393", listId: list.id }
+      payload: {
+        cardTitle: newCardTitle,
+        cardId: shortid.generate(),
+        listId: list.id
+      }
     });
-    this.setState({ newCardTitle: "" });
+    this.setState({newCardTitle: "", cardComposerIsOpen: false});
   };
 
   render = () => {
-    const { cards, list } = this.props;
-    const { cardComposerIsOpen, newCardTitle } = this.state;
-    return (
-      <div className="list">
-        <div className="list-title">{list.title}</div>
-        {cards.map(card => (
-          <div key={card.id} className="card-title">
-            {card.title}
-          </div>
-        ))}
-        {cardComposerIsOpen ? (
-          <form onSubmit={this.handleSubmitCard}>
-            <Textarea
-              useCacheForDOMMeasurements
-              minRows={3}
-              onChange={this.handleCardComposerChange}
-              value={newCardTitle}
-            />
-            <input type="submit" value="Add" />
-          </form>
-        ) : (
-          <button
-            onClick={this.openCardComposer}
-            className="open-composer-button"
-          >
+    const {cards, list} = this.props;
+    const {cardComposerIsOpen, newCardTitle} = this.state;
+    return (<div className="list">
+      <div className="list-title">{list.title}</div>
+      {
+        cards.map(card => (<div key={card.id} className="card-title">
+          {card.title}
+        </div>))
+      }
+      {
+        cardComposerIsOpen
+          ? (<form onSubmit={this.handleSubmitCard}>
+            <Textarea useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} onChange={this.handleCardComposerChange} value={newCardTitle}/>
+            <input type="submit" value="Add"/>
+          </form>)
+          : (<button onClick={this.openCardComposer} className="open-composer-button">
             Add a card...
-          </button>
-        )}
-      </div>
-    );
+          </button>)
+      }
+    </div>);
   };
 }
 
