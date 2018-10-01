@@ -1,15 +1,16 @@
 // @flow
 import * as React from "react";
+import {connect} from "react-redux";
 import Textarea from "react-textarea-autosize";
 
 type Props = {
   list: {
+    title: string
+  },
+  cards: Array < {
     title: string,
-    cards: Array < {
-      title: string,
-      id: string
-    } >
-  }
+    id: string
+  } >
 };
 
 type State = {
@@ -33,18 +34,21 @@ class List extends React.Component<Props, State> {
     this.setState({newCardText: event.target.value});
   };
   render = () => {
-    const {list} = this.props;
+    const {card, list} = this.props;
     const {cardComposerIsOpen, newCardText} = this.state;
     return (<div className="list">
       <div className="list-title">{list.title}</div>
       {
-        list.cards.map(card => (<div key={card.id} className="card-title">
+        cards.map(card => (<div key={card.id} className="card-title">
           {card.title}
         </div>))
       }
       {
         cardComposerIsOpen
-          ? (<Textarea useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} onChange={this.handleCardComposerChange} className="card-title" value={newCardText}/>)
+          ? (<form>
+            <Textarea useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} onChange={this.handleCardComposerChange} value={newCardText}/>
+            <input type="submit" value="Add"/>
+          </form>)
           : (<button onClick={this.openCardComposer} className="open-composer-button">
             Add a card...
           </button>)
@@ -53,4 +57,9 @@ class List extends React.Component<Props, State> {
   };
 }
 
-export default List;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    cards: ownProps.list.cards.map(cardId => state.cards[cardId])
+  };
+};
+export default connect(mapStateToProps)(List);
