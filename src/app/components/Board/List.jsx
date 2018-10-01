@@ -21,6 +21,7 @@ class List extends Component<Props> {
           {card.title}
         </div>))
       }
+      <button className="add-card-button">Add a card</button>
     </div>);
   };
 }
