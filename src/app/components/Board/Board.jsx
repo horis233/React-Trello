@@ -7,8 +7,10 @@ import "./Board.scss";
 type State = {
   lists: Array < {
     title: string,
+    id: string,
     cards: Array < {
-      title: string
+      title: string,
+      id: string
     } >
   } >
 };
@@ -21,20 +23,26 @@ State > {
       lists: [
         {
           title: "TODO Big picture",
+          id: "1",
           cards: [
             {
-              title: "Inspect how trello deals with loading boards, images"
+              title: "Inspect how trello deals with loading boards, images",
+              id: "2",
             }, {
-              title: "Make skeleton structure of whatever"
+              title: "Make skeleton structure of whatever",
+              id: "3",
             }
           ]
         }, {
           title: "TODO details",
+          id: "4",
           cards: [
             {
-              title: "Do some stuff"
+              title: "Do some stuff",
+              id: "5",
             }, {
-              title: "Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?"
+              title: "Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?",
+              id: "6",
             }
           ]
         }
@@ -49,7 +57,7 @@ State > {
       <h1 className="board-title">Board name</h1>
     </div>
     <div className="lists">
-      {this.state.lists.map(list => <List list={list}/>)}
+      {this.state.lists.map(list => <List key={list.id} list={list}/>)}
     </div>
   </div>);
 }
