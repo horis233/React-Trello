@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import gandalfGif from "../assets/gandalf.gif";
 
-class Home extends Component {
+type Props = {
+  boards: Array<{ title: string, id: string }>
+}
+
+class Home extends Component<Props> {
   render = () => {
     const { boards } = this.props;
     return (

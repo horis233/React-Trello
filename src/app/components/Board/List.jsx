@@ -6,12 +6,14 @@ import shortid from "shortid";
 
 type Props = {
   list: {
+    id: string,
     title: string
   },
   cards: Array < {
     title: string,
     id: string
-  } >
+  } >,
+  dispatch: ({ type: string }) => void
 };
 
 type State = {
@@ -76,10 +78,8 @@ class List extends React.Component<Props, State> {
   };
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    cards: ownProps.list.cards.map(cardId => state.cards[cardId])
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  cards: ownProps.list.cards.map(cardId => state.cards[cardId])
+});
 
 export default connect(mapStateToProps)(List);
