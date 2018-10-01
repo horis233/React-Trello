@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {connect} from "react-redux";
+import NewCardForm from "./NewCardForm";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
 
@@ -30,16 +31,21 @@ class List extends React.Component<Props, State> {
     };
   }
 
-  openCardComposer = () => this.setState({cardComposerIsOpen: true});
+  toggleCardComposer = () => {
+    this.setState({
+      cardComposerIsOpen: !this.state.cardComposerIsOpen
+    });
+  };
+
   handleCardComposerChange = (event : {
     target: {
       value: string
     }
-  }): void => {
+  }) => {
     this.setState({newCardTitle: event.target.value});
   };
 
-  handleKeyDown = (event : SyntheticEvent<>): void => {
+  handleKeyDown = (event : SyntheticEvent<>) => {
     if (event.keyCode === 13) {
       this.handleSubmitCard(event);
     }
@@ -74,14 +80,8 @@ class List extends React.Component<Props, State> {
       }
       {
         cardComposerIsOpen
-          ? (<form onSubmit={this.handleSubmitCard}>
-            <Textarea useCacheForDOMMeasurements="useCacheForDOMMeasurements"
-               minRows={3} onChange={this.handleCardComposerChange}
-               onKeyDown={this.handleKeyDown} 
-               value={newCardTitle}/>
-            <input type="submit" value="Add"/>
-          </form>)
-          : (<button onClick={this.openCardComposer} className="open-composer-button">
+          ? (<NewCardForm toggleCardComposer={this.toggleCardComposer} newCardTitle={newCardTitle} handleCardComposerChange={this.handleCardComposerChange} handleKeyDown={this.handleKeyDown} handleSubmitCard={this.handleSubmitCard}/>)
+          : (<button onClick={this.toggleCardComposer} className="open-composer-button">
             Add a card...
           </button>)
       }
