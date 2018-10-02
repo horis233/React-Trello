@@ -20,6 +20,8 @@ type Props = {
 
 type State = {
   cardComposerIsOpen: boolean,
+  cardInEdit:
+    ?string,
   newCardTitle: string
 };
 
@@ -28,6 +30,7 @@ class List extends React.Component<Props, State> {
     super();
     this.state = {
       cardComposerIsOpen: false,
+      cardInEdit: null,
       newCardTitle: ""
     };
   }
@@ -38,7 +41,8 @@ class List extends React.Component<Props, State> {
     });
   };
 
-  handleCardComposerChange = (event : {
+  handleCardComposerChange = (event
+  : {
     target: {
       value: string
     }
@@ -46,11 +50,16 @@ class List extends React.Component<Props, State> {
     this.setState({newCardTitle: event.target.value});
   };
 
-  handleKeyDown = (event : SyntheticEvent<>) => {
+  handleKeyDown = (event
+  : SyntheticEvent<>) => {
     if (event.keyCode === 13) {
       this.handleSubmitCard(event);
     }
   };
+
+  openCardEditor = (id) => {
+    this.setState({cardInEdit: id});
+  }
 
   handleSubmitCard = event => {
     event.preventDefault();
@@ -71,15 +80,23 @@ class List extends React.Component<Props, State> {
 
   render = () => {
     const {cards, list} = this.props;
-    const {cardComposerIsOpen, newCardTitle} = this.state;
+    const {cardComposerIsOpen, cardInEdit, newCardTitle} = this.state;
     return (<div className="list">
       <div className="list-title">{list.title}</div>
       {
         cards.map(card => (<div key={card.id} className="card-title">
-          {card.title}
-          <button className="edit-card-button">
-            <FaPencil/>
-          </button>
+          {
+            cardInEdit !== card.id
+              ? (<> < span > {
+                card.title
+              }</span> < button onClick = {
+                () => this.openCardEditor(card.id)
+              }
+              className = "edit-card-button" > <FaPencil/>
+            </button>
+          </>)
+              : (<Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} value="hej"/>)
+          }
         </div>))
       }
       {
