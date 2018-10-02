@@ -5,6 +5,10 @@ import FaPencil from "react-icons/lib/fa/pencil";
 import ClickOutside from "./ClickOutside";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
+import Scrollbar from "react-gemini-scrollbar";
+import CustomScroll from "react-custom-scroll";
+import "gemini-scrollbar/gemini-scrollbar.css";
+//import "./customScroll.css";
 
 type Props = {
   list: {
@@ -43,17 +47,11 @@ class List extends React.Component<Props, State> {
     });
   };
 
-  handleCardComposerChange = (event
-  : {
-    target: {
-      value: string
-    }
-  }) => {
+  handleCardComposerChange = (event: {target: {value: string}}) => {
     this.setState({newCardTitle: event.target.value});
   };
 
-  handleKeyDown = (event
-  : SyntheticEvent<>) => {
+  handleKeyDown = (event: SyntheticEvent<>) => {
     if (event.keyCode === 13) {
       this.handleSubmitCard(event);
     }
@@ -62,16 +60,12 @@ class List extends React.Component<Props, State> {
   openCardEditor = card => {
     this.setState({cardInEdit: card.id, editableCardTitle: card.title});
   };
-  handleCardEditorChange = (event
-  : {
-    target: {
-      value: string
-    }
-  }) => {
+
+  handleCardEditorChange = (event: {target: {value: string}}) => {
     this.setState({editableCardTitle: event.target.value});
   };
-  handleEditKeyDown = (event
-  : SyntheticEvent<>) => {
+
+  handleEditKeyDown = (event : SyntheticEvent<>) => {
     if (event.keyCode === 13) {
       event.preventDefault();
       this.handleSubmitCardEdit();
@@ -114,28 +108,26 @@ class List extends React.Component<Props, State> {
       const {cardComposerIsOpen, cardInEdit, editableCardTitle, newCardTitle} = this.state;
       return (<div className="list">
         <div className="list-title">{list.title}</div>
-        {
-          cards.map(card => (<div key={card.id}>
-            {
-              cardInEdit !== card.id
-                ? (<div className="card-title">
-                  <span>
-                    {card.title}
-                  </span>
-                  <button onClick="onClick" {
-                  () => this.openCardEditor(card)
-                } className="edit-card-button">
-                    <FaPencil/>
-                  </button>
-                </div>)
-                : (<ClickOutside handleClickOutside={this.handleSubmitCardEdit}>
-                  <div className="textarea-wrapper">
-                    <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} value={editableCardTitle} onChange={this.handleCardEditorChange} onKeyDown={this.handleEditKeyDown}/>
-                  </div>
-                </ClickOutside>)
-            }
-          </div>))
-        }
+        <div className="cards">
+          {
+            cards.map(card => (<div key={card.id}>
+              {
+                cardInEdit !== card.id
+                  ? (<div className="card-title">
+                    <span>{card.title}</span>
+                    <button onClick={() => this.openCardEditor(card)} className="edit-card-button">
+                      <FaPencil/>
+                    </button>
+                  </div>)
+                  : (<ClickOutside handleClickOutside={this.handleSubmitCardEdit}>
+                    <div className="textarea-wrapper">
+                      <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} value={editableCardTitle} onChange={this.handleCardEditorChange} onKeyDown={this.handleEditKeyDown}/>
+                    </div>
+                  </ClickOutside>)
+              }
+            </div>))
+          }
+        </div>
         {
           cardComposerIsOpen
             ? (<ClickOutside handleClickOutside={this.toggleCardComposer}>
@@ -150,10 +142,12 @@ class List extends React.Component<Props, State> {
         }
       </div>);
     };
+
   }
+}
 
-  const mapStateToProps = (state, ownProps) => ({
-    cards: ownProps.list.cards.map(cardId => state.cards[cardId])
-  });
+const mapStateToProps = (state, ownProps) => ({
+  cards: ownProps.list.cards.map(cardId => state.cards[cardId])
+});
 
-  export default connect(mapStateToProps)(List);
+export default connect(mapStateToProps)(List);

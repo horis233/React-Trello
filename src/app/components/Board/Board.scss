@@ -34,6 +34,8 @@ $list-margin: 8px;
   box-sizing: border-box;
   font-size: 14px;
   margin: 0 5px;
+  display: flex;
+  flex-direction: column;
   overflow: auto;
   max-height: 100%;
 }
@@ -41,6 +43,11 @@ $list-margin: 8px;
 .list-title {
   margin: 10px;
   font-weight: 700;
+}
+
+.cards {
+  overflow: auto;
+  // max-height: 200px;
 }
 
 .card-title {
@@ -110,7 +117,7 @@ $list-margin: 8px;
   font-size: 14px;
   font-weight: 700;
   padding: 10px 18px;
-  margin: 5px 0 0 0;
+  margin: 5px 0 0;
   border: none;
   cursor: pointer;
   border-radius: 3px;
