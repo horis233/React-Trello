@@ -2,7 +2,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import FaPencil from "react-icons/lib/fa/pencil";
-import NewCardForm from "./NewCardForm";
+import ClickOutside from "./ClickOutside";
 import Textarea from "react-textarea-autosize";
 import shortid from "shortid";
 
@@ -101,7 +101,12 @@ class List extends React.Component<Props, State> {
       }
       {
         cardComposerIsOpen
-          ? (<NewCardForm toggleCardComposer={this.toggleCardComposer} newCardTitle={newCardTitle} handleCardComposerChange={this.handleCardComposerChange} handleKeyDown={this.handleKeyDown} handleSubmitCard={this.handleSubmitCard}/>)
+          ? (<ClickOutside handleClickOutside={this.toggleCardComposer}>
+            <form onSubmit={this.handleSubmitCard}>
+              <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} onChange={this.handleCardComposerChange} onKeyDown={this.handleKeyDown} value={newCardTitle}/>
+              <input type="submit" value="Add" className="submit-card-button" disabled={newCardTitle === ""}/>
+            </form>
+          </ClickOutside>)
           : (<button onClick={this.toggleCardComposer} className="open-composer-button">
             Add a card...
           </button>)
