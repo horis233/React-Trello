@@ -1,19 +1,34 @@
 // @flow
 type CardState = {
-  [string]: { title: string, id: string }
+  [string]: {
+    title: string,
+    id: string
+  }
 };
 
 type ListState = {
-  [string]: { title: string, id: string, cards: Array<string> }
+  [string]: {
+    title: string,
+    id: string,
+    cards: Array<string>
+  }
 };
 
 type BoardState = {
-  [string]: { title: string, id: string, lists: Array<string> }
+  [string]: {
+    title: string,
+    id: string,
+    lists: Array<string>
+  }
 };
 
 type AddCardAction = {
   type: string,
-  payload: { listId: string, cardId: string, cardTitle: string }
+  payload: {
+    listId: string,
+    cardId: string,
+    cardTitle: string
+  }
 };
 
 type Action = AddCardAction;
@@ -32,8 +47,7 @@ const initialCardState = {
     id: "zxcv"
   },
   lkjhag: {
-    title:
-      "Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?",
+    title: "Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?",
     id: "lkjhag"
   }
 };
@@ -59,46 +73,62 @@ const initialBoardState = {
   }
 };
 
-const cards = (state: CardState = initialCardState, action: Action) => {
+const cards = (state : CardState = initialCardState, action : Action) => {
   switch (action.type) {
-    case "ADD_CARD": {
-      const { cardTitle, cardId } = action.payload;
-      return { ...state, [cardId]: { title: cardTitle, id: cardId } };
-    }
+    case "ADD_CARD":
+    case "EDIT_CARD_TITLE":
+      {
+        const {cardTitle, cardId} = action.payload;
+        return {
+          ...state,
+          [cardId]: {
+            title: cardTitle,
+            id: cardId
+          }
+        };
+      }
     default:
       return state;
   }
 };
 
-const lists = (state: ListState = initialListState, action: Action) => {
+const lists = (state : ListState = initialListState, action : Action) => {
   switch (action.type) {
-    case "ADD_CARD": {
-      const { listId, cardId } = action.payload;
-      return {
-        ...state,
-        [listId]: { ...state[listId], cards: [...state[listId].cards, cardId] }
-      };
-    }
+    case "ADD_CARD":
+      {
+        const {listId, cardId} = action.payload;
+        return {
+          ...state,
+          [listId]: {
+            ...state[listId],
+            cards: [
+              ...state[listId].cards,
+              cardId
+            ]
+          }
+        };
+      }
     default:
       return state;
   }
 };
 
-const boards = (state: BoardState = initialBoardState, action: Action) => {
+const boards = (state : BoardState = initialBoardState, action : Action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-const counter = (state: number = 1, action: Action) => {
+const counter = (state : number = 1, action : Action) => {
   switch (action.type) {
-    case "INCREMENT": {
-      return state + 2;
-    }
+    case "INCREMENT":
+      {
+        return state + 2;
+      }
     default:
       return state;
   }
 };
 
-export default { counter, cards, lists, boards };
+export default {counter, cards, lists, boards};
