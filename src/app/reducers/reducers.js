@@ -109,13 +109,31 @@ const lists = (state : ListState = initialListState, action : Action) => {
           }
         };
       }
-      case "EDIT_LIST_TITLE": {
-      const { listId, listTitle } = action.payload;
-      return {
-        ...state,
-        [listId]: { ...state[listId], title: listTitle }
-      };
-    }
+    case "EDIT_LIST_TITLE":
+      {
+        const {listId, listTitle} = action.payload;
+        return {
+          ...state,
+          [listId]: {
+            ...state[listId],
+            title: listTitle
+          }
+        };
+      }
+    case "REORDER_LIST":
+      {
+        const {sourceIndex, destinationIndex, listId} = action.payload;
+        const newCards = Array.from(state[listId].cards);
+        const [removedCard] = newCards.splice(sourceIndex, 1);
+        newCards.splice(destinationIndex, 0, removedCard);
+        return {
+          ...state,
+          [listId]: {
+            ...state[listId],
+            cards: newCards
+          }
+        };
+      }
     default:
       return state;
   }
