@@ -7,10 +7,10 @@ import Board from "./Board/Board";
 import "./App.scss";
 
 const App = () => (
-  <>
+  <div>
     <Header />
     <Route exact path="/" component={Home} />
     <Route path="/b/:boardId" component={Board} />
-  </>
+  </div>
 );
 export default App;

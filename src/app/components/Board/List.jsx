@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import shortid from "shortid";
 import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
@@ -11,15 +11,20 @@ type Props = {
     title: string,
     id: string
   },
-  cards: Array<{ title: string, id: string }>,
-  dispatch: ({ type: string }) => void
+  cards: Array < {
+    title: string,
+    id: string
+  } >,
+  dispatch: ({type: string}) => void
 };
 
 type State = {
   cardComposerIsOpen: boolean,
   newCardTitle: string,
-  cardInEdit: ?string,
-  editableCardTitle: string
+  cardInEdit: string,
+  editableCardTitle: string,
+  isListTitleInEdit: boolean,
+  newListTitle: string
 };
 
 class List extends React.Component<Props, State> {
@@ -29,18 +34,25 @@ class List extends React.Component<Props, State> {
       cardComposerIsOpen: false,
       newCardTitle: "",
       cardInEdit: null,
-      editableCardTitle: ""
+      editableCardTitle: "",
+      isListTitleInEdit: false,
+      newListTitle: ""
     };
   }
 
-  toggleCardComposer = () =>
-    this.setState({ cardComposerIsOpen: !this.state.cardComposerIsOpen });
+  toggleCardComposer = () => this.setState({
+    cardComposerIsOpen: !this.state.cardComposerIsOpen
+  });
 
-  handleCardComposerChange = (event: { target: { value: string } }) => {
-    this.setState({ newCardTitle: event.target.value });
+  handleCardComposerChange = (event : {
+    target: {
+      value: string
+    }
+  }) => {
+    this.setState({newCardTitle: event.target.value});
   };
 
-  handleKeyDown = (event: SyntheticEvent<>) => {
+  handleKeyDown = (event : SyntheticEvent<>) => {
     if (event.keyCode === 13) {
       this.handleSubmitCard(event);
     }
@@ -48,9 +60,10 @@ class List extends React.Component<Props, State> {
 
   handleSubmitCard = event => {
     event.preventDefault();
-    const { newCardTitle } = this.state;
-    const { list, dispatch } = this.props;
-    if (newCardTitle === "") return;
+    const {newCardTitle} = this.state;
+    const {list, dispatch} = this.props;
+    if (newCardTitle === "")
+      return;
     dispatch({
       type: "ADD_CARD",
       payload: {
@@ -59,28 +72,67 @@ class List extends React.Component<Props, State> {
         listId: list.id
       }
     });
-    this.setState({ newCardTitle: "", cardComposerIsOpen: false });
+    this.setState({newCardTitle: "", cardComposerIsOpen: false});
   };
 
   openCardEditor = card => {
-    this.setState({ cardInEdit: card.id, editableCardTitle: card.title });
+    this.setState({cardInEdit: card.id, editableCardTitle: card.title});
   };
 
-  handleCardEditorChange = (event: { target: { value: string } }) => {
-    this.setState({ editableCardTitle: event.target.value });
+  handleCardEditorChange = (event : {
+    target: {
+      value: string
+    }
+  }) => {
+    this.setState({editableCardTitle: event.target.value});
   };
 
-  handleEditKeyDown = (event: SyntheticEvent<>) => {
+  handleEditKeyDown = (event : SyntheticEvent<>) => {
     if (event.keyCode === 13) {
       event.preventDefault();
       this.handleSubmitCardEdit();
     }
   };
 
+  openTitleEditor = () => {
+    this.setState({isListTitleInEdit: true, newListTitle: this.props.list.title});
+  };
+
+  handleListTitleEditorChange = (event : {
+    target: {
+      value: string
+    }
+  }) => {
+    this.setState({newListTitle: event.target.value});
+  };
+
+  handleListTitleKeyDown = (event : SyntheticEvent<>) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      this.handleSubmitListTitle();
+    }
+  };
+
+  handleSubmitListTitle = () => {
+    const {newListTitle} = this.state;
+    const {list, dispatch} = this.props;
+    if (newListTitle === "")
+      return;
+    dispatch({
+      type: "EDIT_LIST_TITLE",
+      payload: {
+        listTitle: newListTitle,
+        listId: list.id
+      }
+    });
+    this.setState({isListTitleInEdit: false, newListTitle: ""});
+  };
+
   handleSubmitCardEdit = () => {
-    const { editableCardTitle, cardInEdit } = this.state;
-    const { list, dispatch } = this.props;
-    if (editableCardTitle === "") return;
+    const {editableCardTitle, cardInEdit} = this.state;
+    const {list, dispatch} = this.props;
+    if (editableCardTitle === "")
+      return;
     dispatch({
       type: "EDIT_CARD_TITLE",
       payload: {
@@ -89,83 +141,67 @@ class List extends React.Component<Props, State> {
         listId: list.id
       }
     });
-    this.setState({ editableCardTitle: "", cardInEdit: null });
+    this.setState({editableCardTitle: "", cardInEdit: null});
   };
 
   render = () => {
-    const { cards, list } = this.props;
+    const {cards, list} = this.props;
     const {
       cardComposerIsOpen,
       newCardTitle,
       cardInEdit,
-      editableCardTitle
+      editableCardTitle,
+      isListTitleInEdit,
+      newListTitle
     } = this.state;
-    return (
-      <div className="list">
-        <div className="list-title">{list.title}</div>
-        <div className="cards">
-          {cards.map(card => (
-            <div key={card.id}>
-              {cardInEdit !== card.id ? (
-                <div className="card-title">
-                  <span>{card.title}</span>
-                  <button
-                    onClick={() => this.openCardEditor(card)}
-                    className="edit-card-button"
-                  >
-                    <FaPencil />
-                  </button>
-                </div>
-              ) : (
-                <ClickOutside handleClickOutside={this.handleSubmitCardEdit}>
-                  <div className="textarea-wrapper">
-                    <Textarea
-                      autoFocus
-                      useCacheForDOMMeasurements
-                      minRows={3}
-                      value={editableCardTitle}
-                      onChange={this.handleCardEditorChange}
-                      onKeyDown={this.handleEditKeyDown}
-                    />
-                  </div>
-                </ClickOutside>
-              )}
+    return (<div className="list">
+      {
+        isListTitleInEdit
+          ? (<ClickOutside handleClickOutside={this.handleSubmitListTitle}>
+            <div className="list-title-textarea-wrapper">
+              <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements"
+                // minRows={1}
+                value={newListTitle} onChange={this.handleListTitleEditorChange} onKeyDown={this.handleListTitleKeyDown} className="list-title-textarea"/>
             </div>
-          ))}
-          {cardComposerIsOpen && (
-            <ClickOutside handleClickOutside={this.toggleCardComposer}>
-              <form
-                onSubmit={this.handleSubmitCard}
-                className="textarea-wrapper"
-              >
-                <Textarea
-                  autoFocus
-                  useCacheForDOMMeasurements
-                  minRows={3}
-                  onChange={this.handleCardComposerChange}
-                  onKeyDown={this.handleKeyDown}
-                  value={newCardTitle}
-                />
-                <input
-                  type="submit"
-                  value="Add"
-                  className="submit-card-button"
-                  disabled={newCardTitle === ""}
-                />
-              </form>
-            </ClickOutside>
-          )}
-        </div>
-        {cardComposerIsOpen || (
-          <button
-            onClick={this.toggleCardComposer}
-            className="open-composer-button"
-          >
-            Add a card...
-          </button>
-        )}
+          </ClickOutside>)
+          : (<button onClick={this.openTitleEditor} className="list-title-button">
+            {list.title}
+          </button>)
+      }
+      <div className="cards">
+        {
+          cards.map(card => (<div key={card.id}>
+            {
+              cardInEdit !== card.id
+                ? (<div className="card-title">
+                  <span>{card.title}</span>
+                  <button onClick={() => this.openCardEditor(card)} className="edit-card-button">
+                    <FaPencil/>
+                  </button>
+                </div>)
+                : (<ClickOutside handleClickOutside={this.handleSubmitCardEdit}>
+                  <div className="textarea-wrapper">
+                    <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} value={editableCardTitle} onChange={this.handleCardEditorChange} onKeyDown={this.handleEditKeyDown} className="list-textarea"/>
+                  </div>
+                </ClickOutside>)
+            }
+          </div>))
+        }
+        {
+          cardComposerIsOpen && (<ClickOutside handleClickOutside={this.toggleCardComposer}>
+            <form onSubmit={this.handleSubmitCard} className="textarea-wrapper">
+              <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} onChange={this.handleCardComposerChange} onKeyDown={this.handleKeyDown} value={newCardTitle} className="list-textarea"/>
+              <input type="submit" value="Add" className="submit-card-button" disabled={newCardTitle === ""}/>
+            </form>
+          </ClickOutside>)
+        }
       </div>
-    );
+      {
+        cardComposerIsOpen || (<button onClick={this.toggleCardComposer} className="open-composer-button">
+          Add a card...
+        </button>)
+      }
+    </div>);
   };
 }
 

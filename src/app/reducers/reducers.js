@@ -22,10 +22,11 @@ type BoardState = {
   }
 };
 
-type AddCardAction = {
+type Action = {
   type: string,
   payload: {
     listId: string,
+    listTitle: string,
     cardId: string,
     cardTitle: string
   }
@@ -108,6 +109,13 @@ const lists = (state : ListState = initialListState, action : Action) => {
           }
         };
       }
+      case "EDIT_LIST_TITLE": {
+      const { listId, listTitle } = action.payload;
+      return {
+        ...state,
+        [listId]: { ...state[listId], title: listTitle }
+      };
+    }
     default:
       return state;
   }
@@ -120,15 +128,4 @@ const boards = (state : BoardState = initialBoardState, action : Action) => {
   }
 };
 
-const counter = (state : number = 1, action : Action) => {
-  switch (action.type) {
-    case "INCREMENT":
-      {
-        return state + 2;
-      }
-    default:
-      return state;
-  }
-};
-
-export default {counter, cards, lists, boards};
+export default {cards, lists, boards};

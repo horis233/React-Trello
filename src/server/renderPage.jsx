@@ -8,7 +8,7 @@ import App from "../app/components/App";
 import reducers from "../app/reducers/reducers";
 
 export default function renderPage(req, res) {
-  const store = createStore(combineReducers(reducers), { counter: 5 });
+  const store = createStore(combineReducers(reducers));
 
   const context = {};
 
@@ -30,8 +30,8 @@ export default function renderPage(req, res) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/public/bundle.css">
         <meta name="description" content="Organize anything, together. Trello is a collaboration tool that organizes your projects into boards. In one glance, know what's being worked on, who's working on what, and where something is in a process.">
+        <link rel="stylesheet" href="/public/bundle.css">
         ${helmet.title.toString()}
       </head>
       <body>

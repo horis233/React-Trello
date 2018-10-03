@@ -19,7 +19,7 @@ class Home extends Component<Props> {
       <Helmet>
         <title>Home | Trello</title>
       </Helmet>
-      <img src={gandalfGif} alt="laughing gandalf"/> {
+      {
         boards.map(board => (<Link key={board.id} to={`/b/${board.id}/${slugify(board.title, {lower: true})}`}>
           {board.title}
         </Link>))

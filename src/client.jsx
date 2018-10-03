@@ -13,7 +13,7 @@ delete window.PRELOADED_STATE;
 
 const store = createStore(
   combineReducers(reducers),
-  preloadedState,
+  //preloadedState,
   devToolsEnhancer()
 );
 const render = () => {
