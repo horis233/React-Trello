@@ -34,6 +34,8 @@ type Action = {
   }
 };
 
+type Action = AddCardAction;
+
 const initialCardState = {
   qwer: {
     title: "Inspect how trello deals with loading boards, images",
