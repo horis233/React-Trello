@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
-import {connect} from "react-redux";
-import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
+import { connect } from "react-redux";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 import shortid from "shortid";
 import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
@@ -12,17 +12,14 @@ type Props = {
     title: string,
     id: string
   },
-  cards: Array < {
-    title: string,
-    id: string
-  } >,
-  dispatch: ({type: string}) => void
+  cards: Array<{ title: string, id: string }>,
+  dispatch: ({ type: string }) => void
 };
 
 type State = {
   cardComposerIsOpen: boolean,
   newCardTitle: string,
-  cardInEdit: string,
+  cardInEdit: ?string,
   editableCardTitle: string,
   isListTitleInEdit: boolean,
   newListTitle: string
@@ -41,19 +38,14 @@ class List extends React.Component<Props, State> {
     };
   }
 
-  toggleCardComposer = () => this.setState({
-    cardComposerIsOpen: !this.state.cardComposerIsOpen
-  });
+  toggleCardComposer = () =>
+    this.setState({ cardComposerIsOpen: !this.state.cardComposerIsOpen });
 
-  handleCardComposerChange = (event : {
-    target: {
-      value: string
-    }
-  }) => {
-    this.setState({newCardTitle: event.target.value});
+  handleCardComposerChange = (event: { target: { value: string } }) => {
+    this.setState({ newCardTitle: event.target.value });
   };
 
-  handleKeyDown = (event : SyntheticEvent<>) => {
+  handleKeyDown = (event: SyntheticEvent<>) => {
     if (event.keyCode === 13) {
       this.handleSubmitCard(event);
     }
@@ -61,10 +53,9 @@ class List extends React.Component<Props, State> {
 
   handleSubmitCard = event => {
     event.preventDefault();
-    const {newCardTitle} = this.state;
-    const {list, dispatch} = this.props;
-    if (newCardTitle === "")
-      return;
+    const { newCardTitle } = this.state;
+    const { list, dispatch } = this.props;
+    if (newCardTitle === "") return;
     dispatch({
       type: "ADD_CARD",
       payload: {
@@ -73,67 +64,28 @@ class List extends React.Component<Props, State> {
         listId: list.id
       }
     });
-    this.setState({newCardTitle: "", cardComposerIsOpen: false});
+    this.setState({ newCardTitle: "", cardComposerIsOpen: false });
   };
 
   openCardEditor = card => {
-    this.setState({cardInEdit: card.id, editableCardTitle: card.title});
+    this.setState({ cardInEdit: card.id, editableCardTitle: card.title });
   };
 
-  handleCardEditorChange = (event : {
-    target: {
-      value: string
-    }
-  }) => {
-    this.setState({editableCardTitle: event.target.value});
+  handleCardEditorChange = (event: { target: { value: string } }) => {
+    this.setState({ editableCardTitle: event.target.value });
   };
 
-  handleEditKeyDown = (event : SyntheticEvent<>) => {
+  handleEditKeyDown = (event: SyntheticEvent<>) => {
     if (event.keyCode === 13) {
       event.preventDefault();
       this.handleSubmitCardEdit();
     }
   };
 
-  openTitleEditor = () => {
-    this.setState({isListTitleInEdit: true, newListTitle: this.props.list.title});
-  };
-
-  handleListTitleEditorChange = (event : {
-    target: {
-      value: string
-    }
-  }) => {
-    this.setState({newListTitle: event.target.value});
-  };
-
-  handleListTitleKeyDown = (event : SyntheticEvent<>) => {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      this.handleSubmitListTitle();
-    }
-  };
-
-  handleSubmitListTitle = () => {
-    const {newListTitle} = this.state;
-    const {list, dispatch} = this.props;
-    if (newListTitle === "")
-      return;
-    dispatch({
-      type: "EDIT_LIST_TITLE",
-      payload: {
-        listTitle: newListTitle,
-        listId: list.id
-      }
-    });
-    this.setState({isListTitleInEdit: false, newListTitle: ""});
-  };
-
   handleSubmitCardEdit = () => {
-    const {editableCardTitle, cardInEdit} = this.state;
-    const {list, dispatch} = this.props;
-    if (editableCardTitle === "")
-      return;
+    const { editableCardTitle, cardInEdit } = this.state;
+    const { list, dispatch } = this.props;
+    if (editableCardTitle === "") return;
     dispatch({
       type: "EDIT_CARD_TITLE",
       payload: {
@@ -142,27 +94,46 @@ class List extends React.Component<Props, State> {
         listId: list.id
       }
     });
-    this.setState({editableCardTitle: "", cardInEdit: null});
+    this.setState({ editableCardTitle: "", cardInEdit: null });
   };
 
-  handleDragEnd = ({source, destination}) => {
-    // dropped outside the list
-    if (!destination) {
-      return;
+  openTitleEditor = () => {
+    this.setState({
+      isListTitleInEdit: true,
+      newListTitle: this.props.list.title
+    });
+  };
+
+  handleListTitleEditorChange = (event: { target: { value: string } }) => {
+    this.setState({ newListTitle: event.target.value });
+  };
+
+  handleListTitleKeyDown = (event: SyntheticEvent<>) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      this.handleSubmitListTitle();
     }
-    const {dispatch, list} = this.props;
+  };
+
+  handleSubmitListTitle = () => {
+    const { newListTitle } = this.state;
+    const { list, dispatch } = this.props;
+    if (newListTitle === "") return;
     dispatch({
-      type: "REORDER_LIST",
+      type: "EDIT_LIST_TITLE",
       payload: {
-        listId: list.id,
-        sourceIndex: source.index,
-        destinationIndex: destination.index
+        listTitle: newListTitle,
+        listId: list.id
       }
+    });
+    this.setState({
+      isListTitleInEdit: false,
+      newListTitle: ""
     });
   };
 
   render = () => {
-    const {cards, list} = this.props;
+    const { cards, list } = this.props;
     const {
       cardComposerIsOpen,
       newCardTitle,
@@ -171,60 +142,113 @@ class List extends React.Component<Props, State> {
       isListTitleInEdit,
       newListTitle
     } = this.state;
-    return (<DragDropContext>
+    return (
       <div className="list">
-        {
-          isListTitleInEdit
-            ? (<div className="list-title-textarea-wrapper">
-              <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" value={newListTitle} onChange={this.handleListTitleEditorChange} onKeyDown={this.handleListTitleKeyDown} onBlur={this.handleSubmitListTitle} className="list-title-textarea"/>
-            </div>)
-            : (<button onFocus={this.openTitleEditor} onClick={this.openTitleEditor} className="list-title-button">
-              {list.title}
-            </button>)
-        }
+        {isListTitleInEdit ? (
+          <div className="list-title-textarea-wrapper">
+            <Textarea
+              autoFocus
+              useCacheForDOMMeasurements
+              value={newListTitle}
+              onChange={this.handleListTitleEditorChange}
+              onKeyDown={this.handleListTitleKeyDown}
+              className="list-title-textarea"
+              onBlur={this.handleSubmitListTitle}
+            />
+          </div>
+        ) : (
+          <button
+            onFocus={this.openTitleEditor}
+            onClick={this.openTitleEditor}
+            className="list-title-button"
+          >
+            {list.title}
+          </button>
+        )}
         <Droppable droppableId={list.id}>
-          {
-            ({innerRef, placeholder}) => (<div className="cards" ref={innerRef}>
-              {
-                cards.map((card, index) => (<Draggable key={card.id} draggableId={card.id} index={index}>
-                  {
-                    provided => (<div>
-                      <div ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
-                        {
-                          cardInEdit !== card.id
-                            ? (<div className="card-title">
-                              <span>{card.title}</span>
-                              <button onClick={() => this.openCardEditor(card)} className="edit-card-button">
-                                <FaPencil/>
-                              </button>
-                            </div>)
-                            : (<div className="textarea-wrapper">
-                              <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} value={editableCardTitle} onChange={this.handleCardEditorChange} onKeyDown={this.handleEditKeyDown} className="list-textarea" onBlur={this.handleSubmitCardEdit}/>
-                            </div>)
-                        }
-                      </div>
+          {({ innerRef, placeholder }) => (
+            <div className="cards" ref={innerRef}>
+              {cards.map((card, index) => (
+                <Draggable key={card.id} draggableId={card.id} index={index}>
+                  {provided => (
+                    <div>
+                      {cardInEdit !== card.id ? (
+                        <div
+                          className="card-title"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <span>{card.title}</span>
+                          <button
+                            onClick={() => this.openCardEditor(card)}
+                            className="edit-card-button"
+                          >
+                            <FaPencil />
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="textarea-wrapper">
+                          <Textarea
+                            autoFocus
+                            useCacheForDOMMeasurements
+                            minRows={3}
+                            value={editableCardTitle}
+                            onChange={this.handleCardEditorChange}
+                            onKeyDown={this.handleEditKeyDown}
+                            className="list-textarea"
+                            onBlur={this.handleSubmitCardEdit}
+                          />
+                        </div>
+                      )}
                       {provided.placeholder}
-                    </div >)
-                  }
-                </Draggable>))
-              }
-              {
-                cardComposerIsOpen && (<ClickOutside handleClickOutside={this.toggleCardComposer}>
-                  <form onSubmit={this.handleSubmitCard} className="textarea-wrapper">
-                    <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} onChange={this.handleCardComposerChange} onKeyDown={this.handleKeyDown} value={newCardTitle} className="list-textarea"/>
-                    <input type="submit" value="Add" className="submit-card-button" disabled={newCardTitle === ""}/>
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {cardComposerIsOpen && (
+                <ClickOutside handleClickOutside={this.toggleCardComposer}>
+                  <form
+                    onSubmit={this.handleSubmitCard}
+                    className="textarea-wrapper"
+                  >
+                    <Textarea
+                      autoFocus
+                      useCacheForDOMMeasurements
+                      minRows={3}
+                      onChange={this.handleCardComposerChange}
+                      onKeyDown={this.handleKeyDown}
+                      value={newCardTitle}
+                      className="list-textarea"
+                    />
+                    <input
+                      type="submit"
+                      value="Add"
+                      className="submit-card-button"
+                      disabled={newCardTitle === ""}
+                    />
                   </form>
-                </ClickOutside>)
-              }
+                </ClickOutside>
+              )}
               {placeholder}
-            </div>)
-          }
+            </div>
+          )}
         </Droppable>
-        {
-          cardComposerIsOpen || (<button onClick={this.toggleCardComposer} className="open-composer-button">
+        {cardComposerIsOpen || (
+          <button
+            onClick={this.toggleCardComposer}
+            className="open-composer-button"
+          >
             Add a card...
-          </button>)
-        }
-        < /div></DragDropContext >); }; } const mapStateToProps = (state, ownProps) => ({cards: ownProps.list.cards.map(cardId => state.cards[cardId])});
+          </button>
+        )}
+      </div>
+    );
+  };
+}
+
+const mapStateToProps = (state, ownProps) => ({
+  cards: ownProps.list.cards.map(cardId => state.cards[cardId])
+});
 
 export default connect(mapStateToProps)(List);
