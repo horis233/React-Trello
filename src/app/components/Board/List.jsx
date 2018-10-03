@@ -1,14 +1,10 @@
 // @flow
 import * as React from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import shortid from "shortid";
+import Textarea from "react-textarea-autosize";
 import FaPencil from "react-icons/lib/fa/pencil";
 import ClickOutside from "./ClickOutside";
-import Textarea from "react-textarea-autosize";
-import shortid from "shortid";
-import Scrollbar from "react-gemini-scrollbar";
-import CustomScroll from "react-custom-scroll";
-import "gemini-scrollbar/gemini-scrollbar.css";
-//import "./customScroll.css";
 
 type Props = {
   list: {
