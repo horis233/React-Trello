@@ -157,14 +157,10 @@ class List extends React.Component<Props, State> {
     return (<div className="list">
       {
         isListTitleInEdit
-          ? (<ClickOutside handleClickOutside={this.handleSubmitListTitle}>
-            <div className="list-title-textarea-wrapper">
-              <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements"
-                // minRows={1}
-                value={newListTitle} onChange={this.handleListTitleEditorChange} onKeyDown={this.handleListTitleKeyDown} className="list-title-textarea"/>
-            </div>
-          </ClickOutside>)
-          : (<button onClick={this.openTitleEditor} className="list-title-button">
+          ? (<div className="list-title-textarea-wrapper">
+            <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" value={newListTitle} onChange={this.handleListTitleEditorChange} onKeyDown={this.handleListTitleKeyDown} onBlur={this.handleSubmitListTitle} className="list-title-textarea"/>
+          </div>)
+          : (<button onFocus={this.openTitleEditor} onClick={this.openTitleEditor} className="list-title-button">
             {list.title}
           </button>)
       }
@@ -179,11 +175,9 @@ class List extends React.Component<Props, State> {
                     <FaPencil/>
                   </button>
                 </div>)
-                : (<ClickOutside handleClickOutside={this.handleSubmitCardEdit}>
-                  <div className="textarea-wrapper">
-                    <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} value={editableCardTitle} onChange={this.handleCardEditorChange} onKeyDown={this.handleEditKeyDown} className="list-textarea"/>
-                  </div>
-                </ClickOutside>)
+                : (<div className="textarea-wrapper">
+                  <Textarea onBlur={this.handleSubmitCardEdit} autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} value={editableCardTitle} onChange={this.handleCardEditorChange} onKeyDown={this.handleEditKeyDown} className="list-textarea"/>
+                </div>)
             }
           </div>))
         }
