@@ -188,27 +188,23 @@ class List extends React.Component<Props, State> {
               {
                 cards.map((card, index) => (<Draggable key={card.id} draggableId={card.id} index={index}>
                   {
-                    provided => (
-                    <> <div ref = {
-                      provided.innerRef
-                    } {
-                      ...provided.draggableProps
-                    } {
-                      ...provided.dragHandleProps
-                    } > {
-                      cardInEdit !== card.id
-                        ? (<div className="card-title">
-                          <span>{card.title}</span>
-                          <button onClick={() => this.openCardEditor(card)} className="edit-card-button">
-                            <FaPencil/>
-                          </button>
-                        </div>)
-                        : (<div className="textarea-wrapper">
-                          <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} value={editableCardTitle} onChange={this.handleCardEditorChange} onKeyDown={this.handleEditKeyDown} className="list-textarea" onBlur={this.handleSubmitCardEdit}/>
-                        </div>)
-                    } < /div>
-                        {provided.placeholder}
-                      </ >)
+                    provided => (<div>
+                      <div ref={provided.innerRef} {...provided.dragHandleProps} {...provided.draggableProps}>
+                        {
+                          cardInEdit !== card.id
+                            ? (<div className="card-title">
+                              <span>{card.title}</span>
+                              <button onClick={() => this.openCardEditor(card)} className="edit-card-button">
+                                <FaPencil/>
+                              </button>
+                            </div>)
+                            : (<div className="textarea-wrapper">
+                              <Textarea autoFocus="autoFocus" useCacheForDOMMeasurements="useCacheForDOMMeasurements" minRows={3} value={editableCardTitle} onChange={this.handleCardEditorChange} onKeyDown={this.handleEditKeyDown} className="list-textarea" onBlur={this.handleSubmitCardEdit}/>
+                            </div>)
+                        }
+                      </div>
+                      {provided.placeholder}
+                    </div >)
                   }
                 </Draggable>))
               }
@@ -229,13 +225,6 @@ class List extends React.Component<Props, State> {
             Add a card...
           </button>)
         }
-      </div>
-    </DragDropContext>);
-  };
-}
-
-const mapStateToProps = (state, ownProps) => ({
-  cards: ownProps.list.cards.map(cardId => state.cards[cardId])
-});
+        < /div></DragDropContext >); }; } const mapStateToProps = (state, ownProps) => ({cards: ownProps.list.cards.map(cardId => state.cards[cardId])});
 
 export default connect(mapStateToProps)(List);

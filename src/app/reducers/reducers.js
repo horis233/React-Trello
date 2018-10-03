@@ -28,7 +28,9 @@ type Action = {
     listId: string,
     listTitle: string,
     cardId: string,
-    cardTitle: string
+    cardTitle: string,
+    sourceIndex: number,
+    destinationIndex: number
   }
 };
 
