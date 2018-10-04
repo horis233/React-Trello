@@ -29,6 +29,7 @@ type Action = {
 		listTitle: string,
 		cardId: string,
 		cardTitle: string,
+		boardId: string,
 		sourceIndex: number,
 		destinationIndex: number,
 		sourceId: string,
@@ -107,6 +108,13 @@ const lists = (state: ListState = initialListState, action: Action) => {
 				}
 			};
 		}
+		case 'ADD_LIST': {
+			const { listId, listTitle } = action.payload;
+			return {
+				...state,
+				[listId]: { ...state[listId], title: listTitle, cards: [] }
+			};
+		}
 		case 'EDIT_LIST_TITLE': {
 			const { listId, listTitle } = action.payload;
 			return {
@@ -118,7 +126,6 @@ const lists = (state: ListState = initialListState, action: Action) => {
 			};
 		}
 		case 'REORDER_LIST': {
-
 			const { sourceIndex, destinationIndex, sourceId, destinationId } = action.payload;
 			// Reorder within the same list
 			if (sourceId === destinationId) {
@@ -148,16 +155,26 @@ const lists = (state: ListState = initialListState, action: Action) => {
 
 const boards = (state: BoardState = initialBoardState, action: Action) => {
 	switch (action.type) {
-    case "REORDER_BOARD": {
-      const { sourceIndex, destinationIndex, sourceId } = action.payload;
-      const newLists = Array.from(state[sourceId].lists);
-      const [removedList] = newLists.splice(sourceIndex, 1);
-      newLists.splice(destinationIndex, 0, removedList);
-      return {
-        ...state,
-        [sourceId]: { ...state[sourceId], lists: newLists }
-      };
-    }
+		case 'REORDER_BOARD': {
+			const { sourceIndex, destinationIndex, sourceId } = action.payload;
+			const newLists = Array.from(state[sourceId].lists);
+			const [ removedList ] = newLists.splice(sourceIndex, 1);
+			newLists.splice(destinationIndex, 0, removedList);
+			return {
+				...state,
+				[sourceId]: { ...state[sourceId], lists: newLists }
+			};
+		}
+		case 'ADD_LIST': {
+			const { boardId, listId } = action.payload;
+			return {
+				...state,
+				[boardId]: {
+					...state[boardId],
+					lists: [ ...state[boardId].lists, listId ]
+				}
+			};
+		}
 		default:
 			return state;
 	}
