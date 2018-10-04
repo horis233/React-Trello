@@ -118,7 +118,7 @@ const lists = (state: ListState = initialListState, action: Action) => {
 			};
 		}
 		case 'REORDER_LIST': {
-      
+
 			const { sourceIndex, destinationIndex, sourceId, destinationId } = action.payload;
 			// Reorder within the same list
 			if (sourceId === destinationId) {
@@ -148,6 +148,16 @@ const lists = (state: ListState = initialListState, action: Action) => {
 
 const boards = (state: BoardState = initialBoardState, action: Action) => {
 	switch (action.type) {
+    case "REORDER_BOARD": {
+      const { sourceIndex, destinationIndex, sourceId } = action.payload;
+      const newLists = Array.from(state[sourceId].lists);
+      const [removedList] = newLists.splice(sourceIndex, 1);
+      newLists.splice(destinationIndex, 0, removedList);
+      return {
+        ...state,
+        [sourceId]: { ...state[sourceId], lists: newLists }
+      };
+    }
 		default:
 			return state;
 	}
