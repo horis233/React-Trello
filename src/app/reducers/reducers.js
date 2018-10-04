@@ -112,7 +112,7 @@ const lists = (state: ListState = initialListState, action: Action) => {
 			const { listId, listTitle } = action.payload;
 			return {
 				...state,
-				[listId]: { ...state[listId], title: listTitle, cards: [] }
+				[listId]: { id: listId, title: listTitle, cards: [] }
 			};
 		}
 		case 'EDIT_LIST_TITLE': {
@@ -165,6 +165,7 @@ const boards = (state: BoardState = initialBoardState, action: Action) => {
 				[sourceId]: { ...state[sourceId], lists: newLists }
 			};
 		}
+
 		case 'ADD_LIST': {
 			const { boardId, listId } = action.payload;
 			return {
@@ -175,6 +176,7 @@ const boards = (state: BoardState = initialBoardState, action: Action) => {
 				}
 			};
 		}
+
 		default:
 			return state;
 	}
