@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Helmet } from 'react-helmet';
 import List from './List';
-import ListAdder from "./ListAdder";
+import ListAdder from './ListAdder';
 import './Board.scss';
 
 type Props = {
 	lists: Array<{ id: string }>,
-  boardTitle: string,
-  boardId: string,
+	boardTitle: string,
+	boardId: string,
 	dispatch: ({ type: string }) => void
 };
 
@@ -21,20 +21,20 @@ class Board extends React.Component<Props> {
 			return;
 		}
 
-    const { dispatch } = this.props;
-    
-    if (type === 'COLUMN') {
-      dispatch({
-        type: "REORDER_BOARD",
-        payload: {
-          sourceId: source.droppableId,
-          destinationId: destination.droppableId,
-          sourceIndex: source.index,
-          destinationIndex: destination.index
-        }
-      });
-    }
-    
+		const { dispatch } = this.props;
+
+		if (type === 'COLUMN') {
+			dispatch({
+				type: 'REORDER_BOARD',
+				payload: {
+					sourceId: source.droppableId,
+					destinationId: destination.droppableId,
+					sourceIndex: source.index,
+					destinationIndex: destination.index
+				}
+			});
+		}
+
 		dispatch({
 			type: 'REORDER_LIST',
 			payload: {
@@ -62,7 +62,7 @@ class Board extends React.Component<Props> {
 							<div className="lists" ref={droppableProvided.innerRef}>
 								{lists.map((list, index) => (
 									<Draggable key={list.id} draggableId={list.id} index={index}>
-										{provided => (
+										{(provided) => (
 											<div>
 												<div
 													ref={provided.innerRef}
@@ -70,6 +70,7 @@ class Board extends React.Component<Props> {
 													{...provided.dragHandleProps}
 													data-react-beautiful-dnd-draggable="0"
 													data-react-beautiful-dnd-drag-handle="0"
+													style={{ height: '100%' }}
 												>
 													<List list={list} />
 												</div>
@@ -78,8 +79,8 @@ class Board extends React.Component<Props> {
 										)}
 									</Draggable>
 								))}
-                {droppableProvided.placeholder}
-                <ListAdder boardId={boardId}/>
+								{droppableProvided.placeholder}
+								<ListAdder boardId={boardId} />
 							</div>
 						)}
 					</Droppable>
@@ -94,8 +95,8 @@ const mapStateToProps = (state, ownProps) => {
 	const board = state.boards[boardId];
 	return {
 		lists: board.lists.map((listId) => state.lists[listId]),
-    boardTitle: board.title,
-    boardId
+		boardTitle: board.title,
+		boardId
 	};
 };
 

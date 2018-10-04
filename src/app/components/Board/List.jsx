@@ -215,6 +215,7 @@ class List extends React.Component<Props, State> {
 									)}
 								</Draggable>
 							))}
+							{provided.placeholder}
 							{cardComposerIsOpen && (
 								<ClickOutside handleClickOutside={this.toggleCardComposer}>
 									<form onSubmit={this.handleSubmitCard} className="textarea-wrapper">
@@ -236,15 +237,14 @@ class List extends React.Component<Props, State> {
 									</form>
 								</ClickOutside>
 							)}
-							{provided.placeholder}
+							{cardComposerIsOpen || (
+								<button onClick={this.toggleCardComposer} className="open-composer-button">
+									Add a card...
+								</button>
+							)}
 						</div>
 					)}
 				</Droppable>
-				{cardComposerIsOpen || (
-					<button onClick={this.toggleCardComposer} className="open-composer-button">
-						Add a card...
-					</button>
-				)}
 			</div>
 		);
 	};
