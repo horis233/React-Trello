@@ -161,18 +161,18 @@ class List extends React.Component<Props, State> {
 					</button>
 				)}
 				<Droppable droppableId={list.id}>
-					{({ innerRef, placeholder }) => (
-						<div className="cards" ref={innerRef}>
+					{(provided) => (
+						<div className="cards" ref={provided.innerRef}>
 							{cards.map((card, index) => (
 								<Draggable key={card.id} draggableId={card.id} index={index}>
-									{(provided) => (
+									{({ innerRef, draggableProps, dragHandleProps, placeholder }) => (
 										<div>
 											{cardInEdit !== card.id ? (
 												<div
 													className="card-title"
-													ref={provided.innerRef}
-													{...provided.draggableProps}
-													{...provided.dragHandleProps}
+													ref={innerRef}
+													{...draggableProps}
+													{...dragHandleProps}
 													data-react-beautiful-dnd-draggable="0"
 													data-react-beautiful-dnd-drag-handle="0"
 												>
@@ -198,7 +198,7 @@ class List extends React.Component<Props, State> {
 													/>
 												</div>
 											)}
-											{provided.placeholder}
+											{placeholder}
 										</div>
 									)}
 								</Draggable>
@@ -224,7 +224,7 @@ class List extends React.Component<Props, State> {
 									</form>
 								</ClickOutside>
 							)}
-							{placeholder}
+							{provided.placeholder}
 						</div>
 					)}
 				</Droppable>

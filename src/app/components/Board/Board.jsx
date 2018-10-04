@@ -23,7 +23,8 @@ class Board extends Component<Props> {
     dispatch({
       type: "REORDER_LIST",
       payload: {
-        listId: destination.droppableId,
+        destinationId: destination.droppableId,
+        sourceId: source.droppableId,
         sourceIndex: source.index,
         destinationIndex: destination.index
       }
