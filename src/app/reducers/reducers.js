@@ -91,6 +91,13 @@ const cards = (state: CardState = initialCardState, action: Action) => {
 				}
 			};
 		}
+
+		// case 'DELETE_CARD': {
+		// 	const { cardId } = action.payload;
+		// 	const { [cardId]: deletedCard, ...restOfCards } = state;
+		// 	return restOfCards;
+		// }
+
 		default:
 			return state;
 	}
@@ -115,6 +122,18 @@ const lists = (state: ListState = initialListState, action: Action) => {
 				[listId]: { id: listId, title: listTitle, cards: [] }
 			};
 		}
+
+		case 'DELETE_CARD': {
+			const { cardId: newCardId, listId } = action.payload;
+			return {
+				...state,
+				[listId]: {
+					...state[listId],
+					cards: state[listId].cards.filter((cardId) => cardId !== newCardId)
+				}
+			};
+		}
+
 		case 'EDIT_LIST_TITLE': {
 			const { listId, listTitle } = action.payload;
 			return {
