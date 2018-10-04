@@ -1,61 +1,89 @@
 // @flow
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import { DragDropContext } from "react-beautiful-dnd";
-import {Helmet} from "react-helmet";
-import List from "./List";
-import "./Board.scss";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { Helmet } from 'react-helmet';
+import List from './List';
+import './Board.scss';
 
 type Props = {
-  lists: Array<{ id: string }>,
-  boardTitle: string,
-  dispatch: ({ type: string }) => void
+	lists: Array<{ id: string }>,
+	boardTitle: string,
+	dispatch: ({ type: string }) => void
 };
 
 class Board extends Component<Props> {
+	handleDragEnd = ({ source, destination, type }) => {
+		// dropped outside the list
+		if (!destination) {
+			return;
+		}
 
-  handleDragEnd = ({ source, destination }) => {
-    // dropped outside the list
-    if (!destination) {
-      return;
-    }
-    const { dispatch } = this.props;
-    dispatch({
-      type: "REORDER_LIST",
-      payload: {
-        destinationId: destination.droppableId,
-        sourceId: source.droppableId,
-        sourceIndex: source.index,
-        destinationIndex: destination.index
-      }
-    });
-  };
+		if (type === 'COLUMN') {
+			return;
+		}
 
-  render = () => {
-    const {lists, boardTitle} = this.props;
-    return (<div className="board">
-      <Helmet>
-        <title>{boardTitle} | Trello</title>
-      </Helmet>
-      <div className="board-header">
-        <h1 className="board-title">{boardTitle}</h1>
-      </div>
-      <DragDropContext onDragEnd={this.handleDragEnd}>
-          <div className="lists">
-            {lists.map(list => <List key={list.id} list={list} />)}
-          </div>
-        </DragDropContext>
-    </div>);
-  };
+		const { dispatch } = this.props;
+		dispatch({
+			type: 'REORDER_LIST',
+			payload: {
+				destinationId: destination.droppableId,
+				sourceId: source.droppableId,
+				sourceIndex: source.index,
+				destinationIndex: destination.index
+			}
+		});
+	};
+
+	render = () => {
+		const { lists, boardTitle } = this.props;
+		return (
+			<div className="board">
+				<Helmet>
+					<title>{boardTitle} | Trello</title>
+				</Helmet>
+				<div className="board-header">
+					<h1 className="board-title">{boardTitle}</h1>
+				</div>
+				<DragDropContext onDragEnd={this.handleDragEnd}>
+					<Droppable droppableId="board" type="COLUMN" direction="horizontal">
+						{(droppableProvided) => (
+							<div className="lists" ref={droppableProvided.innerRef}>
+								{lists.map((list, index) => (
+									<Draggable key={list.id} draggableId={list.id} index={index}>
+										{(provided, snapshot) => (
+											<div>
+												<div
+													ref={provided.innerRef}
+													{...provided.draggableProps}
+													{...provided.dragHandleProps}
+													data-react-beautiful-dnd-draggable="0"
+													data-react-beautiful-dnd-drag-handle="0"
+												>
+													<List list={list} />
+												</div>
+												{provided.placeholder}
+											</div>
+										)}
+									</Draggable>
+								))}
+								{droppableProvided.placeholder}
+							</div>
+						)}
+					</Droppable>
+				</DragDropContext>
+			</div>
+		);
+	};
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const {boardId} = ownProps.match.params;
-  const board = state.boards[boardId];
-  return {
-    lists: board.lists.map(listId => state.lists[listId]),
-    boardTitle: board.title
-  };
+	const { boardId } = ownProps.match.params;
+	const board = state.boards[boardId];
+	return {
+		lists: board.lists.map((listId) => state.lists[listId]),
+		boardTitle: board.title
+	};
 };
 
 export default connect(mapStateToProps)(Board);
