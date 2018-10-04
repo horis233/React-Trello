@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Helmet } from 'react-helmet';
 import List from './List';
+import ListAdder from "./ListAdder";
 import './Board.scss';
 
 type Props = {
@@ -77,7 +78,8 @@ class Board extends Component<Props> {
 										)}
 									</Draggable>
 								))}
-								{droppableProvided.placeholder}
+                {droppableProvided.placeholder}
+                <ListAdder />
 							</div>
 						)}
 					</Droppable>
