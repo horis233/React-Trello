@@ -65,12 +65,13 @@ class Board extends React.Component<Props> {
 										{(provided) => (
 											<div>
 												<div
+													className="list-wrapper"
 													ref={provided.innerRef}
 													{...provided.draggableProps}
 													{...provided.dragHandleProps}
 													data-react-beautiful-dnd-draggable="0"
 													data-react-beautiful-dnd-drag-handle="0"
-													style={{ height: '100%' }}
+													//style={{ height: '100%' }}
 												>
 													<List list={list} />
 												</div>

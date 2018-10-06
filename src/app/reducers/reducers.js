@@ -92,11 +92,11 @@ const cards = (state: CardState = initialCardState, action: Action) => {
 			};
 		}
 
-		// case 'DELETE_CARD': {
-		// 	const { cardId } = action.payload;
-		// 	const { [cardId]: deletedCard, ...restOfCards } = state;
-		// 	return restOfCards;
-		// }
+		case 'DELETE_CARD': {
+			const { cardId } = action.payload;
+			const { [cardId]: deletedCard, ...restOfCards } = state;
+			return restOfCards;
+		}
 
 		default:
 			return state;
