@@ -44,6 +44,11 @@ $list-margin: 8px;
 	height: 100%;
 }
 
+.list-title {
+	display: flex;
+	flex-shrink: 0;
+}
+
 .list-title-button {
 	padding: 10px;
 	font-weight: 700;
