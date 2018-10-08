@@ -175,7 +175,7 @@ const lists = (state: ListState = initialListState, action: Action) => {
 const boards = (state: BoardState = initialBoardState, action: Action) => {
 	switch (action.type) {
 		case 'REORDER_BOARD': {
-			const { sourceIndex, destinationIndex, sourceId } = action.payload;
+			const { destinationIndex, sourceId, sourceIndex } = action.payload;
 			const newLists = Array.from(state[sourceId].lists);
 			const [ removedList ] = newLists.splice(sourceIndex, 1);
 			newLists.splice(destinationIndex, 0, removedList);

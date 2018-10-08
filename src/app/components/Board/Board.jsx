@@ -27,10 +27,10 @@ class Board extends React.Component<Props> {
 			dispatch({
 				type: 'REORDER_BOARD',
 				payload: {
-					sourceId: source.droppableId,
 					destinationId: destination.droppableId,
-					sourceIndex: source.index,
-					destinationIndex: destination.index
+					destinationIndex: destination.index,
+					sourceId: source.droppableId,
+					sourceIndex: source.index
 				}
 			});
 		}
@@ -39,15 +39,15 @@ class Board extends React.Component<Props> {
 			type: 'REORDER_LIST',
 			payload: {
 				destinationId: destination.droppableId,
+				destinationIndex: destination.index,
 				sourceId: source.droppableId,
-				sourceIndex: source.index,
-				destinationIndex: destination.index
+				sourceIndex: source.index
 			}
 		});
 	};
 
 	render = () => {
-		const { lists, boardTitle, boardId } = this.props;
+		const { boardId, boardTitle, lists } = this.props;
 		return (
 			<div className="board">
 				<Helmet>
@@ -98,12 +98,14 @@ class Board extends React.Component<Props> {
 }
 
 const mapStateToProps = (state, ownProps) => {
+	//console.log(state);
+	//console.log(ownProps);
 	const { boardId } = ownProps.match.params;
 	const board = state.boards[boardId];
 	return {
 		lists: board.lists.map((listId) => state.lists[listId]),
 		boardTitle: board.title,
-		boardId
+		boardId: board.id
 	};
 };
 

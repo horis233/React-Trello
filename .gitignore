@@ -3,3 +3,4 @@ dist
 stats.json
 .vscode
 .history
+.env
