@@ -1,38 +1,29 @@
-import path from 'path';
-import express from 'express';
-import compression from 'compression';
-import dotenv from 'dotenv';
-import favicon from 'serve-favicon';
-import { Client } from 'pg';
-import renderPage from './renderPage';
+import path from "path";
+import express from "express";
+import { MongoClient } from "mongodb";
+import compression from "compression";
+import favicon from "serve-favicon";
+import dotenv from "dotenv";
+import renderPage from "./renderPage";
+import api from "./api";
+import fetchBoardData from "./fetchBoardData";
 
 dotenv.config();
-
-// const getData = (req, res, next) => {
-//  const client = new Client();
-//   client.connect();
-//   client.query("SELECT * FROM cards", (err, cardData) => {
-//    // console.log(err ? err.stack : res.rows[0]); // Hello World!
-//    console.log("getdata");
-//    const cards = cardData.rows.reduce((acc, card) => {
-//      acc[card.id] = card;
-//      return acc;
-//    }, {});
-//    req.initialState = { cards };
-//    client.end();
-//    next();
-//  });
-// };
-
 const app = express();
 
-app.use(favicon(path.join('dist/public/favicons/favicon.ico')));
-app.use(compression());
-app.use('/public', express.static(path.join('dist/public')));
-//app.use(getData);
-app.get('*', renderPage);
+MongoClient.connect(process.env.MONGODB_URL).then(client => {
+  const db = client.db(process.env.MONGODB_NAME);
 
-const port = process.env.PORT || '1337';
+  app.use(compression());
+  app.use(favicon(path.join("dist/public/favicons/favicon.ico")));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+  app.use("/static", express.static("dist/public"));
+  app.use("/api", api);
+  app.use(fetchBoardData(db));
+  app.get("*", renderPage);
 
-/* eslint-disable no-console */
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+  const port = process.env.PORT || "1337";
+  /* eslint-disable no-console */
+  app.listen(port, () => console.log(`Server listening on port ${port}`));
+});
