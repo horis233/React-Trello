@@ -2,11 +2,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import shortid from 'shortid';
 import Textarea from 'react-textarea-autosize';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import ClickOutside from './ClickOutside';
+import { addCard } from '../../actionCreators';
 
 type DragHandleProps = {|
 	onFocus: () => void,
@@ -30,7 +30,7 @@ type Props = {
 		title: string,
 		id: string,
 		cards: Array<string>
-	},
+	}
 };
 
 type State = {
@@ -70,16 +70,9 @@ class List extends React.Component<Props, State> {
 	handleSubmitCard = (event) => {
 		event.preventDefault();
 		const { newCardTitle } = this.state;
-		const { list, dispatch } = this.props;
+		const { list, boardId, dispatch } = this.props;
 		if (newCardTitle === '') return;
-		dispatch({
-			type: 'ADD_CARD',
-			payload: {
-				cardId: shortid.generate(),
-				cardTitle: newCardTitle,
-				listId: list.id
-			}
-		});
+		dispatch(addCard(newCardTitle, list.id, boardId));
 		this.setState({ newCardTitle: '', cardComposerIsOpen: false });
 	};
 
