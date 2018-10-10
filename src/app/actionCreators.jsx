@@ -40,6 +40,25 @@ export const editCardTitle = (cardTitle, cardId, list, boardId) => (dispatch) =>
 		.then(({ data }) => console.log(data));
 };
 
+export const reorderBoard = (listId, sourceId, sourceIndex, destinationIndex) => (dispatch) => {
+	dispatch({
+		type: 'REORDER_BOARD',
+		payload: {
+			sourceId,
+			sourceIndex,
+			destinationIndex
+		}
+	});
+	axios
+		.put('/api/reorder-board', {
+			listId,
+			sourceId,
+			sourceIndex,
+			destinationIndex
+		})
+		.then(({ data }) => console.log(data));
+};
+
 export const reorderList = (cardId, sourceId, destinationId, sourceIndex, destinationIndex, boardId) => (dispatch) => {
 	dispatch({
 		type: 'REORDER_LIST',
