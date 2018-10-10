@@ -30,5 +30,34 @@ export const editCardTitle = (cardTitle, cardId, list, boardId) => (dispatch) =>
 		}
 	});
 	const cardIndex = list.cards.indexOf(cardId);
-	axios.put('/api/card', { cardTitle, cardIndex, listId: list._id, boardId }).then(({ data }) => console.log(data));
+	axios
+		.put('/api/card', {
+			cardTitle,
+			cardIndex,
+			listId: list._id,
+			boardId
+		})
+		.then(({ data }) => console.log(data));
+};
+
+export const reorderList = (cardId, sourceId, destinationId, sourceIndex, destinationIndex, boardId) => (dispatch) => {
+	dispatch({
+		type: 'REORDER_LIST',
+		payload: {
+			sourceId,
+			destinationId,
+			sourceIndex,
+			destinationIndex
+		}
+	});
+	axios
+		.put('/api/reorder-list', {
+			cardId,
+			sourceId,
+			destinationId,
+			sourceIndex,
+			destinationIndex,
+			boardId
+		})
+		.then(({ data }) => console.log(data));
 };
