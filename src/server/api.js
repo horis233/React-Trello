@@ -73,6 +73,17 @@ const api = (db) => {
 			.then((result) => res.send(result));
 	});
 
+	router.delete("/card", (req, res) => {
+	    const { cardId, listId, boardId } = req.body;
+	    db
+	      .collection("boards")
+	      .updateOne(
+	        { _id: boardId, "lists._id": listId },
+	        { $pull: { "lists.$.cards": { _id: cardId } } }
+	      )
+	      .then(result => res.send(result));
+	  });
+		
 	return router;
 };
 

@@ -6,7 +6,7 @@ import Textarea from 'react-textarea-autosize';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import ClickOutside from './ClickOutside';
-import { addCard, editCardTitle } from '../../actionCreators';
+import { addCard, editCardTitle, deleteCard } from '../../actionCreators';
 
 type DragHandleProps = {|
 	onFocus: () => void,
@@ -143,15 +143,8 @@ class List extends React.Component<Props, State> {
 	};
 
 	deleteList = () => {
-		const { list, boardId, dispatch } = this.props;
-		dispatch({
-			type: 'DELETE_LIST',
-			payload: {
-				listId: list.id,
-				boardId,
-				cards: list.cards
-			}
-		});
+		const { dispatch, list, boardId } = this.props;
+    dispatch(deleteCard(cardId, list._id, boardId));
 	};
 
 	render = () => {
