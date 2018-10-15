@@ -11,6 +11,14 @@ const api = (db) => {
 			.then((result) => res.send(result));
 	});
 
+	router.delete("/list", (req, res) => {
+    const { listId, boardId } = req.body;
+    db
+      .collection("boards")
+      .updateOne({ _id: boardId }, { $pull: { lists: { _id: listId } } })
+      .then(result => res.send(result));
+  });
+	
 	router.put('/reorder-list', (req, res) => {
 		const { cardId, sourceId, destinationId, sourceIndex, destinationIndex, boardId } = req.body;
 		db
@@ -83,7 +91,7 @@ const api = (db) => {
 	      )
 	      .then(result => res.send(result));
 	  });
-		
+
 	return router;
 };
 
