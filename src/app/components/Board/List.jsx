@@ -6,7 +6,7 @@ import Textarea from 'react-textarea-autosize';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import ClickOutside from './ClickOutside';
-import { addCard, editCardTitle, deleteCard, deleteList} from '../../actionCreators';
+import { addCard, editCardTitle, editListTitle, deleteCard, deleteList} from '../../actionCreators';
 
 type DragHandleProps = {|
 	onFocus: () => void,
@@ -127,15 +127,9 @@ class List extends React.Component<Props, State> {
 
 	handleSubmitListTitle = () => {
 		const { newListTitle } = this.state;
-		const { list, dispatch } = this.props;
+		const { list, boardId, dispatch } = this.props;
 		if (newListTitle === '') return;
-		dispatch({
-			type: 'EDIT_LIST_TITLE',
-			payload: {
-				listTitle: newListTitle,
-				listId: list.id
-			}
-		});
+		dispatch(editListTitle(newListTitle, list._id, boardId));
 		this.setState({
 			isListTitleInEdit: false,
 			newListTitle: ''

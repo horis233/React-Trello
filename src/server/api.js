@@ -18,6 +18,25 @@ const api = (db) => {
       .updateOne({ _id: boardId }, { $pull: { lists: { _id: listId } } })
       .then(result => res.send(result));
   });
+
+	router.put("/list", (req, res) => {
+    const { listTitle, listId, boardId } = req.body;
+    // const field = `lists.$.cards.${cardIndex}.title`;
+    // db
+    //   .collection("boards")
+    //   .updateOne(
+    //     { _id: boardId, "lists._id": listId },
+    //     { $set: { [field]: cardTitle } }
+    //   )
+    //   .then(result => res.send(result));
+     db
+      .collection("boards")
+      .updateOne(
+        { _id: boardId, "lists._id": listId },
+        { $set: { "lists.$.title": listTitle } }
+      )
+      .then(result => res.send(result));
+  });
 	
 	router.put('/reorder-list', (req, res) => {
 		const { cardId, sourceId, destinationId, sourceIndex, destinationIndex, boardId } = req.body;
