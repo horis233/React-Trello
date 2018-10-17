@@ -1,14 +1,28 @@
-
 @import "../variables.scss";
 
 body {
-  margin: 0;
-  background: $bg-blue;
-  font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+	margin: 0;
+	background: $bg-blue;
+	font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 }
 
 #app {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.landing-page {
+	background-image: url("../../assets/images/businesswoman.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	height: 100%;
+}
+.landing-page-text {
+	display: inline-block;
+	border-radius: 15px;
+	padding: 40px;
+	background: rgba(0, 0, 0, 0.5);
+	margin: 50px;
 }

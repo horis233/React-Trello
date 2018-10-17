@@ -27,7 +27,7 @@ type Props = {
 	cards: Array<{ id: string, title: string }>,
 	dragHandleProps: ?DragHandleProps,
 	dispatch: ({ type: string }) => void,
-	dragHandleProps: DragHandleProps
+	dragHandleProps: DragHandleProps,
 	list: {
 		title: string,
 		id: string,
