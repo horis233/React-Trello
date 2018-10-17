@@ -2,37 +2,23 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import type { DragHandleProps } from "react-beautiful-dnd";
+import type { DragHandleProps } from 'react-beautiful-dnd';
 import Textarea from 'react-textarea-autosize';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import ClickOutside from './ClickOutside';
-import { addCard, editCardTitle, editListTitle, deleteCard, deleteList} from '../../actionCreators';
-
-type DragHandleProps = {|
-	onFocus: () => void,
-	onBlur: () => void,
-	onMouseDown: (event: MouseEvent) => void,
-	onKeyDown: (event: KeyboardEvent) => void,
-	onTouchStart: (event: TouchEvent) => void,
-	'data-react-beautiful-dnd-drag-handle': string,
-	'aria-roledescription': string,
-	tabIndex: number,
-	draggable: boolean,
-	onDragStart: (event: DragEvent) => void
-|};
+import { addCard, editCardTitle, deleteCard, editListTitle, deleteList } from '../../actionCreators';
 
 type Props = {
 	boardId: string,
-	cards: Array<{ id: string, title: string }>,
-	dragHandleProps: ?DragHandleProps,
-	dispatch: ({ type: string }) => void,
-	dragHandleProps: DragHandleProps,
 	list: {
 		title: string,
-		id: string,
+		_id: string,
 		cards: Array<string>
-	}
+	},
+	cards: Array<{ title: string, _id: string }>,
+	dispatch: ({ type: string }) => void,
+	dragHandleProps: DragHandleProps
 };
 
 type State = {
@@ -74,12 +60,12 @@ class List extends React.Component<Props, State> {
 		const { newCardTitle } = this.state;
 		const { list, boardId, dispatch } = this.props;
 		if (newCardTitle === '') return;
-		dispatch(addCard(newCardTitle, list.id, boardId));
+		dispatch(addCard(newCardTitle, list._id, boardId));
 		this.setState({ newCardTitle: '', cardComposerIsOpen: false });
 	};
 
 	openCardEditor = (card) => {
-		this.setState({ cardInEdit: card.id, editableCardTitle: card.title });
+		this.setState({ cardInEdit: card._id, editableCardTitle: card.title });
 	};
 
 	handleCardEditorChange = (event: { target: { value: string } }) => {
@@ -105,8 +91,8 @@ class List extends React.Component<Props, State> {
 	};
 
 	deleteCard = (cardId) => {
-		const { dispatch, list } = this.props;
-		dispatch({ type: 'DELETE_CARD', payload: { cardId, listId: list.id } });
+		const { dispatch, list, boardId } = this.props;
+		dispatch(deleteCard(cardId, list._id, boardId));
 	};
 
 	openTitleEditor = () => {
@@ -139,8 +125,8 @@ class List extends React.Component<Props, State> {
 	};
 
 	deleteList = () => {
+		const { list, boardId, dispatch } = this.props;
 		dispatch(deleteList(list.cards, list._id, boardId));
-
 	};
 
 	render = () => {
@@ -186,14 +172,14 @@ class List extends React.Component<Props, State> {
 						</button>
 					</div>
 				)}
-				<Droppable droppableId={list.id}>
+				<Droppable droppableId={list._id}>
 					{(provided) => (
 						<div className="cards" ref={provided.innerRef}>
 							{cards.map((card, index) => (
-								<Draggable key={card.id} draggableId={card.id} index={index}>
+								<Draggable key={card._id} draggableId={card._id} index={index}>
 									{({ innerRef, draggableProps, dragHandleProps: handleProps, placeholder }) => (
 										<div>
-											{cardInEdit !== card.id ? (
+											{cardInEdit !== card._id ? (
 												<div
 													className="card-title"
 													ref={innerRef}
@@ -204,7 +190,7 @@ class List extends React.Component<Props, State> {
 												>
 													<span>{card.title}</span>
 													<button
-														onClick={() => this.deleteCard(card.id)}
+														onClick={() => this.deleteCard(card._id)}
 														className="delete-card-button"
 													>
 														<FaTimesCircle />
@@ -271,7 +257,7 @@ class List extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	cards: ownProps.list.cards.map((cardId) => state.cards[cardId])
+	cards: ownProps.list.cards.map((cardId) => state.cardsById[cardId])
 });
 
 export default connect(mapStateToProps)(List);
