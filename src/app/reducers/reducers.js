@@ -1,84 +1,6 @@
 // @flow
-type CardState = {
-	[string]: {
-		title: string,
-		id: string
-	}
-};
 
-type ListState = {
-	[string]: {
-		title: string,
-		id: string,
-		cards: Array<string>
-	}
-};
-
-type BoardState = {
-	[string]: {
-		title: string,
-		id: string,
-		lists: Array<string>
-	}
-};
-
-type Action = {
-	type: string,
-	payload: {
-		listId: string,
-		listTitle: string,
-		cardId: string,
-		cardTitle: string,
-		boardId: string,
-		sourceIndex: number,
-		destinationIndex: number,
-		sourceId: string,
-		destinationId: string
-	}
-};
-
-const initialCardState = {
-	qwer: {
-		title: 'Inspect how trello deals with loading boards, images',
-		id: 'qwer'
-	},
-	asdf: {
-		title: 'Make skeleton structure of whatever',
-		id: 'asdf'
-	},
-	zxcv: {
-		title: 'Do some stuff',
-		id: 'zxcv'
-	},
-	lkjhag: {
-		title:
-			'Maybe a really really long one: How should I manage board state, and generally state for components that are the same but have different data?',
-		id: 'lkjhag'
-	}
-};
-
-const initialListState = {
-	lgrnrirgi: {
-		title: 'TODO Big picture',
-		id: 'lgrnrirgi',
-		cards: [ 'qwer', 'asdf' ]
-	},
-	ogtpokpr: {
-		title: 'TODO details',
-		id: 'ogtpokpr',
-		cards: [ 'zxcv', 'lkjhag' ]
-	}
-};
-
-const initialBoardState = {
-	abc123: {
-		title: 'Test Board: abc123',
-		id: 'abc123',
-		lists: [ 'lgrnrirgi', 'ogtpokpr' ]
-	}
-};
-
-const cards = (state: CardState = initialCardState, action: Action) => {
+const cardsById = (state = {}, action) => {
 	switch (action.type) {
 		case 'ADD_CARD':
 		case 'EDIT_CARD_TITLE': {
@@ -103,7 +25,7 @@ const cards = (state: CardState = initialCardState, action: Action) => {
 	}
 };
 
-const lists = (state: ListState = initialListState, action: Action) => {
+const listsById = (state = {}, action) => {
 	switch (action.type) {
 		case 'ADD_CARD': {
 			const { listId, cardId } = action.payload;
@@ -172,7 +94,7 @@ const lists = (state: ListState = initialListState, action: Action) => {
 	}
 };
 
-const boards = (state: BoardState = initialBoardState, action: Action) => {
+const boardsById = (state = {}, action) => {
 	switch (action.type) {
 		case 'REORDER_BOARD': {
 			const { destinationIndex, sourceId, sourceIndex } = action.payload;
@@ -201,4 +123,4 @@ const boards = (state: BoardState = initialBoardState, action: Action) => {
 	}
 };
 
-export default { cards, lists, boards };
+export default { cardsById, listsById, boardsById };
