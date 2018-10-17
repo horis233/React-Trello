@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -5,10 +6,7 @@ import { Helmet } from 'react-helmet';
 import slugify from 'slugify';
 
 type Props = {
-	boards: Array<{
-		title: string,
-		id: string
-	}>
+	boards: Array<{ title: string, _id: string }>
 };
 
 class Home extends Component<Props> {
@@ -20,7 +18,7 @@ class Home extends Component<Props> {
 					<title>Home | Trello</title>
 				</Helmet>
 				{boards.map((board) => (
-					<Link key={board.id} to={`/b/${board.id}/${slugify(board.title, { lower: true })}`}>
+					<Link key={board._id} to={`/b/${board._id}/${slugify(board.title, { lower: true })}`}>
 						{board.title}
 					</Link>
 				))}
@@ -30,7 +28,7 @@ class Home extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-	boards: Object.values(state.boards)
+	boards: Object.values(state.boardsById)
 });
 
 export default connect(mapStateToProps)(Home);
