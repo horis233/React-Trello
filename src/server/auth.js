@@ -1,14 +1,18 @@
-import { Router } from "express";
-import passport from "passport";
- const router = Router();
- router.get("/twitter", passport.authenticate("twitter"));
+import { Router } from 'express';
+import passport from 'passport';
+const router = Router();
+router.get('/twitter', passport.authenticate('twitter'));
+router.get('/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), (req, res) => {
+	res.redirect('/');
+});
+
 router.get(
-  "/twitter/callback",
-  passport.authenticate("twitter", { failureRedirect: "/login" }),
-  (req, res) => {
-    const { _id } = req.user;
-    console.log("id", _id);
-    res.redirect("/");
-  }
+	'/google',
+	passport.authenticate('google', {
+		scope: [ 'profile' ]
+	})
 );
- export default router;
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+	res.redirect('/');
+});
+export default router;
