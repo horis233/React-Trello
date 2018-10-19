@@ -10,7 +10,9 @@ class Header extends Component {
 				padding: 5
 			}}
 		>
-			<img src={trelloLogo} alt="Trello logo" />
+			<Link to="/">
+				<img src={trelloLogo} alt="Trello logo" />
+			</Link>{' '}
 		</header>
 	);
 }
