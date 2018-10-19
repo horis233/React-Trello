@@ -1,18 +1,26 @@
 // @flow
-import * as React from "react";
-import { Route } from "react-router-dom";
-import Header from "./Header";
-import Home from "./Home";
-import Board from "./Board/Board";
-import LandingPage from "./LandingPage";
-import "./App.scss";
+import * as React from 'react';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Header from './Header';
+import Home from './Home';
+import Board from './Board/Board';
+import LandingPage from './LandingPage';
+import './App.scss';
 
-const App = () => (
-  <div>
-    <Header />
-    <Route exact path="/" component={Home} />
-    <Route exact path="/login" component={LandingPage} />
-    <Route path="/b/:boardId" component={Board} />
-  </div>
-);
-export default App;
+const App = ({ user }) => {
+	if (user) {
+		return (
+			<div>
+				<Header />
+				<Route exact path="/" component={Home} />
+				<Route exact path="/login" component={LandingPage} />
+				<Route path="/b/:boardId" component={Board} />
+			</div>
+		);
+	}
+	return <LandingPage />;
+};
+
+const mapStateToProps = (state) => ({ user: state.user });
+export default connect(mapStateToProps)(App);
