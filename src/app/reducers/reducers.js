@@ -1,3 +1,7 @@
+const user = (state = null, action) => {
+	return state;
+};
+
 const cardsById = (state = {}, action) => {
 	switch (action.type) {
 		case 'ADD_CARD':
@@ -124,4 +128,4 @@ const boardsById = (state = {}, action) => {
 	}
 };
 
-export default { cardsById, listsById, boardsById };
+export default { user, cardsById, listsById, boardsById };
