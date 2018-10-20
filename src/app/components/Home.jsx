@@ -1,3 +1,4 @@
+//flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -7,7 +8,8 @@ import ClickOutside from './ClickOutside';
 import './Home.scss';
 
 type Props = {
-	boards: Array<{ title: string, _id: string }>
+	boards: Array<{ title: string, _id: string }>,
+	dispatch: ({ type: string }) => void
 };
 
 class Home extends Component<Props> {
@@ -29,7 +31,9 @@ class Home extends Component<Props> {
 
 	handleSubmitBoard = (event) => {
 		event.preventDefault();
-
+		const { dispatch, history } = this.props;
+		const { newBoardTitle } = this.state;
+		dispatch(addBoard(newBoardTitle, history));
 		// Dispatch action to put new empty board in redux store and in db + push history to the board
 		this.setState({ isBoardAdderOpen: false, newBoardTitle: '' });
 	};
