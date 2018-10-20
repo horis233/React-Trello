@@ -31,8 +31,11 @@ class Home extends Component<Props> {
 
 	handleSubmitBoard = (event) => {
 		event.preventDefault();
-		const { dispatch, history } = this.props;
 		const { newBoardTitle } = this.state;
+		if (newBoardTitle === '') {
+			return;
+		}
+		const { dispatch, history } = this.props;
 		dispatch(addBoard(newBoardTitle, history));
 		// Dispatch action to put new empty board in redux store and in db + push history to the board
 		this.setState({ isBoardAdderOpen: false, newBoardTitle: '' });
@@ -68,7 +71,12 @@ class Home extends Component<Props> {
 										value={newBoardTitle}
 										onChange={this.handleBoardTitleChange}
 									/>
-									<input type="submit" value="Create board" className="submit-card-button" />
+									<input
+										type="submit"
+										value="Create board"
+										className="submit-board-button"
+										disabled={newBoardTitle === ''}
+									/>
 								</form>
 							</ClickOutside>
 						) : (
