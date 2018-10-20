@@ -9,7 +9,7 @@ const normalizeBoards = (boards) => {
 };
 
 const fetchBoardData = (db) => (req, res, next) => {
-	if (true) {
+	if (req.user) {
 		const collection = db.collection('boards');
 		collection.find({}).toArray().then((boards) => {
 			req.initialState = { ...normalizeBoards(boards), user: req.user };
