@@ -130,8 +130,12 @@ const boardsById = (state = {}, action) => {
 			const { boardTitle, boardId } = action.payload;
 			return {
 				...state,
-				[boardId]: { _id: boardId, title: boardTitle, lists: [] }
-			};
+				[boardId]: {
+					_id: boardId,
+					title: boardTitle,
+					lists: [],
+					users: [userId]
+				  }			};
 		}
 		default:
 			return state;

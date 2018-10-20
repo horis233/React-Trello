@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 const api = (db) => {
 	const router = Router();
-	const boards = db.collection("boards");
+	const boards = db.collection('boards');
 
 	router.post('/list', (req, res) => {
 		const { listId, listTitle, boardId } = req.body;
@@ -11,30 +11,25 @@ const api = (db) => {
 			.then((result) => res.send(result));
 	});
 
-	router.delete("/list", (req, res) => {
-    const { listId, boardId } = req.body;
-     boards
-      .updateOne({ _id: boardId }, { $pull: { lists: { _id: listId } } })
-      .then(result => res.send(result));
-  });
+	router.delete('/list', (req, res) => {
+		const { listId, boardId } = req.body;
+		boards.updateOne({ _id: boardId }, { $pull: { lists: { _id: listId } } }).then((result) => res.send(result));
+	});
 
-	router.put("/list", (req, res) => {
-    const { listTitle, listId, boardId } = req.body;
-    // const field = `lists.$.cards.${cardIndex}.title`;
-    // db
-    //   .collection("boards")
-    //   .updateOne(
-    //     { _id: boardId, "lists._id": listId },
-    //     { $set: { [field]: cardTitle } }
-    //   )
-    //   .then(result => res.send(result));
-      boards
-      .updateOne(
-        { _id: boardId, "lists._id": listId },
-        { $set: { "lists.$.title": listTitle } }
-      )
-      .then(result => res.send(result));
-  });
+	router.put('/list', (req, res) => {
+		const { listTitle, listId, boardId } = req.body;
+		// const field = `lists.$.cards.${cardIndex}.title`;
+		// db
+		//   .collection("boards")
+		//   .updateOne(
+		//     { _id: boardId, "lists._id": listId },
+		//     { $set: { [field]: cardTitle } }
+		//   )
+		//   .then(result => res.send(result));
+		boards
+			.updateOne({ _id: boardId, 'lists._id': listId }, { $set: { 'lists.$.title': listTitle } })
+			.then((result) => res.send(result));
+	});
 
 	router.put('/reorder-list', (req, res) => {
 		const { cardId, sourceId, destinationId, sourceIndex, destinationIndex, boardId } = req.body;
@@ -60,20 +55,18 @@ const api = (db) => {
 
 	router.put('/reorder-board', (req, res) => {
 		const { listId, sourceId, sourceIndex, destinationIndex } = req.body;
-		boards
-			.findOneAndUpdate({ _id: sourceId }, { $pull: { lists: { _id: listId } } })
-			.then(({ value }) => {
-				const list = value.lists[sourceIndex];
-				db.collection('boards').updateOne(
-					{ _id: sourceId },
-					{
-						$push: {
-							lists: { $each: [ list ], $position: destinationIndex }
-						}
+		boards.findOneAndUpdate({ _id: sourceId }, { $pull: { lists: { _id: listId } } }).then(({ value }) => {
+			const list = value.lists[sourceIndex];
+			db.collection('boards').updateOne(
+				{ _id: sourceId },
+				{
+					$push: {
+						lists: { $each: [ list ], $position: destinationIndex }
 					}
-				);
-				res.send({ value, list });
-			});
+				}
+			);
+			res.send({ value, list });
+		});
 	});
 
 	router.post('/card', (req, res) => {
@@ -94,15 +87,24 @@ const api = (db) => {
 			.then((result) => res.send(result));
 	});
 
-	router.delete("/card", (req, res) => {
-	    const { cardId, listId, boardId } = req.body;
-	    boards
-	      .updateOne(
-	        { _id: boardId, "lists._id": listId },
-	        { $pull: { "lists.$.cards": { _id: cardId } } }
-	      )
-	      .then(result => res.send(result));
-	  });
+	router.delete('/card', (req, res) => {
+		const { cardId, listId, boardId } = req.body;
+		boards
+			.updateOne({ _id: boardId, 'lists._id': listId }, { $pull: { 'lists.$.cards': { _id: cardId } } })
+			.then((result) => res.send(result));
+	});
+
+	router.post('/board', (req, res) => {
+		const { boardTitle, boardId, userId } = req.body;
+		boards
+			.insertOne({
+				_id: boardId,
+				title: boardTitle,
+				lists: [],
+				users: [ userId ]
+			})
+			.then((result) => res.send(result));
+	});
 
 	return router;
 };
