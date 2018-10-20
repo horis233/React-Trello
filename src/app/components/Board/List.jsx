@@ -154,7 +154,11 @@ class List extends React.Component<Props, State> {
 						/>
 					</div>
 				) : (
-					<div className="list-title" {...dragHandleProps} data-react-beautiful-dnd-drag-handle="0">
+					<div
+						className="list-title"
+						{...dragHandleProps}
+						//data-react-beautiful-dnd-drag-handle="0"
+					>
 						<button
 							onKeyDown={(event) => {
 								if (event.keyCode === 13) {

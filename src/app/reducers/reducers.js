@@ -127,7 +127,7 @@ const boardsById = (state = {}, action) => {
 			};
 		}
 		case 'ADD_BOARD': {
-			const { boardTitle, boardId } = action.payload;
+			const { boardTitle, boardId, userId } = action.payload;
 			return {
 				...state,
 				[boardId]: {

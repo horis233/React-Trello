@@ -71,7 +71,7 @@ class Board extends React.Component<Props> {
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          data-react-beautiful-dnd-draggable="0"
+                          //data-react-beautiful-dnd-draggable="0"
                           className="list-wrapper"
                         >
                           <List

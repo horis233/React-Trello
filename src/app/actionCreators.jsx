@@ -119,5 +119,5 @@ export const addBoard = (boardTitle, history) => (dispatch, getState) => {
 		payload: { boardTitle, boardId, userId: user._id }
 	});
 	history.push(`/b/${boardId}/${slugify(boardTitle, { lower: true })}`);
-	axios.post('/api/board', { boardId, boardTitle, userId: user._id }).then(({ data }) => console.log(data));
+	axios.post('/api/board', { boardId, boardTitle}).then(({ data }) => console.log(data));
 };
