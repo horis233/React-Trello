@@ -1,6 +1,7 @@
 import path from 'path';
 import passport from 'passport';
 import session from 'express-session';
+import connectMongo from "connect-mongo";
 import express from 'express';
 import { MongoClient } from 'mongodb';
 import compression from 'compression';
@@ -16,6 +17,7 @@ import fetchBoardData from './fetchBoardData';
 
 dotenv.config();
 const app = express();
+const MongoStore = connectMongo(session);
 
 MongoClient.connect(process.env.MONGODB_URL, { useNewUrlParser: true }).then((client) => {
 	const db = client.db(process.env.MONGODB_NAME);
@@ -30,6 +32,7 @@ MongoClient.connect(process.env.MONGODB_URL, { useNewUrlParser: true }).then((cl
 	app.use('/static', express.static('dist/public'));
 	app.use(
 		session({
+			store: new MongoStore({ db }),
 			secret: process.env.SESSION_SECRET,
 			resave: false,
 			saveUninitialized: false
