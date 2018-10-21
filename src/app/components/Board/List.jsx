@@ -18,7 +18,8 @@ type Props = {
 	},
 	cards: Array<{ title: string, _id: string }>,
 	dispatch: ({ type: string }) => void,
-	dragHandleProps: DragHandleProps
+	dragHandleProps: DragHandleProps,
+	i: number
 };
 
 type State = {
@@ -130,7 +131,7 @@ class List extends React.Component<Props, State> {
 	};
 
 	render = () => {
-		const { cards, list, dragHandleProps } = this.props;
+		const { cards, list, dragHandleProps, i } = this.props;
 		const {
 			cardComposerIsOpen,
 			newCardTitle,
@@ -154,11 +155,7 @@ class List extends React.Component<Props, State> {
 						/>
 					</div>
 				) : (
-					<div
-						className="list-title"
-						{...dragHandleProps}
-						//data-react-beautiful-dnd-drag-handle="0"
-					>
+					<div className="list-title" {...dragHandleProps} data-react-beautiful-dnd-drag-handle={i}>
 						<button
 							onKeyDown={(event) => {
 								if (event.keyCode === 13) {
@@ -189,8 +186,8 @@ class List extends React.Component<Props, State> {
 													ref={innerRef}
 													{...draggableProps}
 													{...handleProps}
-													data-react-beautiful-dnd-draggable="0"
-													data-react-beautiful-dnd-drag-handle="0"
+													data-react-beautiful-dnd-draggable={i}
+													data-react-beautiful-dnd-drag-handle={i}
 												>
 													<span>{card.title}</span>
 													<button
