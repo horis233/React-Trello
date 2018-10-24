@@ -16,6 +16,7 @@ const App = ({ user }: Props) => {
 		return (
 			<div>
 				<Route exact path="/" component={Home} />
+				<Route path="/login" component={LandingPage} />
 				<Route path="/b/:boardId" component={Board} />
 			</div>
 		);

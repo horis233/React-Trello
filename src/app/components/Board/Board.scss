@@ -47,6 +47,7 @@ $list-margin: 8px;
 
 .list-wrapper {
 	height: 100%;
+	user-select: none;
 }
 
 .list {
@@ -113,12 +114,11 @@ $list-margin: 8px;
 	height: 100%;
 	overflow-y: auto;
 	overflow-x: hidden;
-	margin: 0 3px 0 3px;	
+	margin: 0 3px 0 3px;
 }
 
 .cards {
 	min-height: 26px;
-	margin: 0 3px 0 3px;
 }
 
 .cards-wrapper::-webkit-scrollbar {
