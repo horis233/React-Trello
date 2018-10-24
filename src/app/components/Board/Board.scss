@@ -4,7 +4,6 @@ $list-margin: 8px;
 
 .board {
 	height: 100%;
-	// display: inline-flex;
 	display: flex;
 	flex-direction: column;
 	background: $bg-blue;
@@ -112,13 +111,19 @@ $list-margin: 8px;
 
 .cards-wrapper {
 	height: 100%;
+	// display: inline-flex;
+	// flex-direction: column;
 	overflow-y: auto;
 	overflow-x: hidden;
+	// padding: 5px;
+	// overflow-x: auto;
 	margin: 0 3px 0 3px;
 }
 
 .cards {
 	min-height: 26px;
+	// overflow-y: auto;
+	// overflow-x: hidden;
 }
 
 .cards-wrapper::-webkit-scrollbar {
@@ -141,9 +146,13 @@ $list-margin: 8px;
 	overflow-wrap: break-word;
 	user-select: none;
 	box-sizing: border-box;
+	transition: background 1s;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
-.card-title:hover {
+// .card-title:hover,
+.card-title-drag {
+	// background: #ddd;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
