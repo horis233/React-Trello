@@ -62,43 +62,45 @@ class Board extends React.Component<Props> {
 				<div className="board-header">
 					<h1 className="board-title">{boardTitle}</h1>
 				</div>
-				<DragDropContext onDragEnd={this.handleDragEnd}>
-					<Droppable droppableId={boardId} type="COLUMN" direction="horizontal">
-						{(droppableProvided) => (
-							<div className="lists" ref={droppableProvided.innerRef}>
-								{lists.map((list, index) => (
-									<Draggable
-										key={list._id}
-										draggableId={list._id}
-										index={index}
-										disableInteractiveElementBlocking
-									>
-										{(provided) => (
-											<div>
-												<div
-													ref={provided.innerRef}
-													{...provided.draggableProps}
-													data-react-beautiful-dnd-draggable={i}
-													className="list-wrapper"
-												>
-													<List
-														list={list}
-														boardId={boardId}
-														dragHandleProps={provided.dragHandleProps}
-														i={i}
-													/>
+				<div className="lists-wrapper">
+					<DragDropContext onDragEnd={this.handleDragEnd}>
+						<Droppable droppableId={boardId} type="COLUMN" direction="horizontal">
+							{(droppableProvided) => (
+								<div className="lists" ref={droppableProvided.innerRef}>
+									{lists.map((list, index) => (
+										<Draggable
+											key={list._id}
+											draggableId={list._id}
+											index={index}
+											disableInteractiveElementBlocking
+										>
+											{(provided) => (
+												<div>
+													<div
+														ref={provided.innerRef}
+														{...provided.draggableProps}
+														data-react-beautiful-dnd-draggable={i}
+														className="list-wrapper"
+													>
+														<List
+															list={list}
+															boardId={boardId}
+															dragHandleProps={provided.dragHandleProps}
+															i={i}
+														/>
+													</div>
+													{provided.placeholder}
 												</div>
-												{provided.placeholder}
-											</div>
-										)}
-									</Draggable>
-								))}
-								{droppableProvided.placeholder}
-								<ListAdder boardId={boardId} />
-							</div>
-						)}
-					</Droppable>
-				</DragDropContext>
+											)}
+										</Draggable>
+									))}
+									{droppableProvided.placeholder}
+									<ListAdder boardId={boardId} />
+								</div>
+							)}
+						</Droppable>
+					</DragDropContext>
+				</div>
 			</div>
 		);
 	};
