@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
+import classnames from 'classnames';
 
 type Props = {
 	card: { _id: string, title: string },
@@ -27,10 +28,13 @@ class Card extends Component<Props, States> {
 		const { card, index, i, deleteCard, openCardEditor } = this.props;
 		return (
 			<Draggable draggableId={card._id} index={index}>
-				{({ innerRef, draggableProps, dragHandleProps: handleProps, placeholder }) => (
+				{({ innerRef, draggableProps, dragHandleProps: handleProps, placeholder }, { isDragging }) => (
 					<div>
+						{/* eslint-disable jsx-a11y/no-static-element-interactions */}
 						<div
-							className="card-title"
+							className={classnames('card-title', {
+								'card-title-drag': isDragging
+							})}
 							ref={innerRef}
 							{...draggableProps}
 							{...handleProps}
