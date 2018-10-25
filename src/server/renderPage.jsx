@@ -1,28 +1,28 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { createStore, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
-import { StaticRouter } from 'react-router';
-import { Helmet } from 'react-helmet';
-import App from '../app/components/App';
-import reducers from '../app/reducers/reducers';
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import { StaticRouter } from "react-router";
+import { Helmet } from "react-helmet";
+import App from "../app/components/App";
+import reducers from "../app/reducers/reducers";
 
 export default function renderPage(req, res) {
-	const store = createStore(combineReducers(reducers), req.initialState);
-	const context = {};
+  const store = createStore(combineReducers(reducers), req.initialState);
+  const context = {};
 
-	const appString = renderToString(
-		<Provider store={store}>
-			<StaticRouter location={req.url} context={context}>
-				<App />
-			</StaticRouter>
-		</Provider>
-	);
+  const appString = renderToString(
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
+    </Provider>
+  );
 
-	const helmet = Helmet.renderStatic();
+  const helmet = Helmet.renderStatic();
 
-	const preloadedState = store.getState();
-	const html = `
+  const preloadedState = store.getState();
+  const html = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -48,5 +48,5 @@ export default function renderPage(req, res) {
       <script src="/static/bundle.js"></script>
     </html>
   `;
-	res.send(html);
+  res.send(html);
 }

@@ -1,10 +1,10 @@
 import { denormalize, schema } from "normalizr";
 import axios from "axios";
- const persistMiddleware = store => next => action => {
+const persistMiddleware = store => next => action => {
   next(action);
   const { boardsById, listsById, cardsById } = store.getState();
   const { boardId } = action.payload;
-   const card = new schema.Entity("cardsById", {}, { idAttribute: "_id" });
+  const card = new schema.Entity("cardsById", {}, { idAttribute: "_id" });
   const list = new schema.Entity(
     "listsById",
     { cards: [card] },
@@ -16,7 +16,7 @@ import axios from "axios";
     { idAttribute: "_id" }
   );
   const entities = { cardsById, listsById, boardsById };
-   const boardData = denormalize(boardId, board, entities);
-   axios.put("/api/board", boardData).then(({ data }) => console.log(data));
+  const boardData = denormalize(boardId, board, entities);
+  axios.put("/api/board", boardData).then(({ data }) => console.log(data));
 };
- export default persistMiddleware;
+export default persistMiddleware;
