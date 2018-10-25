@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
+import marked from 'marked';
 import FaPencil from 'react-icons/lib/fa/pencil';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import classnames from 'classnames';
@@ -46,7 +47,12 @@ class Card extends Component<Props, States> {
 							data-react-beautiful-dnd-draggable={i}
 							data-react-beautiful-dnd-drag-handle={i}
 						>
-							<span>{card.title}</span>
+							<div
+								className="card-title-html"
+								dangerouslySetInnerHTML={{
+									__html: marked(card.title, { sanitize: true, breaks: true })
+								}}
+							/>
 							<button onClick={() => deleteCard(card._id)} className="delete-card-button">
 								<FaTimesCircle />
 							</button>
