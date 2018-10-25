@@ -50,7 +50,7 @@ class Card extends Component<Props, States> {
 							<div
 								className="card-title-html"
 								dangerouslySetInnerHTML={{
-									__html: marked(card.title, { sanitize: true, breaks: true })
+									__html: marked(card.title, { sanitize: true})
 								}}
 							/>
 							<button onClick={() => deleteCard(card._id)} className="delete-card-button">

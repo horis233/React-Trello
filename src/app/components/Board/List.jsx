@@ -53,7 +53,7 @@ class List extends React.Component<Props, State> {
 	};
 
 	handleEditKeyDown = (event: SyntheticEvent<>) => {
-		if (event.keyCode === 13) {
+		if (event.keyCode === 13 && event.shiftKey === false) {
 			event.preventDefault();
 			this.handleSubmitCardEdit();
 		}
