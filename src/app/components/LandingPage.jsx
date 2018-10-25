@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import FaTwitter from 'react-icons/lib/fa/twitter';
 import googleLogo from '../../assets/images/google-logo.svg';
+import kanbanLogo from '../../assets/images/kankan-logo.svg';
 import './LandingPage.scss';
 
 class LandingPage extends Component<{}> {
@@ -14,7 +15,11 @@ class LandingPage extends Component<{}> {
 					<title>Landing page | Trello</title>
 				</Helmet>
 				<div className="landing-page-text">
-					<h1>OpenBoard (logo here)</h1>
+					<div className="landing-page-heading">
+						<img src={kanbanLogo} alt="kanban live logo" style={{ height: 50 }} />
+						&nbsp;
+						<h1>kanban.live</h1>
+					</div>
 					<h2>Tagline about what it is and how it&#39;s open source and great etc etc.</h2>
 					<a href="/auth/twitter" className="signin-button twitter-button">
 						<FaTwitter className="logo-icon" /> &nbsp;Sign in with Twitter
