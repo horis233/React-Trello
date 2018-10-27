@@ -5,6 +5,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import List from './List';
 import ListAdder from './ListAdder';
 import Header from '../Header';
+import ColorPicker from "./ColorPicker";
 import './Board.scss';
 
 type Props = {
@@ -151,6 +152,8 @@ class Board extends React.Component<Props> {
 							</button>
 						)}
 					</div>
+          <ColorPicker boardId={boardId} />
+
 				</div>
 				{/* eslint-disable jsx-a11y/no-static-element-interactions */}
 				<div

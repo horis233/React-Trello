@@ -24,6 +24,7 @@ $list-radius: 6px;
 .board-title-wrapper {
 	min-width: 270px;
 }
+
 .board-title-button {
 	background: transparent;
 	border: 0;
@@ -55,6 +56,12 @@ $list-radius: 6px;
 	background: inherit;
 	padding: 6px 10px 6px 10px;
 	border: 0;
+}
+
+.color-picker {
+  display: flex;
+  background: white;
+  padding: 5px;
 }
 
 .lists-wrapper::-webkit-scrollbar {
