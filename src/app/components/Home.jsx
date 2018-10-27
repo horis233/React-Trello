@@ -35,6 +35,12 @@ class Home extends Component<Props> {
     this.setState({ newBoardTitle: event.target.value });
   };
 
+  handleKeyDown = event => {
+    if (event.keyCode === 27) {
+      this.setState({ isBoardAdderOpen: false });
+    }
+  };
+
   handleSubmitBoard = event => {
     event.preventDefault();
     const { newBoardTitle } = this.state;
@@ -91,6 +97,7 @@ class Home extends Component<Props> {
                       className="submit-board-input"
                       type="text"
                       value={newBoardTitle}
+                      onKeyDown={this.handleKeyDown}
                       onChange={this.handleBoardTitleChange}
                     />
                     <input
