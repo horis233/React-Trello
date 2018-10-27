@@ -90,8 +90,10 @@ $list-radius: 6px;
 }
 .color-picker-menu {
 	position: absolute;
-	margin-top: 8px;
+	margin-top: 4px;
 	top: 100%;
+	left: -30%;
+	right: -30%;
 	background: #777;
 	// width: 90px;
 	border-radius: 3px;
@@ -108,21 +110,28 @@ $list-radius: 6px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	box-sizing: border-box;
 	cursor: pointer;
 	// border-radius: 6px;
+	&.blue {
+		background: $blue;
+	}
+	&.green {
+		background: $green;
+	}
+	&.red {
+		background: $red;
+	}
+	&.pink {
+		background: $pink;
+	}
 }
 
-&.blue {
-	background: $blue;
-}
-&.green {
-	background: $green;
-}
-&.red {
-	background: $red;
-}
-&.pink {
-	background: $pink;
+.vertical-line {
+	width: 1px;
+	height: 16px;
+	background: $transparent-white;
+	margin: 0 10px;
 }
 
 .lists-wrapper::-webkit-scrollbar {
