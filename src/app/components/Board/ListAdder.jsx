@@ -65,7 +65,8 @@ class ListAdder extends Component<Props, State> {
 						onChange={this.handleChange}
 						onKeyDown={this.handleKeyDown}
 						className="list-title-textarea"
-						onBlur={this.handleBlur}
+            onBlur={this.handleBlur}
+            spellCheck={false}
 					/>
 				</div>
 			</div>
