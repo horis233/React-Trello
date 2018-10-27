@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Wrapper, Menu, MenuItem } from 'react-aria-menubutton';
+import classnames from 'classnames';
 import FaCheck from 'react-icons/lib/fa/check';
 
 class ColorPicker extends Component {
@@ -20,7 +21,7 @@ class ColorPicker extends Component {
 				<Button className="color-picker">Color&nbsp;&#9662;</Button>
 				<Menu className="color-picker-menu">
 					{colors.map((color) => (
-						<MenuItem value={color} className="color-picker-item" style={{ background: color }} key={color}>
+						<MenuItem value={color} className={classnames('color-picker-item', color)} key={color}>
 							{color === boardColor && <FaCheck />}
 						</MenuItem>
 					))}
