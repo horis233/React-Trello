@@ -2,10 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import classnames from 'classnames';
 import List from './List';
 import ListAdder from './ListAdder';
 import Header from '../Header';
-import ColorPicker from "./ColorPicker";
+import ColorPicker from './ColorPicker';
 import './Board.scss';
 
 type Props = {
@@ -27,7 +28,6 @@ class Board extends React.Component<Props> {
 			isTitleInEdit: false
 		};
 	}
-
 	componentWillUnmount = () => {
 		i += 1;
 	};
@@ -125,12 +125,12 @@ class Board extends React.Component<Props> {
 		}
 	};
 	render = () => {
-		const { lists, boardTitle, boardId } = this.props;
+		const { lists, boardTitle, boardId, boardColor } = this.props;
 		const { isTitleInEdit, newTitle } = this.state;
 		return (
-			<div className="board">
+			<div className={classnames('board', boardColor)}>
 				<Helmet>
-					<title>{boardTitle} | Trello</title>
+					<title>{boardTitle} | kanban.live</title>
 				</Helmet>
 				<Header />
 				<div className="board-header">
@@ -152,8 +152,7 @@ class Board extends React.Component<Props> {
 							</button>
 						)}
 					</div>
-          <ColorPicker boardId={boardId} />
-
+					<ColorPicker boardId={boardId} />
 				</div>
 				{/* eslint-disable jsx-a11y/no-static-element-interactions */}
 				<div
@@ -213,6 +212,7 @@ const mapStateToProps = (state, ownProps) => {
 	return {
 		lists: board.lists.map((listId) => state.listsById[listId]),
 		boardTitle: board.title,
+		boardColor: board.color,
 		boardId
 	};
 };

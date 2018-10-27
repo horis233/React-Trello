@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "./Header";
+import classnames from "classnames";
 import shortid from "shortid";
 import slugify from "slugify";
 import ClickOutside from "./ClickOutside";
@@ -78,7 +79,7 @@ class Home extends Component<Props> {
               {boards.map(board => (
                 <Link
                   key={board._id}
-                  className="board-link"
+                  className={classnames("board-link", board.color)}
                   to={`/b/${board._id}/${slugify(board.title, {
                     lower: true
                   })}`}

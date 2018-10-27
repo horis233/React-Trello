@@ -1,11 +1,6 @@
 @import "../../variables.scss";
 $list-width: 320px;
 $list-margin: 8px;
-$black: #032;
-$transparent-grey: rgba(800, 100, 100, 0.4);
-$transparent-black: rgba(0, 0, 0, 0.4);
-$transparent-white: rgba(255, 255, 255, 0.4);
-$white: #fbfbfb;
 $list-radius: 6px;
 
 .board {
@@ -13,6 +8,18 @@ $list-radius: 6px;
 	display: flex;
 	flex-direction: column;
 	background: $black;
+	&.green {
+		background: $green;
+	}
+	&.blue {
+		background: $blue;
+	}
+	&.red {
+		background: $red;
+	}
+	&.pink {
+		background: $pink;
+	}
 }
 
 .board-header {
@@ -137,6 +144,19 @@ $list-radius: 6px;
 	display: inline-flex;
 	flex-direction: column;
 	max-height: 100%;
+}
+
+.blue .list {
+	background: $transparent-blue;
+}
+.green .list {
+	background: $transparent-green;
+}
+.red .list {
+	background: $transparent-red;
+}
+.pink .list {
+	background: $transparent-pink;
 }
 
 .list-title {
