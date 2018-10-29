@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -9,17 +10,22 @@ import Header from '../Header/Header';
 import BoardHeader from './BoardHeader/BoardHeader';
 import './Board.scss';
 
-
 let i = 0;
 
 class Board extends React.Component {
+	static propTypes = {
+		lists: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string.isRequired })).isRequired,
+		boardId: PropTypes.string.isRequired,
+		boardTitle: PropTypes.string.isRequired,
+		boardColor: PropTypes.string.isRequired,
+		dispatch: PropTypes.func.isRequired
+	};
+
 	constructor() {
 		super();
 		this.state = {
 			startX: null,
-			startScrollLeft: null,
-			newTitle: '',
-			isTitleInEdit: false
+			startScrollLeft: null
 		};
 	}
 	componentWillUnmount = () => {
@@ -82,7 +88,6 @@ class Board extends React.Component {
 		if (this.state.startX) {
 			window.removeEventListener('mousemove', this.handleMouseMove);
 			window.removeEventListener('mouseup', this.handleMouseUp);
-			this.setState({ startX: null, startScrollLeft: null });
 		}
 	};
 	render = () => {

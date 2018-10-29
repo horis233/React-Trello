@@ -1,11 +1,19 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import ListTitle from './ListTitle';
 import Cards from './Cards';
 
+class List extends React.Component {
+	static propTypes = {
+		i: PropTypes.number.isRequired,
+		boardId: PropTypes.string.isRequired,
+		index: PropTypes.number.isRequired,
+		list: PropTypes.shape({ _id: PropTypes.string.isRequired }).isRequired,
+		cards: PropTypes.arrayOf(PropTypes.object)
+	};
 
-class List extends React.Component{
 	constructor() {
 		super();
 		this.state = {
@@ -39,7 +47,7 @@ class List extends React.Component{
 								/>
 								<div className="cards-wrapper">
 									<Cards
-										list={list}
+										listId={list._id}
 										cards={cards}
 										cardComposerIsOpen={cardComposerIsOpen}
 										toggleCardComposer={this.toggleCardComposer}
