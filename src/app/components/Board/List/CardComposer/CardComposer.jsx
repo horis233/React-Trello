@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Textarea from 'react-textarea-autosize';
 import shortid from 'shortid';
-import ClickOutside from '../../ClickOutside';
+import ClickOutside from '../../../ClickOutside';
+import './CardComposer.scss';
 
 class CardComposer extends Component {
-  static propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    listId: PropTypes.string.isRequired,
-    boardId: PropTypes.string.isRequired,
-    toggleCardComposer: PropTypes.func.isRequired,
-    dispatch: PropTypes.func.isRequired
-  };
+	static propTypes = {
+		isOpen: PropTypes.bool.isRequired,
+		listId: PropTypes.string.isRequired,
+		boardId: PropTypes.string.isRequired,
+		toggleCardComposer: PropTypes.func.isRequired,
+		dispatch: PropTypes.func.isRequired
+	};
 
 	constructor() {
 		super();

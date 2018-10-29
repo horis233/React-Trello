@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
-import CardComposer from './CardComposer';
-import CardWrapper from './CardWrapper';
+import CardComposer from './CardComposer/CardComposer';
+import CardWrapper from './Card/CardWrapper';
+
 class Cards extends Component {
 	static propTypes = {
 		i: PropTypes.number.isRequired,

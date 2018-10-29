@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import ListTitle from './ListTitle';
 import Cards from './Cards';
+import "./List.scss";
 
 class List extends React.Component {
 	static propTypes = {
