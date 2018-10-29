@@ -2,42 +2,44 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Textarea from 'react-textarea-autosize';
 import shortid from 'shortid';
+
 type Props = {
 	boardId: string,
 	list: { _id: string },
 	toggleCardComposer: () => void,
-	dispatch: ({ type: string }) => void
+	dispatch: () => void
 };
 
-type State = {
-	newCardTitle: string
-};
-
-class CardComposer extends Component<Props, State> {
+class CardComposer extends Component<Props> {
 	constructor() {
 		super();
 		this.state = {
 			newCardTitle: ''
 		};
 	}
+
 	componentDidMount = () => {
 		setTimeout(() => this.el.scrollIntoView());
 	};
-	handleCardComposerChange = (event) => {
+
+	handleChange = (event) => {
 		this.setState({ newCardTitle: event.target.value });
 	};
+
 	handleKeyDown = (event: SyntheticEvent<>) => {
 		if (event.keyCode === 13 && event.shiftKey === false) {
-			this.handleSubmitCard(event);
+			this.handleSubmit(event);
 		} else if (event.keyCode === 27) {
 			this.props.toggleCardComposer();
 		}
 	};
-	handleSubmitCard = (event) => {
+
+	handleSubmit = (event) => {
 		event.preventDefault();
 		const { newCardTitle } = this.state;
 		const { list, boardId, dispatch, toggleCardComposer } = this.props;
 		if (newCardTitle === '') return;
+
 		const cardId = shortid.generate();
 		dispatch({
 			type: 'ADD_CARD',
@@ -46,19 +48,20 @@ class CardComposer extends Component<Props, State> {
 		this.setState({ newCardTitle: '' });
 		toggleCardComposer();
 	};
+
 	render() {
 		const { newCardTitle } = this.state;
 		return (
-			<form onSubmit={this.handleSubmitCard} className="textarea-wrapper">
+			<form onSubmit={this.handleSubmit} className="textarea-wrapper">
 				<Textarea
 					autoFocus
 					useCacheForDOMMeasurements
 					minRows={3}
-					onChange={this.handleCardComposerChange}
+					onChange={this.handleChange}
 					onKeyDown={this.handleKeyDown}
 					value={newCardTitle}
-          className="list-textarea"
-          spellCheck={false}
+					className="list-textarea"
+					spellCheck={false}
 				/>
 				<input
 					ref={(el) => {
@@ -73,4 +76,5 @@ class CardComposer extends Component<Props, State> {
 		);
 	}
 }
+
 export default connect()(CardComposer);
