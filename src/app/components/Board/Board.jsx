@@ -40,27 +40,31 @@ class Board extends React.Component {
 		const { dispatch, boardId } = this.props;
 
 		if (type === 'COLUMN') {
+			if (source.index !== destination.index) {
+				dispatch({
+					type: 'REORDER_LISTS',
+					payload: {
+						oldListIndex: source.index,
+						newListIndex: destination.index,
+						boardId: source.droppableId
+					}
+				});
+			}
+			return;
+		}
+		if (source.index !== destination.index || source.droppableId !== destination.droppableId) {
 			dispatch({
-				type: 'REORDER_LISTS',
+				type: 'REORDER_CARDS',
 				payload: {
-					oldListIndex: source.index,
-					newListIndex: destination.index,
-					boardId: source.droppableId
+					sourceListId: source.droppableId,
+					destListId: destination.droppableId,
+					oldCardIndex: source.index,
+					newCardIndex: destination.index,
+					boardId
 				}
 			});
 			return;
 		}
-
-		dispatch({
-			type: 'REORDER_CARDS',
-			payload: {
-				sourceListId: source.droppableId,
-				destListId: destination.droppableId,
-				oldCardIndex: source.index,
-				newCardIndex: destination.index,
-				boardId
-			}
-		});
 	};
 
 	handleMouseDown = ({ target, clientX }) => {
