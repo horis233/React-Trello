@@ -39,6 +39,8 @@ class CardWrapper extends Component {
 	submitCard = () => {
 		const { newTitle } = this.state;
 		const { card, listId, boardId, dispatch } = this.props;
+		console.log('CARD', this.props);
+
 		if (newTitle === '') {
 			this.deleteCard();
 		} else if (newTitle !== card.title) {
@@ -64,6 +66,8 @@ class CardWrapper extends Component {
 	render() {
 		const { card, index, i } = this.props;
 		const { isOpen, newTitle } = this.state;
+		console.log('CARD WRAPPER', this.props);
+
 		return !isOpen ? (
 			<Card
 				key={card._id}
@@ -89,4 +93,8 @@ class CardWrapper extends Component {
 		);
 	}
 }
-export default connect()(CardWrapper);
+
+const mapStateToProps = (state, ownProps) => ({
+	card: state.cardsById[ownProps.cardId]
+});
+export default connect(mapStateToProps)(CardWrapper);
