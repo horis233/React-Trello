@@ -1,5 +1,5 @@
 @import "../../../variables.scss";
- .add-list-button {
+.add-list-button {
   background: rgba(0, 0, 0, 0.15);
   color: #ddd;
   cursor: pointer;
@@ -13,14 +13,14 @@
   transition: background 0.2s;
   flex-shrink: 0;
 }
- .add-list-button:hover,
+.add-list-button:hover,
 .add-list-button:focus {
   background: rgba(0, 0, 0, 0.25);
 }
- .list-title-textarea-wrapper {
+.list-title-textarea-wrapper {
   margin: 4px 5px 1px 5px;
 }
- .list-title-textarea {
+.list-title-textarea {
   border-radius: 3px;
   padding: 6px;
   overflow: hidden;
