@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import classnames from 'classnames';
@@ -10,16 +11,12 @@ type Props = {
 	index: number,
 	i: number,
 	deleteCard: () => void,
-	openCardEditor: () => void
+	toggleCardEditor : () => void
 };
 
-type States = {
-  isDragging: boolean
-};
-
-class Card extends Component<Props, States> {
+class Card extends Component<Props> {
 	render() {
-		const { card, index, i, deleteCard, openCardEditor } = this.props;
+		const { card, index, i, deleteCard, toggleCardEditor } = this.props;
 		return (
 			<Draggable draggableId={card._id} index={index}>
 				{(provided, snapshot) => (
@@ -42,10 +39,10 @@ class Card extends Component<Props, States> {
 									__html: marked(card.title, { sanitize: true })
 								}}
 							/>
-							<button onClick={() => deleteCard(card._id)} className="delete-card-button">
+							<button onClick={deleteCard} className="delete-card-button">
 								<FaTimesCircle />
 							</button>
-							<button onClick={() => openCardEditor(card)} className="edit-card-button">
+							<button onClick={toggleCardEditor} className="edit-card-button">
 								<FaPencil />
 							</button>
 						</div>
