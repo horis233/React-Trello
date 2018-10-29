@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
- class ListTitle extends Component {
+class ListTitle extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,10 +10,10 @@ import FaTimesCircle from "react-icons/lib/fa/times-circle";
       newTitle: props.listTitle
     };
   }
-   handleChange = event => {
+  handleChange = event => {
     this.setState({ newTitle: event.target.value });
   };
-   handleKeyDown = event => {
+  handleKeyDown = event => {
     if (event.keyCode === 13) {
       event.preventDefault();
       this.handleSubmit();
@@ -21,7 +21,7 @@ import FaTimesCircle from "react-icons/lib/fa/times-circle";
       this.revertTitle();
     }
   };
-   handleSubmit = () => {
+  handleSubmit = () => {
     const { newTitle } = this.state;
     const { listTitle, listId, boardId, dispatch } = this.props;
     if (newTitle === "") return;
@@ -33,26 +33,26 @@ import FaTimesCircle from "react-icons/lib/fa/times-circle";
     }
     this.setState({ isOpen: false });
   };
-   revertTitle = () => {
+  revertTitle = () => {
     this.setState({ newTitle: this.props.listTitle, isOpen: false });
   };
-   deleteList = () => {
+  deleteList = () => {
     const { listId, cards, boardId, dispatch } = this.props;
     dispatch({
       type: "DELETE_LIST",
       payload: { cards, listId, boardId }
     });
   };
-   openTitleEditor = () => {
+  openTitleEditor = () => {
     this.setState({ isOpen: true });
   };
-   handleButtonKeyDown = event => {
+  handleButtonKeyDown = event => {
     if (event.keyCode === 13) {
       event.preventDefault();
       this.openTitleEditor();
     }
   };
-   render() {
+  render() {
     const { isOpen, newTitle } = this.state;
     const { dragHandleProps, i, listTitle } = this.props;
     return (
@@ -94,4 +94,4 @@ import FaTimesCircle from "react-icons/lib/fa/times-circle";
     );
   }
 }
- export default connect()(ListTitle);
+export default connect()(ListTitle);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import Card from "./Card";
- class CardWrapper extends Component {
+class CardWrapper extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,19 +10,19 @@ import Card from "./Card";
       isOpen: false
     };
   }
-   handleChange = event => {
+  handleChange = event => {
     this.setState({ newTitle: event.target.value });
   };
-   toggleCardEditor = () => {
+  toggleCardEditor = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
-   handleKeyDown = event => {
+  handleKeyDown = event => {
     if (event.keyCode === 13 && event.shiftKey === false) {
       event.preventDefault();
       this.submitCard();
     }
   };
-   submitCard = () => {
+  submitCard = () => {
     const { newTitle } = this.state;
     const { card, listId, boardId, dispatch } = this.props;
     if (newTitle === "") {
@@ -40,14 +40,14 @@ import Card from "./Card";
     }
     this.setState({ isOpen: false });
   };
-   deleteCard = () => {
+  deleteCard = () => {
     const { dispatch, listId, boardId, card } = this.props;
     dispatch({
       type: "DELETE_CARD",
       payload: { cardId: card._id, listId, boardId }
     });
   };
-   render() {
+  render() {
     const { card, index, i } = this.props;
     const { isOpen, newTitle } = this.state;
     return !isOpen ? (
@@ -75,4 +75,4 @@ import Card from "./Card";
     );
   }
 }
- export default connect()(CardWrapper);
+export default connect()(CardWrapper);

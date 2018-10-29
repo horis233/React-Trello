@@ -3,13 +3,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import "./UserDropdown.scss";
- type Props = {
+type Props = {
   user: {
     name: string,
     imageUrl: string
   }
 };
- class UserDropdown extends Component<Props> {
+class UserDropdown extends Component<Props> {
   render = () => {
     const { name, imageUrl } = this.props.user;
     return (
@@ -34,5 +34,5 @@ import "./UserDropdown.scss";
     );
   };
 }
- const mapStateToProps = ({ user }) => ({ user });
- export default connect(mapStateToProps)(UserDropdown);
+const mapStateToProps = ({ user }) => ({ user });
+export default connect(mapStateToProps)(UserDropdown);
