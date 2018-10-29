@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -7,11 +6,9 @@ import Board from "./Board/Board";
 import LandingPage from "./LandingPage";
 import "./App.scss";
 
-type Props = {
-  user: { _id: string, name: string, imageUrl: string }
-};
 
-const App = ({ user }: Props) => {
+
+const App = ({ user }) => {
   if (true) {
     return (
       <div>

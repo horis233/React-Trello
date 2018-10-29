@@ -8,11 +8,7 @@ import Header from "../Header/Header";
 import BoardAdder from "./BoardAdder";
 import "./Home.scss";
 
-type Props = {
-  boards: Array<{ title: string, _id: string }>
-};
-
-class Home extends Component<Props> {
+class Home extends Component {
   render = () => {
     const { boards } = this.props;
     return (

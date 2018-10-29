@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Textarea from "react-textarea-autosize";
 import FaTimesCircle from "react-icons/lib/fa/times-circle";
+
+
 class ListTitle extends Component {
   constructor(props) {
     super(props);

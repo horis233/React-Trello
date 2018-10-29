@@ -9,16 +9,10 @@ import Header from '../Header/Header';
 import BoardHeader from './BoardHeader/BoardHeader';
 import './Board.scss';
 
-type Props = {
-	lists: Array<{ _id: string }>,
-	boardTitle: string,
-	boardId: string,
-	dispatch: ({ type: string }) => void
-};
 
 let i = 0;
 
-class Board extends React.Component<Props> {
+class Board extends React.Component {
 	constructor() {
 		super();
 		this.state = {

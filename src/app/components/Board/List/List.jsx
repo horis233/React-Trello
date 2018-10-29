@@ -1,27 +1,11 @@
-// @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import ListTitle from './ListTitle';
 import Cards from './Cards';
 
-type Props = {
-	boardId: string,
-	list: {
-		title: string,
-		_id: string,
-		cards: Array<string>
-	},
-	cards: Array<{ title: string, _id: string }>,
-	i: number,
-	index: number
-};
 
-type State = {
-	cardComposerIsOpen: boolean
-};
-
-class List extends React.Component<Props, State> {
+class List extends React.Component{
 	constructor() {
 		super();
 		this.state = {
