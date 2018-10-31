@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -10,7 +10,7 @@ import Header from '../Header/Header';
 import BoardHeader from './BoardHeader/BoardHeader';
 import './Board.scss';
 
-class Board extends React.Component {
+class Board extends Component {
 	static propTypes = {
 		lists: PropTypes.arrayOf(PropTypes.shape({ _id: PropTypes.string.isRequired })).isRequired,
 		boardId: PropTypes.string.isRequired,
@@ -23,7 +23,7 @@ class Board extends React.Component {
 		super();
 		this.state = {
 			startX: null,
-			startScrollX: null
+			startScrollLeft: null
 		};
 	}
 
@@ -34,7 +34,9 @@ class Board extends React.Component {
 		}
 		const { dispatch, boardId } = this.props;
 
+		// Move list
 		if (type === 'COLUMN') {
+			// Prevent update if nothing has changed
 			if (source.index !== destination.index) {
 				dispatch({
 					type: 'REORDER_LISTS',
@@ -47,6 +49,7 @@ class Board extends React.Component {
 			}
 			return;
 		}
+		// Move card
 		if (source.index !== destination.index || source.droppableId !== destination.droppableId) {
 			dispatch({
 				type: 'REORDER_CARDS',
@@ -58,7 +61,6 @@ class Board extends React.Component {
 					boardId
 				}
 			});
-			return;
 		}
 	};
 
@@ -73,12 +75,12 @@ class Board extends React.Component {
 	};
 
 	handleMouseMove = ({ clientX }) => {
-		const { startX, startScrollX } = this.state;
-		const scrollLeft = startScrollX - clientX + startX;
-		window.scroll(scrollLeft, 0);
-		if (scrollLeft !== window.scrollX) {
+		const { startX, startScrollLeft } = this.state;
+		const scrollLeft = startScrollLeft - clientX + startX;
+		this.backgroundEl.scrollLeft = scrollLeft;
+		if (scrollLeft !== this.backgroundEl.scrollLeft) {
 			this.setState({
-				startX: clientX + window.scrollX - startScrollX
+				startX: clientX + this.backgroundEl.scrollLeft - startScrollLeft
 			});
 		}
 	};
@@ -87,42 +89,39 @@ class Board extends React.Component {
 		if (this.state.startX) {
 			window.removeEventListener('mousemove', this.handleMouseMove);
 			window.removeEventListener('mouseup', this.handleMouseUp);
-			this.setState({ startX: null, startScrollX: null });
+			this.setState({ startX: null, startScrollLeft: null });
 		}
 	};
 	render = () => {
 		const { lists, boardTitle, boardId, boardColor } = this.props;
-		const { isTitleInEdit, newTitle } = this.state;
 		return (
-			<div className={classnames('board-wrapper', boardColor)}>
-				<div className="board">
-					<Helmet>
-						<title>{boardTitle} | kanban.live</title>
-					</Helmet>
-					<Header />
-					<BoardHeader />
-					{/* eslint-disable jsx-a11y/no-static-element-interactions */}
+			<div className={classnames('board', boardColor)}>
+				<Helmet>
+					<title>{boardTitle} | kanban.live</title>
+				</Helmet>
+				<Header />
+				<BoardHeader />
+				{/* eslint-disable jsx-a11y/no-static-element-interactions */}
+				<div
+					ref={(el) => {
+						this.backgroundEl = el;
+					}}
+					className="lists-wrapper"
+					onMouseDown={this.handleMouseDown}
+				>
+					{/* eslint-enable jsx-a11y/no-static-element-interactions */}
 					<DragDropContext onDragEnd={this.handleDragEnd}>
-						<div
-							// ref={el => {
-							//   this.backgroundEl = el;
-							// }}
-							className="lists-wrapper"
-							onMouseDown={this.handleMouseDown}
-						>
-							{/* eslint-enable jsx-a11y/no-static-element-interactions */}
-							<Droppable droppableId={boardId} type="COLUMN" direction="horizontal">
-								{(provided) => (
-									<div className="lists" ref={provided.innerRef}>
-										{lists.map((list, index) => (
-											<List list={list} boardId={boardId} index={index} key={list._id} />
-										))}
-										{provided.placeholder}
-										<ListAdder boardId={boardId} />
-									</div>
-								)}
-							</Droppable>
-						</div>
+						<Droppable droppableId={boardId} type="COLUMN" direction="horizontal">
+							{(provided) => (
+								<div className="lists" ref={provided.innerRef}>
+									{lists.map((list, index) => (
+										<List list={list} boardId={boardId} index={index} key={list._id} />
+									))}
+									{provided.placeholder}
+									<ListAdder boardId={boardId} />
+								</div>
+							)}
+						</Droppable>
 					</DragDropContext>
 				</div>
 			</div>

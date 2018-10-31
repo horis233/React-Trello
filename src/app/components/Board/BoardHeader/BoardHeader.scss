@@ -1,13 +1,9 @@
 @import "../../../variables.scss";
 
-.board-header-wrapper {
-  position: relative;
-  height: 40px;
-  margin: 8px 10px 5px 10px;
-}
 
 .board-header {
-  position: fixed;
+  margin: 8px 10px 5px 10px;
+
   color: $white;
   display: flex;
   align-items: center;

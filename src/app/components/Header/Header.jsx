@@ -5,7 +5,6 @@ import kanbanLogo from '../../../assets/images/kankan-logo.svg';
 import './Header.scss';
 class Header extends Component {
 	render = () => (
-		<div className="header-wrapper">
 			<header>
 				<Link to="/" className="header-title">
 					<img src={kanbanLogo} alt="kanban live logo" />
@@ -13,7 +12,6 @@ class Header extends Component {
 				</Link>
 				<UserDropdown />
 			</header>
-		</div>
 	);
 }
 export default Header;
