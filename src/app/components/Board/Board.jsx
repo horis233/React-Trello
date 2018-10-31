@@ -93,6 +93,23 @@ class Board extends Component {
 			this.setState({ startX: null, startScrollX: null });
 		}
 	};
+
+	handleWheel = ({ target, deltaY }) => {
+		if (
+			target.className !== 'list-wrapper' &&
+			target.className !== 'lists' &&
+			target.className !== 'open-composer-button' &&
+			target.className !== 'list-title-button'
+		) {
+			return;
+		}
+		if (Math.sign(deltaY) === 1) {
+			window.scrollTo(window.scrollX + 80, 0);
+		} else if (Math.sign(deltaY) === -1) {
+			window.scrollTo(window.scrollX - 80, 0);
+		}
+	};
+
 	render = () => {
 		const { lists, boardTitle, boardId, boardColor } = this.props;
 		return (
@@ -103,7 +120,7 @@ class Board extends Component {
 				<Header />
 				<BoardHeader />
 				{/* eslint-disable jsx-a11y/no-static-element-interactions */}
-				<div className="lists-wrapper" onMouseDown={this.handleMouseDown}>
+				<div className="lists-wrapper" onMouseDown={this.handleMouseDown} onWheel={this.handleWheel}>
 					{/* eslint-enable jsx-a11y/no-static-element-interactions */}
 					<DragDropContext onDragEnd={this.handleDragEnd}>
 						<Droppable droppableId={boardId} type="COLUMN" direction="horizontal">
