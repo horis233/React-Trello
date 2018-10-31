@@ -94,34 +94,37 @@ class Board extends React.Component {
 		const { lists, boardTitle, boardId, boardColor } = this.props;
 		const { isTitleInEdit, newTitle } = this.state;
 		return (
-			<div className={classnames('board', boardColor)}>
-				<Helmet>
-					<title>{boardTitle} | kanban.live</title>
-				</Helmet>
-				<Header />
-				<BoardHeader />
-				{/* eslint-disable jsx-a11y/no-static-element-interactions */}
-				<DragDropContext onDragEnd={this.handleDragEnd}>
-					<div
-						// ref={el => {
-						//   this.backgroundEl = el;
-						// }}
-						className="lists-wrapper"
-						onMouseDown={this.handleMouseDown}
-					>
-						{/* eslint-enable jsx-a11y/no-static-element-interactions */}
-						<Droppable droppableId={boardId} type="COLUMN" direction="horizontal">
-							{(provided) => (
-								<div className="lists" ref={droppableProvided.innerRef}>
-									<List list={list} boardId={boardId} index={index} key={list._id} />
-									))}
-									{provided.placeholder}
-									<ListAdder boardId={boardId} />
-								</div>
-							)}
-						</Droppable>
-					</div>
-				</DragDropContext>
+			<div className={classnames('board-wrapper', boardColor)}>
+				<div className="board">
+					<Helmet>
+						<title>{boardTitle} | kanban.live</title>
+					</Helmet>
+					<Header />
+					<BoardHeader />
+					{/* eslint-disable jsx-a11y/no-static-element-interactions */}
+					<DragDropContext onDragEnd={this.handleDragEnd}>
+						<div
+							// ref={el => {
+							//   this.backgroundEl = el;
+							// }}
+							className="lists-wrapper"
+							onMouseDown={this.handleMouseDown}
+						>
+							{/* eslint-enable jsx-a11y/no-static-element-interactions */}
+							<Droppable droppableId={boardId} type="COLUMN" direction="horizontal">
+								{(provided) => (
+									<div className="lists" ref={provided.innerRef}>
+										{lists.map((list, index) => (
+											<List list={list} boardId={boardId} index={index} key={list._id} />
+										))}
+										{provided.placeholder}
+										<ListAdder boardId={boardId} />
+									</div>
+								)}
+							</Droppable>
+						</div>
+					</DragDropContext>
+				</div>
 			</div>
 		);
 	};
