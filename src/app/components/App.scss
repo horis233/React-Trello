@@ -15,5 +15,13 @@ body {
 	min-width: 100%;
 	display: inline-flex;
 	min-width: 100vw;
-	flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  background: #ddd;
+}
+ ::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 3px;
 }
