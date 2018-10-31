@@ -2,7 +2,8 @@
 
 .board {
 	height: 100%;
-	display: flex;
+	min-width: 100%;
+	display: inline-flex;
 	flex-direction: column;
 	background: $black;
 
@@ -21,8 +22,10 @@
 }
 
 .lists-wrapper {
+	padding: 85px 5px 5px 5px;
+	box-sizing: border-box;
 	height: 100%;
-	display: flex;
+	display: inline-flex;
 	padding: 5px;
 	overflow-x: auto;
 }
