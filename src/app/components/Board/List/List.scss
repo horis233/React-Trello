@@ -58,6 +58,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   margin: 0 3px 0 3px;
+  margin-bottom: 6px;
 }
 .cards-wrapper::-webkit-scrollbar {
   width: 8px;
@@ -69,7 +70,7 @@
   border-radius: 2px;
 }
 .cards {
-  min-height: 26px;
+  min-height: 1px;
 }
 .open-composer-button {
   display: inline-flex;
