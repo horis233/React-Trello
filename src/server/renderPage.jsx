@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { StaticRouter } from "react-router";
 import { Helmet } from "react-helmet";
 import { resetContext } from "react-beautiful-dnd";
-
 import App from "../app/components/App";
 import reducers from "../app/reducers/reducers";
 
