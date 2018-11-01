@@ -34,6 +34,7 @@
 		"prop-types": "^15.6.2",
 		"react": "^16.6.0",
 		"react-aria-menubutton": "^6.0.1",
+		"react-aria-modal": "^3.0.1",
 		"react-beautiful-dnd": "^9.0.2",
 		"react-custom-scroll": "^4.0.0",
 		"react-dom": "^16.6.0",
