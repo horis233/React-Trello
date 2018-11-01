@@ -7,8 +7,8 @@ import Board from "./Board/Board";
 import LandingPage from "./LandingPage";
 import "./App.scss";
 
-const App = ({ user }) => {
-  if (true) {
+const App = ({ user, isGuest }) => {
+  if (user || isGuest) {
     return (
       <div>
         <Route exact path="/" component={Home} />
@@ -27,6 +27,6 @@ const App = ({ user }) => {
 
 App.propTypes = { user: PropTypes.object };
 
-const mapStateToProps = state => ({ user: state.user });
+const mapStateToProps = state => ({ user: state.user, isGuest: state.isGuest });
 
 export default withRouter(connect(mapStateToProps)(App));
