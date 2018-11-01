@@ -1,31 +1,44 @@
-import React from "react";
-import { renderToString } from "react-dom/server";
-import { createStore, combineReducers } from "redux";
-import { Provider } from "react-redux";
-import { StaticRouter } from "react-router";
-import { Helmet } from "react-helmet";
-import { resetContext } from "react-beautiful-dnd";
-import App from "../app/components/App";
-import reducers from "../app/reducers/reducers";
+import React from 'react';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import { StaticRouter } from 'react-router';
+import { Helmet } from 'react-helmet';
+import { resetContext } from 'react-beautiful-dnd';
+import App from '../app/components/App';
+import LandingPage from '../app/components/LandingPage';
+import reducers from '../app/reducers/reducers';
 
 export default function renderPage(req, res) {
-  const store = createStore(combineReducers(reducers), req.initialState);
-  const context = {};
+	let appString;
+	let scriptString = '';
+	if (req.user) {
+		const store = createStore(combineReducers(reducers), req.initialState);
+		const context = {};
+		resetContext();
 
-  resetContext();
-  
-  const appString = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={req.url} context={context}>
-        <App />
-      </StaticRouter>
-    </Provider>
-  );
+		const appString = renderToString(
+			<Provider store={store}>
+				<StaticRouter location={req.url} context={context}>
+					<App />
+				</StaticRouter>
+			</Provider>
+		);
 
-  const helmet = Helmet.renderStatic();
+		const preloadedState = store.getState();
+		scriptString = `
+    <script>
+      window.PRELOADED_STATE = ${JSON.stringify(preloadedState)}
+    </script>
+    <script src="/static/bundle.js"></script>
+    `;
+	} else {
+		// Landing page doesn't include any javascript so we only render the html string
+		appString = renderToStaticMarkup(<LandingPage />);
+	}
+	const helmet = Helmet.renderStatic();
 
-  const preloadedState = store.getState();
-  const html = `
+	const html = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -46,11 +59,9 @@ export default function renderPage(req, res) {
       <body>
         <div id="app">${appString}</div>
       </body>
-      <script>
-        window.PRELOADED_STATE = ${JSON.stringify(preloadedState)}
-      </script>
+      ${scriptString}
       <script src="/static/bundle.js"></script>
     </html>
   `;
-  res.send(html);
+	res.send(html);
 }
