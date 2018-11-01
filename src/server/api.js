@@ -1,27 +1,28 @@
-import { denormalize, schema } from "normalizr";
-import axios from "axios";
+import { Router } from "express";
 
-const persistMiddleware = store => next => action => {
-  next(action);
-  const { boardsById, listsById, cardsById } = store.getState();
-  const { boardId } = action.payload;
+const api = db => {
+  const router = Router();
+  const boards = db.collection("boards");
 
-  const card = new schema.Entity("cardsById", {}, { idAttribute: "_id" });
-  const list = new schema.Entity(
-    "listsById",
-    { cards: [card] },
-    { idAttribute: "_id" }
-  );
-  const board = new schema.Entity(
-    "boardsById",
-    { lists: [list] },
-    { idAttribute: "_id" }
-  );
-  const entities = { cardsById, listsById, boardsById };
+  router.put("/board", (req, res) => {
+    const board = req.body;
+    boards
+      .replaceOne({ _id: board._id, users: req.user._id }, board, {
+        upsert: true
+      })
+      .then(result => {
+        res.send(result);
+      });
+  });
 
-  const boardData = denormalize(boardId, board, entities);
+  router.delete("/board", (req, res) => {
+    const { boardId } = req.body;
+    boards.deleteOne({ _id: boardId }).then(result => {
+      res.send(result);
+    });
+  });
 
-  axios.put("/api/board", boardData).then(({ data }) => console.log(data));
+  return router;
 };
 
-export default persistMiddleware;
+export default api;
