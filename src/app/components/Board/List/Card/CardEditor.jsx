@@ -6,7 +6,6 @@ import Modal from 'react-aria-modal';
 
 class CardEditor extends Component {
 	static propTypes = {
-		isOpen: PropTypes.bool.isRequired,
 		card: PropTypes.shape({
 			title: PropTypes.string.isRequired,
 			_id: PropTypes.string.isRequired
@@ -17,18 +16,21 @@ class CardEditor extends Component {
 		deleteCard: PropTypes.func.isRequired,
 		dispatch: PropTypes.func.isRequired
 	};
+
 	constructor(props) {
 		super(props);
 		this.state = {
 			newTitle: props.card.title
 		};
 	}
+
 	handleKeyDown = (event) => {
 		if (event.keyCode === 13 && event.shiftKey === false) {
 			event.preventDefault();
 			this.submitCard();
 		}
 	};
+
 	submitCard = () => {
 		const { newTitle } = this.state;
 		const { card, listId, boardId, dispatch, toggleCardEditor, deleteCard } = this.props;
@@ -47,13 +49,15 @@ class CardEditor extends Component {
 		}
 		toggleCardEditor();
 	};
+
 	handleChange = (event) => {
 		this.setState({ newTitle: event.target.value });
 	};
+
 	render() {
 		const { newTitle } = this.state;
-		const { card, isOpen, toggleCardEditor } = this.props;
-		return isOpen ? (
+		const { card, toggleCardEditor } = this.props;
+		return (
 			<Modal
 				onExit={toggleCardEditor}
 				titleText="card-editor"
@@ -75,7 +79,8 @@ class CardEditor extends Component {
 					/>
 				</div>
 			</Modal>
-		) : null;
+		);
 	}
 }
+
 export default connect()(CardEditor);
