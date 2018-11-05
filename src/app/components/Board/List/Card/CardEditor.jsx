@@ -15,7 +15,9 @@ class CardEditor extends Component {
 		boardId: PropTypes.string.isRequired,
 		boundingRect: PropTypes.shape({
 			left: PropTypes.number,
-			top: PropTypes.number
+			top: PropTypes.number,
+			width: PropTypes.number,
+			height: PropTypes.number
 		}).isRequired,
 		toggleCardEditor: PropTypes.func.isRequired,
 		deleteCard: PropTypes.func.isRequired,
@@ -62,14 +64,12 @@ class CardEditor extends Component {
 
 	render() {
 		const { newTitle } = this.state;
-		const { card, toggleCardEditor, boundingRect } = this.props;
-		console.log(window.innerHeight, boundingRect.height + boundingRect.top);
+		const { toggleCardEditor, boundingRect } = this.props;
 		const top = Math.min(boundingRect.top, window.innerHeight - boundingRect.height - 18);
 		const style = {
 			content: {
 				top,
-				left: boundingRect.left,
-				width: boundingRect.width
+				left: boundingRect.left
 			}
 		};
 		return (
@@ -79,7 +79,10 @@ class CardEditor extends Component {
 				contentLabel="Card editor"
 				overlayClassName="modal-underlay"
 				className="card-editor-modal"
-				style={style}
+				style={{
+					minHeight: boundingRect.height,
+					width: boundingRect.width
+				}}
 				includeDefaultStyles={false}
 			>
 				<div className="modal-textarea-wrapper">
@@ -94,6 +97,9 @@ class CardEditor extends Component {
 						spellCheck={false}
 						style={{ minHeight: boundingRect.height }}
 					/>
+				</div>
+				<div className="options-list">
+					<button>Delete card</button>
 				</div>
 			</Modal>
 		);
