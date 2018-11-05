@@ -65,12 +65,12 @@ class CardEditor extends Component {
 			<Modal
 				onExit={toggleCardEditor}
 				titleText="card-editor"
-				underlayClass="modal-underlay"
-				dialogClass="card-editor-modal"
-				dialogStyle={{ top: boundingRect.top, left: boundingRect.left }}
-				includeDefaultStyles={false}
+				// underlayClass="modal-underlay"
+				// dialogClass="card-editor-modal"
+				// dialogStyle={{ top: boundingRect.top, left: boundingRect.left }}
+				// includeDefaultStyles={false}
 			>
-				<div>
+				<div className="modal-textarea-wrapper">
 					<Textarea
 						autoFocus
 						useCacheForDOMMeasurements
@@ -80,6 +80,7 @@ class CardEditor extends Component {
 						className="list-textarea"
 						onBlur={this.submitCard}
 						spellCheck={false}
+						style={{ minHeight: boundingRect.height }}
 					/>
 				</div>
 			</Modal>
