@@ -41,6 +41,7 @@
 		"react-gemini-scrollbar": "^2.3.4",
 		"react-helmet": "^5.2.0",
 		"react-icons": "^2.2.7",
+		"react-modal": "^3.6.1",
 		"react-onclickoutside": "^6.7.1",
 		"react-redux": "^5.1.0",
 		"react-router": "^4.3.1",

@@ -60,11 +60,11 @@
 }
 
 .card-editor-modal {
-	display: inline-block;
+	//display: inline-block;
 	position: absolute;
 }
 .delete-card-button {
-	position: absolute;
+	position: fixed;
 	right: 28px;
 	top: 2px;
 	border: 0;
