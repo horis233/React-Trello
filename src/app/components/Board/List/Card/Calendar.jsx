@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import DayPicker from 'react-day-picker';
+import "./ReactDayPicker.scss";
+
 class Calendar extends Component {
 	constructor() {
 		super();
@@ -9,7 +11,10 @@ class Calendar extends Component {
 	}
 	render() {
 		const { date } = this.state;
-		return <h1>Calendar!!</h1>;
-	}
+        return (
+            <div className="calendar">
+              <DayPicker />
+            </div>
+          );	}
 }
 export default Calendar;
