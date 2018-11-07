@@ -1,4 +1,5 @@
 @import "../../../../variables.scss";
+
 .card-title {
 	background: $white;
 	border-radius: 3px;
@@ -11,28 +12,17 @@
 	font-size: 16px;
 	padding: 12px 10px;
 }
+
+.card-title:hover {
+	.edit-card-button {
+		opacity: 1;
+	}
+}
+
 .card-title-drag {
 	box-shadow: 0px 0px 5px rgb(0, 180, 255);
 }
-.card-title-html {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		margin: 8px 0;
-	}
-	img {
-		max-width: 100%;
-	}
-	p {
-		margin: 4px 0;
-	}
-	code {
-		white-space: pre-wrap;
-	}
-}
+
 .edit-card-button {
 	position: absolute;
 	right: 3px;
@@ -44,15 +34,40 @@
 	color: $white;
 	background: $transparent-black;
 	cursor: pointer;
+	transition: background 0.1s;
 }
+
 .edit-card-button:hover {
-	opacity: 1;
+	background: $less-transparent-black;
+}
+
+.card-title-html {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 8px 0;
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	p {
+		margin: 4px 0;
+	}
+
+	code {
+		white-space: pre-wrap;
+	}
 }
 
 .modal-underlay {
 	background: rgba(0, 0, 0, 0.6);
 	z-index: 1;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -60,26 +75,8 @@
 }
 
 .card-editor-modal {
-	//display: inline-block;
 	display: flex;
 	position: absolute;
-}
-
-.delete-card-button {
-	position: fixed;
-	right: 28px;
-	top: 2px;
-	border: 0;
-	padding: 4px 6px 7px 6px;
-	border-radius: 3px;
-	opacity: 0;
-	color: $fg-black;
-	cursor: pointer;
-	font-size: 16px;
-}
-
-.delete-card-button:hover {
-	opacity: 1;
 }
 
 .modal-textarea-wrapper {
