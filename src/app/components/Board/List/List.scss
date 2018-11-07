@@ -127,8 +127,7 @@
 	border-bottom-left-radius: inherit;
 	border-bottom-right-radius: inherit;
 }
-.open-composer-button:hover {
-	color: $fg-black;
-	background: $bg-darker-grey;
+.open-composer-button:hover,
+.open-composer-button:focus {
 	text-decoration: underline;
 }
