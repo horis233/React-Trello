@@ -1,8 +1,8 @@
-import { Component } from "react";
+import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import onClickOutside from "react-onclickoutside";
 
-class ClickOutsideWrapper extends React.Component {
+class ClickOutsideWrapper extends Component {
   static propTypes = {
     handleClickOutside: PropTypes.func.isRequired,
     children: PropTypes.element.isRequired

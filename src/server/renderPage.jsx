@@ -4,15 +4,12 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { Helmet } from 'react-helmet';
-import { resetContext } from 'react-beautiful-dnd';
 import App from '../app/components/App';
 import reducers from '../app/reducers/reducers';
 
 export default function renderPage(req, res) {
 	const store = createStore(combineReducers(reducers), req.initialState);
 	const context = {};
-
-	resetContext();
 
 	const appString = renderToString(
 		<Provider store={store}>
@@ -21,10 +18,10 @@ export default function renderPage(req, res) {
 			</StaticRouter>
 		</Provider>
 	);
-	const preloadedState = store.getState();
 
 	const helmet = Helmet.renderStatic();
 
+	const preloadedState = store.getState();
 	const html = `
     <!DOCTYPE html>
     <html>
@@ -39,7 +36,6 @@ export default function renderPage(req, res) {
         <link rel="icon" type="image/png" href="/static/favicons/favicon-16x16.png" sizes="16x16" />
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png" />
-        <meta property="og:image" content="https://kanban.live/static/favicons/og-kanban-logo.png">
         <link rel="stylesheet" href="/static/bundle.css">
         ${helmet.title.toString()}
       </head>

@@ -5,7 +5,7 @@ import slugify from "slugify";
 import shortid from "shortid";
 import ClickOutside from "../ClickOutside";
 
-class BoardAddr extends Component {
+class BoardAdder extends Component {
   static propTypes = {
     userId: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
