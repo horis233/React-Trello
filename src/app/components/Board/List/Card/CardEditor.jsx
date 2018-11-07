@@ -72,11 +72,15 @@ class CardEditor extends Component {
 	render() {
 		const { newTitle } = this.state;
 		const { toggleCardEditor, boundingRect } = this.props;
+		const isCardNearRightBorder = boundingRect.right + 90 > window.innerWidth;
+
 		const top = Math.min(boundingRect.top, window.innerHeight - boundingRect.height - 18);
 		const style = {
 			content: {
 				top,
-				left: boundingRect.left
+				left: isCardNearRightBorder ? null : boundingRect.left,
+				right: isCardNearRightBorder ? window.innerWidth - boundingRect.right : null,
+				flexDirection: isCardNearRightBorder ? 'row-reverse' : 'row'
 			}
 		};
 		return (
@@ -86,14 +90,15 @@ class CardEditor extends Component {
 				contentLabel="Card editor"
 				overlayClassName="modal-underlay"
 				className="card-editor-modal"
-				style={{
-					minHeight: boundingRect.height,
-					width: boundingRect.width
-				}}
+				style={style}
 				includeDefaultStyles={false}
 			>
 				<div className="modal-textarea-wrapper">
 					<Textarea
+						style={{
+							minHeight: boundingRect.height,
+							width: boundingRect.width
+						}}
 						autoFocus
 						useCacheForDOMMeasurements
 						value={newTitle}
@@ -101,14 +106,13 @@ class CardEditor extends Component {
 						onKeyDown={this.handleKeyDown}
 						className="list-textarea"
 						spellCheck={false}
-						style={{ minHeight: boundingRect.height }}
 					/>
 				</div>
 				<div className="options-list">
 					<button onClick={this.deleteCard} className="options-list-button">
 						<div className="options-list-button-icon">
 							<FaTimesCircle />
-						</div>&nbsp;Delete card{' '}
+						</div>&nbsp;Delete
 					</button>
 				</div>
 			</Modal>
