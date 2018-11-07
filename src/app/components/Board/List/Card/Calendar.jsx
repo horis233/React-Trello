@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DayPicker from 'react-day-picker';
-import "./ReactDayPicker.scss";
+import './ReactDayPicker.scss';
 
 class Calendar extends Component {
-	constructor() {
-		super();
-		this.state = {
-			date: null
-		};
-	}
+	static propTypes = {
+		selectedDay: PropTypes.instanceOf(Date),
+		handleDayClick: PropTypes.func.isRequired
+	};
+
 	render() {
-		const { date } = this.state;
-        return (
-            <div className="calendar">
-              <DayPicker />
-            </div>
-          );	}
+		const { selectedDay, handleDayClick } = this.props;
+		return (
+			<div className="calendar">
+				<DayPicker
+					onDayClick={handleDayClick}
+					selectedDays={selectedDay}
+					disabledDays={{ before: new Date() }}
+				/>
+			</div>
+		);
+	}
 }
+
 export default Calendar;
