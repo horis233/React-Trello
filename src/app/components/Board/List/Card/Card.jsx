@@ -16,6 +16,7 @@ class Card extends Component {
 		}).isRequired,
 		listId: PropTypes.string.isRequired,
 		boardId: PropTypes.string.isRequired,
+		isDraggingOver: PropTypes.bool.isRequired,
 		index: PropTypes.number.isRequired,
 		dispatch: PropTypes.func.isRequired
 	};
@@ -31,9 +32,8 @@ class Card extends Component {
 		this.setState({ isOpen: !this.state.isOpen });
 	};
 
-
 	render() {
-		const { card, index, listId, boardId } = this.props;
+		const { card, index, listId, boardId, isDraggingOver } = this.props;
 		const { isOpen } = this.state;
 		return (
 			<div>
@@ -61,12 +61,20 @@ class Card extends Component {
 									}}
 								/>
 								{/* eslint-enable */}
-
 								<button onClick={this.toggleCardEditor} className="edit-card-button">
 									<FaPencil />
 								</button>
 							</div>
-							{provided.placeholder}
+							{provided.placeholder && (
+								<div
+									style={{
+										height: isDraggingOver ? this.ref.offsetHeight + 8 : 0,
+										transition: 'all 200ms'
+									}}
+								>
+									{provided.placeholder}
+								</div>
+							)}
 						</div>
 					)}
 				</Draggable>

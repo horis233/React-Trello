@@ -18,11 +18,18 @@ class Cards extends Component {
 		const { listId, cards, cardComposerIsOpen, toggleCardComposer, boardId } = this.props;
 		return (
 			<Droppable droppableId={listId}>
-				{(provided) => (
+				{(provided, { isDraggingOver }) => (
 					<div>
 						<div className="cards" ref={provided.innerRef}>
 							{cards.map((cardId, index) => (
-								<Card key={cardId} cardId={cardId} index={index} listId={listId} boardId={boardId} />
+								<Card
+									isDraggingOver={isDraggingOver}
+									key={cardId}
+									cardId={cardId}
+									index={index}
+									listId={listId}
+									boardId={boardId}
+								/>
 							))}
 							{provided.placeholder}
 							<CardComposer
