@@ -105,7 +105,7 @@ class ListTitle extends Component {
 								<div className="delete-list-header">Are you sure?</div>
 								<MenuItem className="delete-list-confirm">Delete</MenuItem>
 							</Menu>
-						</Wrapper>c
+						</Wrapper>
 					</div>
 				)}
 			</div>
