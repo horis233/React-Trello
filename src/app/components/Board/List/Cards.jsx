@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 import CardComposer from './CardComposer/CardComposer';
-import CardWrapper from './Card/Card';
+import Card from './Card/Card';
 
 class Cards extends Component {
 	static propTypes = {
@@ -16,14 +16,13 @@ class Cards extends Component {
 
 	render() {
 		const { listId, cards, cardComposerIsOpen, toggleCardComposer, boardId } = this.props;
-		console.log('CARDS', this.props);
 		return (
 			<Droppable droppableId={listId}>
 				{(provided) => (
 					<div>
 						<div className="cards" ref={provided.innerRef}>
 							{cards.map((cardId, index) => (
-								<Card key={card} card={cardId} index={index} listId={listId} boardId={boardId} />
+								<Card key={cardId} cardId={cardId} index={index} listId={listId} boardId={boardId} />
 							))}
 							{provided.placeholder}
 							<CardComposer
