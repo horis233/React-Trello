@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import Textarea from 'react-textarea-autosize';
 import Modal from 'react-modal';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
-import MdAlarm from "react-icons/lib/md/access-alarm";
-
+import MdAlarm from 'react-icons/lib/md/access-alarm';
+import Calendar from './Calendar';
 
 class CardEditor extends Component {
 	static propTypes = {
@@ -28,7 +28,8 @@ class CardEditor extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			newTitle: props.card.title
+			newTitle: props.card.title,
+			isCalendarOpen: false
 		};
 		Modal.setAppElement('#app');
 	}
@@ -71,8 +72,12 @@ class CardEditor extends Component {
 		});
 	};
 
+	openDatePicker = () => {
+		this.setState({ isCalendarOpen: true });
+	};
+
 	render() {
-		const { newTitle } = this.state;
+		const { newTitle, isCalendarOpen } = this.state;
 		const { toggleCardEditor, boundingRect } = this.props;
 		const isCardNearRightBorder = boundingRect.right + 90 > window.innerWidth;
 
@@ -122,6 +127,7 @@ class CardEditor extends Component {
 						</div>&nbsp;Due date
 					</button>
 				</div>
+				{isCalendarOpen && <Calendar />}
 			</Modal>
 		);
 	}

@@ -37,6 +37,7 @@
 		"react-aria-modal": "^3.0.1",
 		"react-beautiful-dnd": "github:yogaboll/react-beautiful-dnd#include-generated",
 		"react-custom-scroll": "^4.0.0",
+		"react-day-picker": "^7.2.4",
 		"react-dom": "^16.6.0",
 		"react-gemini-scrollbar": "^2.3.4",
 		"react-helmet": "^5.2.0",
