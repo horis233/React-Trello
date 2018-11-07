@@ -6,7 +6,6 @@
 		"jest": true
 	},
 	"extends": [ "airbnb", "prettier", "prettier/react" ],
-	"plugins": [ "flowtype" ],
 	"parser": "babel-eslint",
 	"parserOptions": {
 		"ecmaFeatures": {

@@ -1,169 +1,169 @@
 @import "../../../variables.scss";
 
 .board-header {
-	top: 40px;
-	position: fixed;
-	color: $white;
-	margin: 8px 10px 5px 10px;
-	display: flex;
-	align-items: center;
-	z-index: 1;
+  top: 40px;
+  position: fixed;
+  color: $white;
+  margin: 8px 10px 5px 10px;
+  display: flex;
+  align-items: center;
+  z-index: 1;
 }
 
 .board-title-wrapper {
-	min-width: 270px;
+  min-width: 270px;
 }
 
 .board-title-button {
-	background: transparent;
-	border: 0;
-	border-radius: 3px;
-	cursor: pointer;
-	padding: 6px 10px 6px 10px;
-	transition: background 0.1s;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 6px 10px 6px 10px;
+  transition: background 0.1s;
 }
 
 .board-title-button:hover,
 .board-title-button:focus {
-	background: $transparent-black;
+  background: $transparent-black;
 }
 
 .board-title {
-	font-size: 20px;
-	margin: 0;
-	color: $white;
+  font-size: 20px;
+  margin: 0;
+  color: $white;
 }
 
 .board-title-input {
-	font-size: 20px;
-	font-weight: 700;
-	color: inherit;
-	background: inherit;
-	padding: 6px 10px 6px 10px;
-	border: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: inherit;
+  background: inherit;
+  padding: 6px 10px 6px 10px;
+  border: 0;
 }
 
 .color-picker-wrapper {
-	position: relative;
-	font-size: 16px;
+  position: relative;
+  font-size: 16px;
 }
 
 .color-picker {
-	display: flex;
-	align-items: center;
-	color: $white;
-	border-radius: 3px;
-	padding: 8px 10px 8px 10px;
-	width: 45px;
-	justify-content: space-around;
-	transition: background 0.1s;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $white;
+  border-radius: 3px;
+  padding: 8px 10px 8px 10px;
+  width: 45px;
+  justify-content: space-around;
+  transition: background 0.1s;
+  cursor: pointer;
 }
 
 .color-picker:hover,
 .color-picker:focus {
-	background: $transparent-black;
+  background: $transparent-black;
 }
 
 .color-picker-menu {
-	position: absolute;
-	margin-top: 4px;
-	top: 100%;
-	left: -30%;
-	right: -30%;
-	background: #777;
-	border-radius: 3px;
-	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
-	color: white;
-	padding: 5px;
-	display: flex;
-	flex-direction: column;
+  position: absolute;
+  margin-top: 4px;
+  top: 100%;
+  left: -30%;
+  right: -30%;
+  background: #777;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .color-picker-item {
-	height: 40px;
-	margin: 5px;
-	box-sizing: border-box;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	// border-radius: 6px;
-	&.blue {
-		background: $blue;
-	}
-	&.green {
-		background: $green;
-	}
-	&.red {
-		background: $red;
-	}
-	&.pink {
-		background: $pink;
-	}
+  height: 40px;
+  margin: 5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  // border-radius: 6px;
+  &.blue {
+    background: $blue;
+  }
+  &.green {
+    background: $green;
+  }
+  &.red {
+    background: $red;
+  }
+  &.pink {
+    background: $pink;
+  }
 }
 
 .board-deleter-wrapper {
-	position: relative;
-	font-size: 16px;
+  position: relative;
+  font-size: 16px;
 }
 
 .board-deleter-button {
-	display: flex;
-	align-items: center;
-	color: $white;
-	border-radius: 3px;
-	padding: 8px 10px 8px 10px;
-	width: 100px;
-	justify-content: space-around;
-	transition: background 0.1s;
-	cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: $white;
+  border-radius: 3px;
+  padding: 8px 10px 8px 10px;
+  width: 100px;
+  justify-content: space-around;
+  transition: background 0.1s;
+  cursor: pointer;
 }
 
 .board-deleter-button:hover,
 .board-deleter-button:focus {
-	background: $transparent-black;
+  background: $transparent-black;
 }
 
 .board-deleter-button {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .board-deleter-menu {
-	background: $white;
-	color: black;
-	position: absolute;
-	margin-top: 4px;
-	top: 100%;
-	left: -30%;
-	right: -30%;
-	border-radius: 3px;
-	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
-	padding: 5px;
-	display: flex;
-	flex-direction: column;
-	font-weight: 700;
-	text-align: center;
+  background: $white;
+  color: black;
+  position: absolute;
+  margin-top: 4px;
+  top: 100%;
+  left: -30%;
+  right: -30%;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  text-align: center;
 }
 
 .board-deleter-confirm {
-	background: red;
-	color: white;
-	cursor: pointer;
-	padding: 8px 30px;
-	border-radius: 6px;
-	text-align: center;
-	margin-top: 5px;
+  background: red;
+  color: white;
+  cursor: pointer;
+  padding: 8px 30px;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 5px;
 }
 
 .board-deleter-confirm:hover,
 .board-deleter-confirm:focus {
-	background: darkred;
+  background: darkred;
 }
 
 .vertical-line {
-	width: 1px;
-	height: 16px;
-	background: $transparent-white;
-	margin: 0 10px;
+  width: 1px;
+  height: 16px;
+  background: $transparent-white;
+  margin: 0 10px;
 }

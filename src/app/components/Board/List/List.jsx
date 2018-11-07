@@ -11,7 +11,7 @@ class List extends React.Component {
     boardId: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     list: PropTypes.shape({ _id: PropTypes.string.isRequired }).isRequired
-    //cards: PropTypes.arrayOf(PropTypes.object)
+    // cards: PropTypes.arrayOf(PropTypes.object)
   };
 
   constructor() {
