@@ -1,130 +1,130 @@
 @import "../../../../variables.scss";
 
 .card-title {
-  background: $white;
-  border-radius: 3px;
-  margin: 0 5px $list-margin 5px;
-  position: relative;
-  overflow-wrap: break-word;
-  user-select: none;
-  box-sizing: border-box;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  font-size: 16px;
-  padding: 12px 10px;
-  cursor: pointer !important;
+	background: $white;
+	border-radius: 3px;
+	margin: 0 5px $list-margin 5px;
+	position: relative;
+	overflow-wrap: break-word;
+	user-select: none;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+	font-size: 16px;
+	padding: 12px 10px;
+	cursor: pointer !important;
 }
 
 .card-title-drag {
-  box-shadow: 0px 0px 5px rgb(0, 180, 255);
+	box-shadow: 0px 0px 5px rgb(0, 180, 255);
 }
 
 .card-title-html {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 8px 0;
+	}
 
-  img {
-    max-width: 100%;
-  }
+	img {
+		max-width: 100%;
+	}
 
-  p {
-    margin: 4px 0;
-  }
+	p {
+		margin: 4px 0;
+	}
 
-  code {
-    white-space: pre-wrap;
-  }
+	code {
+		white-space: pre-wrap;
+	}
 }
 
 .card-details {
-  font-size: 13px;
-  padding: 0 10px 12px 10px;
+	font-size: 13px;
+	padding: 0 10px 12px 10px;
 }
 
 .modal-underlay {
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
 .modal {
-  display: flex;
-  position: absolute;
-  outline: 0;
-  align-items: flex-start;
+	display: flex;
+	position: absolute;
+	outline: 0;
+	align-items: flex-start;
 }
 
 .modal-textarea-wrapper {
-  background: white;
-  border-radius: 3px;
+	background: white;
+	border-radius: 3px;
 }
 
 .modal-textarea {
-  border-radius: inherit;
-  overflow: hidden;
-  width: 100%;
-  border: 0;
-  box-sizing: border-box;
-  font-family: inherit;
-  font-size: 16px;
-  padding: 16px 10px;
-  color: inherit;
-  resize: none;
-  outline: none;
+	border-radius: inherit;
+	overflow: hidden;
+	width: 100%;
+	border: 0;
+	box-sizing: border-box;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 16px 10px;
+	color: inherit;
+	resize: none;
+	outline: none;
 }
 
 .options-list {
-  margin: 0 8px;
+	margin: 0 8px;
 }
 
 .options-list-button {
-  display: flex;
-  align-items: center;
-  font-size: inherit;
-  background: rgba(255, 255, 255, 0.8);
-  color: black;
-  border: 0;
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 3px;
-  margin-bottom: 4px;
+	display: flex;
+	align-items: center;
+	font-size: inherit;
+	background: rgba(255, 255, 255, 0.8);
+	color: black;
+	border: 0;
+	cursor: pointer;
+	padding: 6px;
+	border-radius: 3px;
+	margin-bottom: 4px;
 }
 
 .options-list-button:hover,
 .options-list-button:focus {
-  background: white;
+	background: white;
 }
 
 .modal-icon {
-  margin-bottom: 2px;
-  flex-shrink: 0;
+	margin-bottom: 2px;
+	flex-shrink: 0;
 }
 
 .due-date {
-  color: darkorange;
+	color: darkorange;
 }
 
 .due-date-icon {
-  margin-bottom: 2px;
+	margin-bottom: 2px;
 }
 
 .calendar {
-  background: white;
-  display: flex;
-  flex-direction: column;
+	background: white;
+	display: flex;
+	flex-direction: column;
 }
 .calendar-buttons {
-  display: flex;
-  button {
-    flex-grow: 1;
-  }
+	display: flex;
+	button {
+		flex-grow: 1;
+	}
 }
