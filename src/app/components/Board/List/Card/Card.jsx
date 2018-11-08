@@ -67,7 +67,6 @@ class Card extends Component {
 									this.handleKeyDown(event);
 								}}
 							>
-								<div>
 									<div
 										className="card-title-html"
 										dangerouslySetInnerHTML={{
@@ -77,7 +76,7 @@ class Card extends Component {
 										}}
 									/>
 									{/* eslint-enable */}
-								</div>
+							
 								{card.date && (
 									<div className="card-details">
 										<div className="due-date">
