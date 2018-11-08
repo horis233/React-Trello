@@ -8,6 +8,7 @@ import MdAlarm from 'react-icons/lib/md/access-alarm';
 import Calendar from './Calendar';
 import CardDetails from './CardDetails';
 import ClickOutside from '../../../ClickOutside';
+import colorIcon from "../../../../../assets/images/color-icon.png";
 
 class CardEditor extends Component {
 	static propTypes = {
@@ -138,6 +139,10 @@ class CardEditor extends Component {
 						</div>&nbsp;Due date
 					</button>
 				</div>
+				<button className="modal-button" onClick={() => {}}>
+					<img src={colorIcon} alt="colorwheel" className="modal-icon" />
+					&nbsp;Color
+				</button>
 				{isCalendarOpen && (
 					<ClickOutside handleClickOutside={this.toggleCalendar}>
 						<Calendar
