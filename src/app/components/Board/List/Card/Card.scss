@@ -15,7 +15,7 @@
 }
 
 .card-title-drag {
-	box-shadow: 0px 0px 5px rgb(0, 180, 255);
+	box-shadow: 0px 0px 5px 1px rgb(0, 180, 255);
 }
 
 .card-title-html {
@@ -110,16 +110,12 @@
 }
 
 .modal-icon {
-	margin-bottom: 2px;
+	margin-bottom: 3px;
 	flex-shrink: 0;
 }
 
-.due-date {
-	color: darkorange;
-}
-
 .due-date-icon {
-	margin-bottom: 2px;
+	margin-bottom: 3px;
 }
 
 .calendar {
