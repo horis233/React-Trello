@@ -16,8 +16,7 @@ class Calendar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedDay: new Date(props.date)
-		};
+      selectedDay: props.date ? new Date(props.date) : undefined		};
 	}
 
 	handleDayClick = (selectedDay, { selected, disabled }) => {

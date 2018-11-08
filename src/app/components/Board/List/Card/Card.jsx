@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import classnames from 'classnames';
 import marked from 'marked';
-import format from 'date-fns/format';
-import MdAlarm from 'react-icons/lib/md/access-alarm';
+import CardDetails from './CardDetails';
 import CardEditor from './CardEditor';
 import './Card.scss';
 
@@ -67,24 +66,17 @@ class Card extends Component {
 									this.handleKeyDown(event);
 								}}
 							>
-									<div
-										className="card-title-html"
-										dangerouslySetInnerHTML={{
-											__html: marked(card.title, {
-												sanitize: true
-											})
-										}}
-									/>
-									{/* eslint-enable */}
-							
-								{card.date && (
-									<div className="card-details">
-										<div className="due-date">
-											<MdAlarm className="due-date-icon" />&nbsp;
-											{format(card.date, 'D MMM')}
-										</div>
-									</div>
-								)}
+								<div
+									className="card-title-html"
+									dangerouslySetInnerHTML={{
+										__html: marked(card.title, {
+											sanitize: true
+										})
+									}}
+								/>
+								{/* eslint-enable */}
+
+								{card.date && <CardDetails date={card.date} />}
 							</div>
 							{isDraggingOver && provided.placeholder}
 						</div>

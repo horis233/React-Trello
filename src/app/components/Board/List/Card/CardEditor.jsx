@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Textarea from 'react-textarea-autosize';
 import Modal from 'react-modal';
-import format from 'date-fns/format';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import MdAlarm from 'react-icons/lib/md/access-alarm';
 import Calendar from './Calendar';
+import CardDetails from './CardDetails';
 import ClickOutside from '../../../ClickOutside';
 
 class CardEditor extends Component {
@@ -32,7 +32,8 @@ class CardEditor extends Component {
 		super(props);
 		this.state = {
 			newTitle: props.card.title,
-			isCalendarOpen: false
+			isCalendarOpen: false,
+			isTextareaFocused: true
 		};
 		Modal.setAppElement('#app');
 	}
@@ -80,7 +81,7 @@ class CardEditor extends Component {
 	};
 
 	render() {
-		const { newTitle, isCalendarOpen } = this.state;
+		const { newTitle, isCalendarOpen, isTextareaFocused } = this.state;
 		const { toggleCardEditor, boundingRect, card, boardId } = this.props;
 		const isCardNearRightBorder = boundingRect.right + 90 > window.innerWidth;
 
@@ -93,6 +94,7 @@ class CardEditor extends Component {
 				flexDirection: isCardNearRightBorder ? 'row-reverse' : 'row'
 			}
 		};
+
 		return (
 			<Modal
 				isOpen
@@ -107,7 +109,8 @@ class CardEditor extends Component {
 					className="modal-textarea-wrapper"
 					style={{
 						minHeight: boundingRect.height,
-						width: boundingRect.width
+						width: boundingRect.width,
+						boxShadow: isTextareaFocused ? '0px 0px 3px 2px rgb(0, 180, 255)' : null
 					}}
 				>
 					<Textarea
@@ -118,37 +121,29 @@ class CardEditor extends Component {
 						onKeyDown={this.handleKeyDown}
 						className="modal-textarea"
 						spellCheck={false}
+						onFocus={() => this.setState({ isTextareaFocused: true })}
+						onBlur={() => this.setState({ isTextareaFocused: false })}
 					/>
-					{card.date && (
-						<div className="card-details">
-							<div className="due-date">
-								<MdAlarm className="due-date-icon" />
-								&nbsp;
-								{format(card.date, 'D MMM')}
-							</div>
-						</div>
-					)}
+					{card.date && <CardDetails date={card.date} />}
 				</div>
 				<div className="options-list">
 					<button onClick={this.deleteCard} className="options-list-button">
 						<div className="options-list-button-icon">
 							<FaTimesCircle />
-						</div>
-						&nbsp;Delete
+						</div>&nbsp;Delete
 					</button>
 					<button onClick={this.toggleCalendar} className="options-list-button">
 						<div className="modal-icon">
 							<MdAlarm />
-						</div>
-						&nbsp;Due date
+						</div>&nbsp;Due date
 					</button>
 				</div>
 				{isCalendarOpen && (
 					<ClickOutside handleClickOutside={this.toggleCalendar}>
 						<Calendar
 							boardId={boardId}
-              cardId={card._id}
-              date={card.date}
+							cardId={card._id}
+							date={card.date}
 							toggleCalendar={this.toggleCalendar}
 						/>
 					</ClickOutside>
