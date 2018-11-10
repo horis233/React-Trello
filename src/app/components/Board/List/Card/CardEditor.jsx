@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Textarea from 'react-textarea-autosize';
 import Modal from 'react-modal';
+import { Button, Wrapper, Menu, closeMenu } from 'react-aria-menubutton';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import MdAlarm from 'react-icons/lib/md/access-alarm';
 import Calendar from './Calendar';
 import CardDetails from './CardDetails';
 import ClickOutside from '../../../ClickOutside';
-import colorIcon from "../../../../../assets/images/color-icon.png";
+import colorIcon from '../../../../../assets/images/color-icon.png';
 
 class CardEditor extends Component {
 	static propTypes = {
 		card: PropTypes.shape({
 			title: PropTypes.string.isRequired,
 			_id: PropTypes.string.isRequired,
-			date: PropTypes.oneOfType([ PropTypes.string, PropTypes.instanceOf(Date) ])
+			date: PropTypes.oneOfType([ PropTypes.string, PropTypes.instanceOf(Date) ]),
+			color: PropTypes.string
 		}).isRequired,
 		listId: PropTypes.string.isRequired,
 		boardId: PropTypes.string.isRequired,
@@ -77,6 +79,17 @@ class CardEditor extends Component {
 		});
 	};
 
+	editColor = (color) => {
+		const { dispatch, card, boardId } = this.props;
+		if (card.color !== color) {
+			dispatch({
+				type: 'EDIT_CARD_COLOR',
+				payload: { color, cardId: card._id, boardId }
+			});
+		}
+		closeMenu('color-picker');
+	};
+
 	toggleCalendar = () => {
 		this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
 	};
@@ -111,7 +124,10 @@ class CardEditor extends Component {
 					style={{
 						minHeight: boundingRect.height,
 						width: boundingRect.width,
-						boxShadow: isTextareaFocused ? '0px 0px 3px 2px rgb(0, 180, 255)' : null
+						boxShadow: isTextareaFocused
+							? '0px 0px 3px 2px rgb(0, 180, 255)'
+							: null,
+						background: card.color
 					}}
 				>
 					<Textarea
@@ -129,7 +145,7 @@ class CardEditor extends Component {
 				</div>
 				<div className="options-list">
 					<button onClick={this.deleteCard} className="options-list-button">
-						<div className="options-list-button-icon">
+						<div className="modal-icon">
 							<FaTimesCircle />
 						</div>&nbsp;Delete
 					</button>
@@ -138,11 +154,30 @@ class CardEditor extends Component {
 							<MdAlarm />
 						</div>&nbsp;Due date
 					</button>
+					<Wrapper className="modal-color-picker-wrapper" id="color-picker">
+						<Button className="options-list-button">
+							<img src={colorIcon} alt="colorwheel" className="modal-icon" />
+							&nbsp;Color
+						</Button>
+						<Menu className="modal-color-picker">
+							{[
+								'white',
+								'powderblue',
+								'pink',
+								'tomato',
+								'yellow',
+								'aquamarine'
+							].map((color) => (
+								<button
+									key={color}
+									style={{ background: color }}
+									className="color-picker-color"
+									onClick={() => this.editColor(color)}
+								/>
+							))}
+						</Menu>
+					</Wrapper>
 				</div>
-				<button className="modal-button" onClick={() => {}}>
-					<img src={colorIcon} alt="colorwheel" className="modal-icon" />
-					&nbsp;Color
-				</button>
 				{isCalendarOpen && (
 					<ClickOutside handleClickOutside={this.toggleCalendar}>
 						<Calendar
