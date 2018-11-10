@@ -11,10 +11,6 @@ const persistMiddleware = store => next => action => {
       axios
         .delete("/api/board", { data: { boardId } })
         .then(({ data }) => console.log(data));
-    } else if (action.type === "DELETE_BOARD") {
-      axios
-        .delete("/api/board", { data: { boardId } })
-        .then(({ data }) => console.log(data));
     } else {
       const card = new schema.Entity("cardsById", {}, { idAttribute: "_id" });
       const list = new schema.Entity(
@@ -28,6 +24,7 @@ const persistMiddleware = store => next => action => {
         { idAttribute: "_id" }
       );
       const entities = { cardsById, listsById, boardsById };
+
       const boardData = denormalize(boardId, board, entities);
       axios.put("/api/board", boardData).then(({ data }) => console.log(data));
     }

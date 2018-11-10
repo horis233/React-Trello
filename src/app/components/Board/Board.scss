@@ -1,35 +1,35 @@
 @import "../../variables.scss";
 
 .board {
-  height: 100%;
-  min-width: 100%;
-  display: inline-flex;
-  background: $black;
+	height: 100%;
+	min-width: 100%;
+	display: inline-flex;
+	background: $black;
 
-  &.green {
-    background: $green;
-  }
-  &.blue {
-    background: $blue;
-  }
-  &.red {
-    background: $red;
-  }
-  &.pink {
-    background: $pink;
-  }
+	&.green {
+		background: $green;
+	}
+	&.blue {
+		background: $blue;
+	}
+	&.red {
+		background: $red;
+	}
+	&.pink {
+		background: $pink;
+	}
 }
 
 .lists-wrapper {
-  padding: 85px 5px 8px 5px;
-  box-sizing: border-box;
-  height: 100%;
-  display: inline-flex;
+	padding: 85px 5px 8px 5px;
+	box-sizing: border-box;
+	height: 100%;
+	display: inline-flex;
 }
 
 .lists {
-  display: inline-flex;
-  align-items: flex-start;
-  height: 100%;
-  user-select: none;
+	display: inline-flex;
+	align-items: flex-start;
+	height: 100%;
+	user-select: none;
 }
