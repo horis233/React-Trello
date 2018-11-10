@@ -2,4 +2,3 @@ node_modules
 stats.json
 .vscode
 .history
-.env
