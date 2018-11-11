@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import UserDropdown from "./UserDropdown";
-import kanbanLogo from "../../../assets/images/kankan-logo.svg";
+import kanbanLogo from "../../../assets/images/kanban-logo.svg";
 import "./Header.scss";
 
 class Header extends Component {
