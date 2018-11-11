@@ -5,6 +5,7 @@ import Textarea from 'react-textarea-autosize';
 import Modal from 'react-modal';
 import { Button, Wrapper, Menu, closeMenu } from 'react-aria-menubutton';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
+import FaTrash from 'react-icons/lib/fa/trash';
 import MdAlarm from 'react-icons/lib/md/access-alarm';
 import Calendar from './Calendar';
 import CardDetails from './CardDetails';
@@ -146,7 +147,7 @@ class CardEditor extends Component {
 				<div className="options-list">
 					<button onClick={this.deleteCard} className="options-list-button">
 						<div className="modal-icon">
-							<FaTimesCircle />
+							<FaTrash />
 						</div>&nbsp;Delete
 					</button>
 					<button onClick={this.toggleCalendar} className="options-list-button">
