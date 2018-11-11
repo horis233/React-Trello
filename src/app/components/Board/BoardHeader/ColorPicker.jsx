@@ -29,7 +29,7 @@ class ColorPicker extends Component {
 			<Wrapper className="color-picker-wrapper" onSelection={this.handleSelection}>
 				<Button className="color-picker">
 					<img src={colorIcon} alt="colorwheel" className="modal-icon" />
-					&nbsp;Color&nbsp;&#9662;
+					<div className="board-header-right-text">&nbsp;Color &nbsp;&#9662;</div>
 				</Button>
 				<Menu className="color-picker-menu">
 					{colors.map((color) => (
