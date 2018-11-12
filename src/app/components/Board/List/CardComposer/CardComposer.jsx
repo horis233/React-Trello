@@ -67,6 +67,7 @@ class CardComposer extends Component {
               className="list-textarea"
               placeholder="Create new card..."
               spellCheck={false}
+              onBlur={toggleCardComposer}
             />
           </form>
         </ClickOutside>
