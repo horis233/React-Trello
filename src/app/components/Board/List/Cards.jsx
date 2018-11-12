@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
-import CardComposer from './CardComposer/CardComposer';
 import Card from './Card/Card';
 
 class Cards extends Component {
 	static propTypes = {
 		boardId: PropTypes.string.isRequired,
-		cardComposerIsOpen: PropTypes.bool.isRequired,
-		toggleCardComposer: PropTypes.func.isRequired,
 		listId: PropTypes.string.isRequired,
 		cards: PropTypes.arrayOf(PropTypes.string).isRequired
 	};
@@ -25,7 +22,7 @@ class Cards extends Component {
 	};
 
 	render() {
-		const { listId, cards, cardComposerIsOpen, toggleCardComposer, boardId } = this.props;
+		const { listId, cards, boardId } = this.props;
 		return (
 			<Droppable droppableId={listId}>
 				{(provided, { isDraggingOver }) => (
@@ -43,10 +40,10 @@ class Cards extends Component {
 							))}
 							{provided.placeholder}
 							<div
-                style={{ float: "left", clear: "both" }}
-                ref={el => {
-                  this.listEnd = el;
-                }}
+								style={{ float: 'left', clear: 'both' }}
+								ref={(el) => {
+									this.listEnd = el;
+								}}
 							/>
 						</div>
 					</div>

@@ -47,11 +47,6 @@ class List extends React.Component {
 								/>
 								<div className="cards-wrapper">
 									<Cards
-										listId={list._id}
-										cardComposerIsOpen={cardComposerIsOpen}
-										toggleCardComposer={
-											this.toggleCardComposer
-										}
 										boardId={boardId}
 									/>
 								</div>
