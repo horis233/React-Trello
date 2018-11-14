@@ -121,7 +121,7 @@ class Board extends Component {
     return (
       <div className={classnames("board", boardColor)}>
         <Helmet>
-          <title>{boardTitle} | kanban.live</title>
+          <title>{boardTitle} | trello.horis</title>
         </Helmet>
         <Header />
         <BoardHeader />

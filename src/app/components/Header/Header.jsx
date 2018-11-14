@@ -8,8 +8,8 @@ class Header extends Component {
   render = () => (
     <header>
       <Link to="/" className="header-title">
-        <img src={kanbanLogo} alt="kanban live logo" />
-        &nbsp;kanban.live
+        <img src={kanbanLogo} alt="trello.horis logo" />
+        &nbsp;trello.horis
       </Link>
       <UserDropdown />
     </header>

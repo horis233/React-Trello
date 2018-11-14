@@ -70,7 +70,7 @@ Since you are signed in as a guest, your changes will not persist after you leav
 
   return {
     _id: shortid.generate(),
-    title: "Welcome to kanban.live!",
+    title: "Welcome to trello.horis!",
     color: "blue",
     lists: [
       {
