@@ -12,7 +12,7 @@ module.exports = [
     entry: path.join(__dirname, "src/client.jsx"),
     output: {
       path: path.join(__dirname, "dist/public"),
-      publicPath: "/static/",
+      publicPath: "trello/static/",
       filename: "bundle.js"
     },
     module: {

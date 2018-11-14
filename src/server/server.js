@@ -29,7 +29,8 @@ MongoClient.connect(process.env.MONGODB_URL, { useNewUrlParser: true }).then((cl
 	app.use(favicon(path.join('dist/public/favicons/favicon.ico')));
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
-	app.use(express.static(__dirname + 'dist/public'));
+	app.use('trello/static', express.static('dist/public/'));
+
 	app.use(
 		session({
 			store: new MongoStore({ db }),
