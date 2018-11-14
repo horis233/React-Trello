@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
+import classnames from "classnames";
 import ListTitle from './ListTitle';
 import Cards from './Cards';
 import CardComposer from './CardComposer/CardComposer';
@@ -30,7 +31,7 @@ class List extends React.Component {
 		const { cardComposerIsOpen } = this.state;
 		return (
 			<Draggable draggableId={list._id} index={index} disableInteractiveElementBlocking>
-				{(provided) => (
+        {(provided, snapshot) => (
 					<div>
 						<div
 							ref={provided.innerRef}
