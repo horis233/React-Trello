@@ -1,10 +1,18 @@
 import shortid from "shortid";
 
-export default function createWelcomeBoard() {
+function appendAttributes(list) {
+  return list.map(card => ({
+    color: "white",
+    _id: shortid.generate(),
+    ...card
+  }));
+}
+
+export default function createWelcomeBoard(userId) {
   const welcomeCards = [
     {
       title: `![Octocat](https://assets-cdn.github.com/images/modules/logos_page/Octocat.png)
-      Check out the [source code on GitHub](https://github.com/horis233/React-Trello)
+      Check out the [source code on GitHub](https://github.com/yogaboll/react-kanban-board)
       `,
       color: "powderblue"
     },
@@ -23,10 +31,9 @@ Featuring cutting edge HTML features like
     // Code blocks
 }\`\`\`
 * [x] Checkboxes
-
 Watch out, Netscape navigator 2.0!`
     }
-  ].map(card => ({ color: "white", _id: shortid.generate(), ...card }));
+  ];
 
   const howToUseCards = [
     {
@@ -53,7 +60,13 @@ For a task that has many sub-tasks, you can create a checklist with markdown.
       title: `### Change the board
 You can edit the title of the board by clicking it. You can also change the color of the board by clicking the button in the top right corner.`
     }
-  ].map(card => ({ color: "white", _id: shortid.generate(), ...card }));
+  ];
+  if (!userId) {
+    howToUseCards.unshift({
+      title: `### Sign in to save changes
+Since you are signed in as a guest, your changes will not persist after you leave the website. Go back to the login screen by pressing the logout button in the top right corner.`
+    });
+  }
 
   return {
     _id: shortid.generate(),
@@ -62,11 +75,15 @@ You can edit the title of the board by clicking it. You can also change the colo
     lists: [
       {
         _id: shortid.generate(),
-        title: "A Trello-like app built with React",
-        cards: welcomeCards
+        title: "A trello-like app built with React",
+        cards: appendAttributes(welcomeCards)
       },
-      { _id: shortid.generate(), title: "How to use", cards: howToUseCards }
+      {
+        _id: shortid.generate(),
+        title: "How to use",
+        cards: appendAttributes(howToUseCards)
+      }
     ],
-    users: []
+    users: userId ? [userId] : []
   };
 }
