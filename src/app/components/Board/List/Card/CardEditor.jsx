@@ -121,8 +121,8 @@ class CardEditor extends Component {
     } = this.state;
     const { boundingRect, card, boardId } = this.props;
 
-    const checkboxes = findCheckBoxes(newTitle);
-    console.log("CHECKBOXES,", checkboxes);
+    const checkBoxes = findCheckBoxes(newTitle);
+    console.log("checkBoxes,", checkBoxes);
 
     const isCardNearRightBorder =
       window.innerWidth - boundingRect.right < boundingRect.left;
@@ -198,8 +198,8 @@ class CardEditor extends Component {
             onFocus={() => this.setState({ isTextareaFocused: true })}
             onBlur={() => this.setState({ isTextareaFocused: false })}
           />
-          {card.date || checkboxes.total > 0 ? (
-            <CardDetails date={card.date} checkboxes={checkboxes} />
+          {card.date || checkBoxes.total > 0 ? (
+            <CardDetails date={card.date} checkBoxes={checkBoxes} />
           ) : null}
         </div>
         <div

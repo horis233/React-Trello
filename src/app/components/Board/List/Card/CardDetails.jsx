@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import format from "date-fns/format";
 import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 import MdAlarm from "react-icons/lib/md/access-alarm";
+import MdDoneAll from "react-icons/lib/fa/check-square-o";
+
 
 class CardDetails extends Component {
   static propTypes = {
     date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
-    checkboxes: PropTypes.shape({
+    checkBoxes: PropTypes.shape({
       total: PropTypes.number.isRequired,
       checked: PropTypes.number.isRequired
     }).isRequired
@@ -43,7 +45,7 @@ class CardDetails extends Component {
     }
 
     return (
-      <div className="due-date" style={{ color: dueDateColor }}>
+      <div className="due-date" style={{ background: dueDateColor }}>
         <MdAlarm className="due-date-icon" />&nbsp;
         {dueDateString}
       </div>
@@ -51,7 +53,7 @@ class CardDetails extends Component {
   };
 
   renderTaskProgress = () => {
-    const { total, checked } = this.props.checkboxes;
+    const { total, checked } = this.props.checkBoxes;
     if (total === 0) {
       return null;
     }

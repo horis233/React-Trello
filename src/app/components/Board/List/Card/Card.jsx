@@ -9,7 +9,7 @@ import CardDetails from "./CardDetails";
 import findCheckBoxes from "./findCheckBoxes";
 import "./Card.scss";
 
-// Create HTML string that identifies checkboxes by index
+// Create HTML string that identifies checkBoxes by index
 function formatMarkdown(markdown) {
   let i = 0;
   return marked(markdown, { sanitize: true, gfm: true, breaks: true })
@@ -126,8 +126,8 @@ class Card extends Component {
                 />
                 {/* eslint-enable */}
                 {/* {card.date && <CardDetails date={card.date} />} */}
-                {card.date || checkboxes.total > 0 ? (
-                  <CardDetails date={card.date} checkboxes={checkboxes} />
+                {card.date || checkBoxes.total > 0 ? (
+                  <CardDetails date={card.date} checkBoxes={checkBoxes} />
                 ) : null}
               </div>
               {isDraggingOver && provided.placeholder}
