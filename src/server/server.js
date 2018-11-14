@@ -29,7 +29,7 @@ MongoClient.connect(process.env.MONGODB_URL, { useNewUrlParser: true }).then((cl
 	app.use(favicon(path.join('dist/public/favicons/favicon.ico')));
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
-	app.use('/static', serveStatic('dist/public', { enableBrotli: true, maxAge: '1y' }));
+	app.use('/static', serveStatic('dist/public'));
 	app.use(
 		session({
 			store: new MongoStore({ db }),
