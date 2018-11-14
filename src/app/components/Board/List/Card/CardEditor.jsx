@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Textarea from 'react-textarea-autosize';
 import Modal from 'react-modal';
 import { Button, Wrapper, Menu, closeMenu } from 'react-aria-menubutton';
-import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import FaTrash from 'react-icons/lib/fa/trash';
 import MdAlarm from 'react-icons/lib/md/access-alarm';
 import Calendar from './Calendar';
@@ -98,15 +97,25 @@ class CardEditor extends Component {
 	render() {
 		const { newTitle, isCalendarOpen, isTextareaFocused } = this.state;
 		const { toggleCardEditor, boundingRect, card, boardId } = this.props;
-		const isCardNearRightBorder = boundingRect.right + 90 > window.innerWidth;
+		// const distanceFromRightEdge
+		const isCardNearRightBorder = window.innerWidth - boundingRect.right < boundingRect.left;
+		const isThinDisplay = window.innerWidth < 550;
 
-		const top = Math.min(boundingRect.top, window.innerHeight - boundingRect.height - 18);
 		const style = {
 			content: {
-				top,
+				top: Math.min(boundingRect.top, window.innerHeight - boundingRect.height - 18),
 				left: isCardNearRightBorder ? null : boundingRect.left,
 				right: isCardNearRightBorder ? window.innerWidth - boundingRect.right : null,
 				flexDirection: isCardNearRightBorder ? 'row-reverse' : 'row'
+			}
+		};
+
+		const mobileStyle = {
+			content: {
+				flexDirection: 'column',
+				top: 20,
+				left: '50%',
+				transform: 'translateX(-50%)'
 			}
 		};
 
@@ -117,13 +126,13 @@ class CardEditor extends Component {
 				contentLabel="Card editor"
 				overlayClassName="modal-underlay"
 				className="modal"
-				style={style}
+				style={isThinDisplay ? mobileStyle : style}
 				includeDefaultStyles={false}
 			>
 				<div
 					className="modal-textarea-wrapper"
 					style={{
-						minHeight: boundingRect.height,
+						minHeight: isThinDisplay ? 'none' : boundingRect.height,
 						width: boundingRect.width,
 						boxShadow: isTextareaFocused
 							? '0px 0px 3px 2px rgb(0, 180, 255)'
