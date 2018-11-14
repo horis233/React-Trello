@@ -19,7 +19,7 @@ export default function configurePassport(db) {
       {
         consumerKey: process.env.TWITTER_API_KEY,
         consumerSecret: process.env.TWITTER_API_SECRET,
-        callbackURL: "http://"+process.env.CALLBACK_URL +":1337/auth/twitter/callback"
+        callbackURL: "http://127.0.0.1:1337/auth/twitter/callback"
       },
       (token, tokenSecret, profile, cb) => {
         users.findOne({ _id: profile.id }).then(user => {

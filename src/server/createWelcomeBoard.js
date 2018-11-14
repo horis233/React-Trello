@@ -44,7 +44,7 @@ Watch out, Netscape navigator 2.0!`
 		{ title: 'You can also give them a deadline', date: new Date() },
 		{ title: 'The site supports markdown' },
 		{
-			title: `Check out the source code on [GitHub](https://github.com/yogaboll/react-kanban-board)`
+			title: `Check out the source code on [GitHub]( /react-kanban-board)`
 		}
 	].map((card) => ({ color: 'white', _id: shortid.generate(), ...card }));
 

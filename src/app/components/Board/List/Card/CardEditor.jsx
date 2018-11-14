@@ -8,7 +8,7 @@ import MdAlarm from "react-icons/lib/md/access-alarm";
 import Calendar from "./Calendar";
 import CardDetails from "./CardDetails";
 import ClickOutside from "../../../ClickOutside";
-import findCheckboxes from "./findCheckboxes";
+import findCheckBoxes from "./findCheckBoxes";
 import colorIcon from "../../../../../assets/images/color-icon.png";
 
 class CardEditor extends Component {
@@ -121,7 +121,7 @@ class CardEditor extends Component {
     } = this.state;
     const { boundingRect, card, boardId } = this.props;
 
-    const checkboxes = findCheckboxes(newTitle);
+    const checkboxes = findCheckBoxes(newTitle);
     console.log("CHECKBOXES,", checkboxes);
 
     const isCardNearRightBorder =
