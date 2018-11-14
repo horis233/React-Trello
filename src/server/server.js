@@ -30,6 +30,7 @@ MongoClient.connect(process.env.MONGODB_URL, { useNewUrlParser: true }).then((cl
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
 	app.use('/static', express.static('dist/public'));
+
 	app.use(
 		session({
 			store: new MongoStore({ db }),
