@@ -32,7 +32,7 @@ MongoClient.connect(
   app.use(favicon(path.join("dist/public/favicons/favicon.ico")));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use("/static", express.static("dist/public/"));
+  app.use(express.static(__dirname + '/public' ));
   app.use(
     session({
       store: new MongoStore({ db }),
