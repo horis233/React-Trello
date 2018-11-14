@@ -20,11 +20,10 @@ class Home extends Component {
     ).isRequired,
     history: PropTypes.object.isRequired
   };
-
   render = () => {
     const { boards, history } = this.props;
     return (
-      <div>
+      <>
         <Helmet>
           <title>Home | kanban.live</title>
         </Helmet>
@@ -48,7 +47,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   };
 }

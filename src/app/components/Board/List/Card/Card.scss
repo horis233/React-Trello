@@ -1,204 +1,222 @@
 @import "../../../../variables.scss";
 
 .card-title {
-	background: $white;
-	border-radius: 3px;
-	margin: $list-margin 5px 0 5px;
-	position: relative;
-	overflow-wrap: break-word;
-	user-select: none;
-	box-sizing: border-box;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-	font-size: 16px;
-	padding: 6px 8px;
-	cursor: pointer !important;
+  background: $white;
+  border-radius: 3px;
+  margin: $list-margin 5px 0 5px;
+  position: relative;
+  overflow-wrap: break-word;
+  user-select: none;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  padding: 6px 8px;
+  cursor: pointer !important;
+  color: #222;
 }
 
 .card-title:focus {
-	box-shadow: 0px 0px 1px 3px rgb(0, 180, 255);
+  box-shadow: 0px 0px 1px 3px rgb(0, 180, 255);
 }
 
 .card-title--drag {
-	box-shadow: 1px 9px 8px 1px rgba(0, 0, 0, 0.3) !important;
-	opacity: 1 !important;
+  box-shadow: 1px 9px 8px 1px rgba(0, 0, 0, 0.3) !important;
+  opacity: 1 !important;
 }
 
 .card-title-html {
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		margin: 8px 0;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
 
-	img {
-		max-width: 100%;
-	}
+  img {
+    max-width: 100%;
+  }
 
-	p {
-		margin: 4px 0;
-	}
+  p {
+    margin: 4px 0;
+  }
 
-	code {
-		white-space: pre-wrap;
-	}
+  code {
+    white-space: pre-wrap;
+  }
 }
 
 .card-details {
-	font-size: 13px;
-	padding-top: 5px;
+  font-size: 13px;
+  padding-top: 5px;
 }
 
 .modal-underlay {
-	background: rgba(0, 0, 0, 0.6);
-	z-index: 3;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .modal {
-	display: flex;
-	align-items: flex-start;
-	position: absolute;
-	outline: 0;
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  outline: 0;
 }
 
 .modal-textarea-wrapper {
-	background: white;
-	border-radius: 3px;
-	box-sizing: border-box;
-	padding: 6px 8px;
-	margin-bottom: 6px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+  background: white;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .modal-textarea {
-	border-radius: inherit;
-	overflow: hidden;
-	width: 100%;
-	border: 0;
-	box-sizing: border-box;
-	font-family: inherit;
-	font-size: 16px;
-	padding: 4px 0;
-	color: inherit;
-	background: inherit;
-	resize: none;
-	outline: none;
+  flex-grow: 1;
+  border-radius: inherit;
+  overflow: hidden;
+  width: 100%;
+  border: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 4px 0;
+  color: inherit;
+  background: inherit;
+  resize: none;
+  outline: none;
 }
 
 .options-list {
-	display: flex;
-	flex-direction: column;
-	margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 8px;
 
-	@media (max-width: 550px) {
-		flex-direction: row;
-		width: 100%;
-		justify-content: center;
-		margin: 0;
-	}
+  @media (max-width: 550px) {
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+  }
 }
 
 .options-list-button {
-	margin: 0 3px;
-	display: flex;
-	align-items: center;
-	font-size: inherit;
-	background: rgba(255, 255, 255, 0.8);
-	color: black;
-	border: 0;
-	cursor: pointer;
-	padding: 0 6px;
-	height: 33px;
-	border-radius: 3px;
-	margin-bottom: 4px;
+  margin: 0 3px;
+  display: flex;
+  align-items: center;
+  font-size: inherit;
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+  border: 0;
+  cursor: pointer;
+  padding: 0 6px;
+  height: 33px;
+  border-radius: 3px;
+  margin-bottom: 4px;
 }
 
 .options-list-button:hover,
 .options-list-button:focus {
-	background: white;
+  background: white;
 }
 
 .modal-icon {
-	margin-bottom: 3px;
-	flex-shrink: 0;
+  margin-bottom: 3px;
+  flex-shrink: 0;
 }
 
 .due-date-icon {
-	margin-bottom: 3px;
+  margin-bottom: 3px;
+}
+
+.calendar-modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  // transform: translate(-50%, -50%);
+}
+
+.calendar-underlay {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .calendar {
-	background: white;
-	display: flex;
-	flex-direction: column;
+  border-radius: 3px;
+  background: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .calendar-buttons {
-	display: flex;
-	justify-content: space-around;
-	margin-bottom: 8px;
-	button {
-		width: 120px;
-		height: 30px;
-		border: 0;
-		border-radius: 3px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 8px;
+  button {
+    width: 120px;
+    height: 30px;
+    border: 0;
+    border-radius: 3px;
 
-		font-size: 14px;
-		font-weight: 700;
-		cursor: pointer;
-		transition: background 0.2s;
-	}
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
 
-	button:hover {
-		background: #bbb;
-	}
+  button:hover {
+    background: #bbb;
+  }
 
-	.calendar-save-button {
-		background: $success-button-color;
-		color: white;
-	}
+  .calendar-save-button {
+    background: $success-button-color;
+    color: white;
+  }
 
-	.calendar-save-button:hover {
-		background: $success-button-color-hover;
-	}
+  .calendar-save-button:hover {
+    background: $success-button-color-hover;
+  }
 }
 
 .modal-color-picker-wrapper {
-	position: relative;
+  position: relative;
 }
 
 .modal-color-picker {
-	background: white;
-	color: black;
-	position: absolute;
-	margin-top: 4px;
-	top: 100%;
-	// left: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 132px;
-	border-radius: 3px;
-	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
-	padding: 5px;
-	display: flex;
-	flex-wrap: wrap;
-	font-weight: 700;
-	text-align: center;
+  background: white;
+  color: black;
+  position: absolute;
+  margin-top: 4px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  border-radius: 3px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 700;
+  text-align: center;
 }
 
 .color-picker-color {
-	height: 40px;
-	width: 40px;
-	border-radius: 3px;
-	margin: 2px;
-	border: 1px #999 solid;
+  height: 36px;
+  width: 36px;
+  border-radius: 3px;
+  margin: 2px;
+  border: 1px #999 solid;
 }

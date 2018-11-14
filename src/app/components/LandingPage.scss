@@ -1,14 +1,19 @@
 .landing-page {
-	background-color: #300;
-	background-image: url("../../assets/images/businesswoman.jpg");
+	background-color: #300; // is shown before image loads
+	background-image: url("../../assets/images/businesswoman-1920.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 50% 100%;
 	color: white;
 	height: 100%;
 	width: 100%;
+
+	@media (max-device-width: 1367px) {
+		background-image: url("../../assets/images/businesswoman-1366.jpg");
+	}
 }
 
+// wrapper added as a hack to make background
 .landing-page-info-wrapper {
 	display: flex;
 	width: 100%;

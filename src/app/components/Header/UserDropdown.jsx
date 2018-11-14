@@ -10,12 +10,14 @@ class UserDropdown extends Component {
     name: PropTypes.string.isRequired,
     thumbnail: PropTypes.element.isRequired
   };
-
   render = () => {
     const { name, thumbnail } = this.props;
     return (
       <Wrapper className="user-dropdown-wrapper">
-        <Button className="user-dropdown-button">{thumbnail} &#9662;</Button>
+        <Button className="user-dropdown-button">
+          {thumbnail}
+          &#9662;
+        </Button>
         <Menu className="user-dropdown-menu">
           <div className="user-dropdown-header">{name}</div>
           <hr />
@@ -32,6 +34,7 @@ class UserDropdown extends Component {
     );
   };
 }
+
 const mapStateToProps = ({ user }) => ({
   name: user ? user.name : "Guest",
   thumbnail: user ? (
@@ -40,4 +43,5 @@ const mapStateToProps = ({ user }) => ({
     <FaUserSecret style={{ fontSize: 26 }} />
   )
 });
+
 export default connect(mapStateToProps)(UserDropdown);
