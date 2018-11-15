@@ -8,7 +8,7 @@ import MdDoneAll from "react-icons/lib/fa/check-square-o";
 class CardDetails extends Component {
   static propTypes = {
     date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
-    checkboxes: PropTypes.shape({
+    checkBoxes: PropTypes.shape({
       total: PropTypes.number.isRequired,
       checked: PropTypes.number.isRequired
     }).isRequired
@@ -52,7 +52,7 @@ class CardDetails extends Component {
   };
 
   renderTaskProgress = () => {
-    const { total, checked } = this.props.checkboxes;
+    const { total, checked } = this.props.checkBoxes;
     if (total === 0) {
       return null;
     }

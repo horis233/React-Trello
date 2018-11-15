@@ -14,7 +14,7 @@ export default function createWelcomeBoard(userId) {
       title: `![Octocat](https://assets-cdn.github.com/images/modules/logos_page/Octocat.png)
       Check out the [source code on GitHub](https://github.com/yogaboll/react-kanban-board)
       `,
-      color: "powderblue"
+      color: "#ff6"
     },
     {
       title: "### Full support for touch screens and keyboard navigation."
@@ -47,7 +47,7 @@ Add a new card to an existing list by clicking the + button below each list. You
     {
       title: `### Edit a card
 You can edit the contents of a card by clicking on it or focusing it and pressing the Enter key. From this menu you can also give your card a color and a due date, or delete the card.`,
-      color: "pink",
+      color: "#6df",
       date: new Date()
     },
     {
