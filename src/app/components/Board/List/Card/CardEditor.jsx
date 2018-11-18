@@ -187,6 +187,7 @@ class CardEditor extends Component {
 						onKeyDown={this.handleKeyDown}
 						className="modal-textarea"
 						spellCheck={false}
+						onClick={this.handleRequestClose}
 						onFocus={() => this.setState({ isTextareaFocused: true })}
 						onBlur={() => this.setState({ isTextareaFocused: false })}
 					/>
