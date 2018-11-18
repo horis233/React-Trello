@@ -13,6 +13,7 @@
 	padding: 6px 8px;
 	cursor: pointer !important;
 	color: #222;
+	transition: box-shadow 0.15s;
 }
 
 .card-title:focus {
@@ -93,6 +94,7 @@
 	flex-shrink: 0;
 	flex-direction: column;
 	justify-content: space-between;
+	transition: background 0.2s;
 }
 
 .modal-textarea {
