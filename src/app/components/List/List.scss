@@ -1,0 +1,179 @@
+@import "../../variables.scss";
+
+.list-wrapper {
+	height: 100%;
+	user-select: none;
+	display: inline-flex;
+	flex-direction: column;
+}
+
+.list {
+	min-height: 0px; // fix flexbox browser incostiency
+	width: $list-width;
+	background: $transparent-grey;
+	border-radius: $list-radius;
+	box-sizing: border-box;
+	font-size: 14px;
+	margin: 0 5px 0 5px;
+	display: inline-flex;
+	flex-direction: column;
+	max-height: 100%;
+	transition: box-shadow 0.15s, background 0.3s;
+}
+
+.blue .list {
+	background: $transparent-blue;
+}
+.green .list {
+	background: $transparent-green;
+}
+.red .list {
+	background: $transparent-red;
+}
+.pink .list {
+	background: $transparent-pink;
+}
+
+.list--drag {
+	box-shadow: 1px 3px 8px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.list-title {
+	display: inline-flex;
+	flex-shrink: 0;
+	font-size: 18px;
+	border-top-right-radius: $list-radius;
+	border-top-left-radius: $list-radius;
+}
+
+.list-title-button {
+	overflow-wrap: break-word;
+	flex-grow: 1;
+	padding: 10px;
+	font-weight: 700;
+	color: $white;
+	border: none;
+	cursor: pointer !important;
+	min-width: 50%;
+	border-top-left-radius: inherit;
+}
+
+.list-title-textarea-wrapper {
+	padding: 4px 4px 4px 4px;
+	width: 100%;
+}
+.list-title-textarea {
+	float: left;
+	border-radius: 3px;
+	padding: 6px;
+	overflow: hidden;
+	width: 100%;
+	border: 0;
+	box-sizing: border-box;
+	font-family: inherit;
+	line-height: inherit;
+	font-size: 18px;
+	font-weight: 700;
+	color: $black;
+	resize: none;
+}
+
+.cards-wrapper {
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin: 0 3px 6px 3px;
+}
+
+.cards-wrapper::-webkit-scrollbar {
+	width: 8px;
+	background-color: $transparent-black;
+	border-radius: 2px;
+}
+
+.cards-wrapper::-webkit-scrollbar-thumb {
+	background: $transparent-white;
+	border-radius: 2px;
+}
+.cards {
+	min-height: 1px;
+	margin-bottom: 3px;
+}
+
+.open-composer-button {
+	margin-top: 6px;
+	align-self: center;
+	width: 38px;
+	height: 38px;
+	flex-shrink: 0;
+	background: $transparent-black;
+	color: $white;
+	font-size: 28px;
+	border: none;
+	cursor: pointer;
+	border-radius: $list-radius;
+	transition: background 0.1s;
+}
+
+.open-composer-button:hover,
+.open-composer-button:focus {
+	background: $less-transparent-black;
+}
+
+.delete-list-wrapper {
+	position: relative;
+	align-self: flex-start;
+}
+
+.delete-list-button {
+	margin: 4px;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	border-radius: $list-radius;
+	color: $white;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.delete-list-button:hover,
+.delete-list-button:focus {
+	background: $transparent-black;
+}
+
+.delete-list-button {
+	cursor: pointer;
+}
+
+.delete-list-menu {
+	z-index: 1;
+	background: $white;
+	color: black;
+	position: absolute;
+	margin-top: 4px;
+	top: 100%;
+	left: -60px;
+	right: -60px;
+	border-radius: 3px;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	font-weight: 700;
+	text-align: center;
+}
+
+.delete-list-confirm {
+	background: red;
+	color: white;
+	cursor: pointer;
+	padding: 8px 30px;
+	border-radius: 6px;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.delete-list-confirm:hover,
+.delete-list-confirm:focus {
+	background: darkred;
+}

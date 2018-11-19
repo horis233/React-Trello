@@ -1,35 +1,35 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Route, Redirect, Switch, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import Home from "./Home/Home";
-import Board from "./Board/Board";
-import LandingPage from "./LandingPage";
-import "./App.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Home from './Home/Home';
+import Board from './Board/Board';
+import LandingPage from './LandingPage/LandingPage';
+import './App.scss';
 
 // type Props = {
 //   user: { _id: string, name: string, imageUrl: string }
 // };
 
 const App = ({ user, isGuest }) => {
-  if (user || isGuest) {
-    return (
-      <>
-        <Route exact path="/" component={Home} />
-        <Route path="/b/:boardId" component={Board} />
-      </>
-    );
-  }
-  return (
-    <Switch>
-      <Route exact path="/" component={LandingPage} />
-      <Redirect to="/" />
-    </Switch>
-  );
+	if (user || isGuest) {
+		return (
+			<div>
+				<Route exact path="/" component={Home} />
+				<Route path="/b/:boardId" component={Board} />
+			</div>
+		);
+	}
+	return (
+		<Switch>
+			<Route exact path="/" component={LandingPage} />
+			<Redirect to="/" />
+		</Switch>
+	);
 };
 
 App.propTypes = { user: PropTypes.object };
 
-const mapStateToProps = state => ({ user: state.user, isGuest: state.isGuest });
+const mapStateToProps = (state) => ({ user: state.user, isGuest: state.isGuest });
 
 export default withRouter(connect(mapStateToProps)(App));

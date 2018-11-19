@@ -27,7 +27,7 @@ class Header extends Component {
 							title={user.name}
 						/>
 					) : (
-						<FaUserSecret className="guest-icon"} />
+						<FaUserSecret className="guest-icon" />
 					)}
 					{user ? (
 						<a className="signout-link" href="/auth/signout">

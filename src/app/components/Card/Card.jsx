@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import marked from 'marked';
 import CardEditor from './CardEditor';
 import CardDetails from './CardDetails';
-import findCheckboxes from './findCheckboxes';
+import findCheckboxes from './findCheckBoxes';
 import './Card.scss';
 
 // Create HTML string that identifies checkboxes by index
