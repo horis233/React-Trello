@@ -145,6 +145,7 @@ class Board extends Component {
 						</Droppable>
 					</DragDropContext>
 				</div>
+				<div className="board-underlay" />
 			</div>
 		);
 	};
