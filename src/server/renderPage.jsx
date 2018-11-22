@@ -8,7 +8,9 @@ import { resetContext } from 'react-beautiful-dnd';
 import App from '../app/components/App';
 import reducers from '../app/reducers/reducers';
 
-const renderPage = manifest => (req, res) => {
+const manifest = JSON.parse(readFileSync(`./dist/public/manifest.json`, 'utf8'));
+
+const renderPage = (req, res) => {
 	const store = createStore(combineReducers(reducers), req.initialState);
 	const context = {};
 
@@ -40,7 +42,7 @@ const renderPage = manifest => (req, res) => {
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png" />
         <meta property="og:image" content="https://trello.horis/static/favicons/og-kanban-logo.png">
-        <link rel="stylesheet" href=${manifest["main.css"]}>
+        <link rel="stylesheet" href=${manifest['main.css']}>
         ${helmet.title.toString()}
       </head>
       <body>
@@ -49,8 +51,8 @@ const renderPage = manifest => (req, res) => {
       <script>
         window.PRELOADED_STATE = ${JSON.stringify(preloadedState)}
       </script>
-      <script src=${manifest["main.js"]}></script>
+      <script src=${manifest['main.js']}></script>
     </html>
   `;
 	res.send(html);
-}
+};
