@@ -9,7 +9,6 @@ class ListTitle extends Component {
 	static propTypes = {
 		listTitle: PropTypes.string.isRequired,
 		listId: PropTypes.string.isRequired,
-		boardId: PropTypes.string.isRequired,
 		cards: PropTypes.arrayOf(PropTypes.string).isRequired,
 		dragHandleProps: PropTypes.object.isRequired,
 		dispatch: PropTypes.func.isRequired
@@ -38,12 +37,12 @@ class ListTitle extends Component {
 
 	handleSubmit = () => {
 		const { newTitle } = this.state;
-		const { listTitle, listId, boardId, dispatch } = this.props;
+		const { listTitle, listId, dispatch } = this.props;
 		if (newTitle === '') return;
 		if (newTitle !== listTitle) {
 			dispatch({
 				type: 'EDIT_LIST_TITLE',
-				payload: { listTitle: newTitle, listId, boardId }
+				payload: { listTitle: newTitle, listId }
 			});
 		}
 		this.setState({ isOpen: false });
@@ -54,10 +53,10 @@ class ListTitle extends Component {
 	};
 
 	deleteList = () => {
-		const { listId, cards, boardId, dispatch } = this.props;
+		const { listId, cards, dispatch } = this.props;
 		dispatch({
 			type: 'DELETE_LIST',
-			payload: { cards, listId, boardId }
+			payload: { cards, listId }
 		});
 	};
 

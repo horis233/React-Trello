@@ -10,7 +10,6 @@ class CardComposer extends Component {
 	static propTypes = {
 		isOpen: PropTypes.bool.isRequired,
 		listId: PropTypes.string.isRequired,
-		boardId: PropTypes.string.isRequired,
 		toggleCardComposer: PropTypes.func.isRequired,
 		dispatch: PropTypes.func.isRequired
 	};
@@ -43,13 +42,13 @@ class CardComposer extends Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		const { newCardTitle } = this.state;
-		const { listId, boardId, dispatch, toggleCardComposer } = this.props;
+		const { listId, dispatch, toggleCardComposer } = this.props;
 		if (newCardTitle === '') return;
 
 		const cardId = shortid.generate();
 		dispatch({
 			type: 'ADD_CARD',
-			payload: { cardTitle: newCardTitle, cardId, listId, boardId }
+			payload: { cardTitle: newCardTitle, cardId, listId }
 		});
 		toggleCardComposer();
 		this.setState({ newCardTitle: '' });

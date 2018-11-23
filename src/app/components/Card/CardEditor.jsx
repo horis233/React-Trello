@@ -20,7 +20,6 @@ class CardEditor extends Component {
 			color: PropTypes.string
 		}).isRequired,
 		listId: PropTypes.string.isRequired,
-		boardId: PropTypes.string.isRequired,
 		boundingRect: PropTypes.shape({
 			left: PropTypes.number,
 			top: PropTypes.number,
@@ -51,7 +50,7 @@ class CardEditor extends Component {
 
 	submitCard = () => {
 		const { newTitle } = this.state;
-		const { card, listId, boardId, dispatch, toggleCardEditor } = this.props;
+		const { card, listId, dispatch, toggleCardEditor } = this.props;
 		if (newTitle === '') {
 			this.deleteCard();
 		} else if (newTitle !== card.title) {
@@ -73,19 +72,19 @@ class CardEditor extends Component {
 	};
 
 	deleteCard = () => {
-		const { dispatch, listId, boardId, card } = this.props;
+		const { dispatch, listId, card } = this.props;
 		dispatch({
 			type: 'DELETE_CARD',
-			payload: { cardId: card._id, listId, boardId }
+			payload: { cardId: card._id, listId }
 		});
 	};
 
 	editColor = (color) => {
-		const { dispatch, card, boardId } = this.props;
+		const { dispatch, card } = this.props;
 		if (card.color !== color) {
 			dispatch({
 				type: 'EDIT_CARD_COLOR',
-				payload: { color, cardId: card._id, boardId }
+				payload: { color, cardId: card._id }
 			});
 		}
 	};
@@ -117,7 +116,7 @@ class CardEditor extends Component {
 
 	render() {
 		const { newTitle, isCalendarOpen, isColorPickerOpen, isTextareaFocused } = this.state;
-		const { boundingRect, card, boardId } = this.props;
+		const { boundingRect, card } = this.props;
 
 		const checkBoxes = findCheckBoxes(newTitle);
 		console.log('checkBoxes,', checkBoxes);
