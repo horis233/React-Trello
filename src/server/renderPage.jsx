@@ -1,33 +1,44 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import { StaticRouter } from 'react-router';
-import { Helmet } from 'react-helmet';
-import { resetContext } from 'react-beautiful-dnd';
-import App from '../app/components/App';
-import rootReducer from '../app/reducers';
+import { readFileSync } from "fs";
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { StaticRouter } from "react-router";
+import { Helmet } from "react-helmet";
+import { resetContext } from "react-beautiful-dnd";
+import App from "../app/components/App";
+import rootReducer from "../app/reducers";
 
-const manifest = JSON.parse(readFileSync(`./dist/public/manifest.json`, 'utf8'));
+// Get the manifest which contains the names of the generated files. The files contain hashes
+// that change every time they are updated, which enables aggressive caching.
+const manifest = JSON.parse(
+  readFileSync(`./dist/public/manifest.json`, "utf8")
+);
 
 const renderPage = (req, res) => {
-	const store = createStore(rootReducer, req.initialState);
-	const context = {};
+  // Put initialState (which contains board state) into a redux store that will be passed to the client
+  // through the window object in the generated html string
+  const store = createStore(rootReducer, req.initialState);
 
-	resetContext();
+  const context = {};
 
-	const appString = renderToString(
-		<Provider store={store}>
-			<StaticRouter location={req.url} context={context}>
-				<App />
-			</StaticRouter>
-		</Provider>
-	);
-	const preloadedState = store.getState();
+  resetContext();
 
-	const helmet = Helmet.renderStatic();
+  // This is where the magic happens
+  const appString = renderToString(
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
+    </Provider>
+  );
 
-	const html = `
+  const preloadedState = store.getState();
+
+  // Extract head data (title) from the app
+  const helmet = Helmet.renderStatic();
+
+  const html = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -41,9 +52,9 @@ const renderPage = (req, res) => {
         <link rel="icon" type="image/png" href="/static/favicons/favicon-16x16.png" sizes="16x16" />
         <meta name="msapplication-TileColor" content="#FFFFFF" />
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png" />
-        <meta property="og:image" content="https://trello.horis/static/favicons/og-kanban-logo.png">
-        <link rel="stylesheet" href=${manifest['main.css']}>
-        ${helmet.text.toString()}
+        <meta property="og:image" content="https://kanban.live/static/favicons/og-kanban-logo.png">
+        <link rel="stylesheet" href=${manifest["main.css"]}>
+        ${helmet.title.toString()}
       </head>
       <body>
         <div id="app">${appString}</div>
@@ -51,8 +62,10 @@ const renderPage = (req, res) => {
       <script>
         window.PRELOADED_STATE = ${JSON.stringify(preloadedState)}
       </script>
-      <script src=${manifest['main.js']}></script>
+      <script src=${manifest["main.js"]}></script>
     </html>
   `;
-	res.send(html);
+  res.send(html);
 };
+
+export default renderPage;
