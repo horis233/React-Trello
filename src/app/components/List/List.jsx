@@ -42,7 +42,7 @@ class List extends Component {
 							>
 								<ListTitle
 									dragHandleProps={provided.dragHandleProps}
-									listTitle={list.title}
+									listTitle={list.text}
 									listId={list._id}
 									cards={list.cards}
 								/>

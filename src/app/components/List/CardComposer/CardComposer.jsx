@@ -17,7 +17,7 @@ class CardComposer extends Component {
 	constructor() {
 		super();
 		this.state = {
-			newCardTitle: ''
+			newText: ''
 		};
 	}
 
@@ -28,7 +28,7 @@ class CardComposer extends Component {
 	// };
 
 	handleChange = (event) => {
-		this.setState({ newCardTitle: event.target.value });
+		this.setState({ newText: event.target.value });
 	};
 
 	handleKeyDown = (event) => {
@@ -41,21 +41,21 @@ class CardComposer extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		const { newCardTitle } = this.state;
+		const { newText } = this.state;
 		const { listId, dispatch, toggleCardComposer } = this.props;
-		if (newCardTitle === '') return;
+		if (newText === '') return;
 
 		const cardId = shortid.generate();
 		dispatch({
 			type: 'ADD_CARD',
-			payload: { cardTitle: newCardTitle, cardId, listId }
+			payload: { cardTitle: newText, cardId, listId }
 		});
 		toggleCardComposer();
-		this.setState({ newCardTitle: '' });
+		this.setState({ newText: '' });
 	};
 
 	render() {
-		const { newCardTitle } = this.state;
+		const { newText } = this.state;
 		const { isOpen, toggleCardComposer } = this.props;
 		return (
 			isOpen && (
@@ -67,7 +67,7 @@ class CardComposer extends Component {
 							minRows={1}
 							onChange={this.handleChange}
 							onKeyDown={this.handleKeyDown}
-							value={newCardTitle}
+							value={newText}
 							className="list-textarea"
 							placeholder="Create new card..."
 							spellCheck={false}

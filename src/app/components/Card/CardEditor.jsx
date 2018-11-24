@@ -14,7 +14,7 @@ import colorIcon from '../../../assets/images/color-icon.png';
 class CardEditor extends Component {
 	static propTypes = {
 		card: PropTypes.shape({
-			title: PropTypes.string.isRequired,
+			text: PropTypes.string.isRequired,
 			_id: PropTypes.string.isRequired,
 			date: PropTypes.oneOfType([ PropTypes.string, PropTypes.instanceOf(Date) ]),
 			color: PropTypes.string
@@ -33,7 +33,7 @@ class CardEditor extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			newTitle: props.card.title,
+			newText: props.card.text,
 			isCalendarOpen: false,
 			isColorPickerOpen: false,
 			isTextareaFocused: true
@@ -49,15 +49,15 @@ class CardEditor extends Component {
 	};
 
 	submitCard = () => {
-		const { newTitle } = this.state;
+		const { newText } = this.state;
 		const { card, listId, dispatch, toggleCardEditor } = this.props;
-		if (newTitle === '') {
+		if (newText === '') {
 			this.deleteCard();
-		} else if (newTitle !== card.title) {
+		} else if (newText !== card.text) {
 			dispatch({
-				type: 'EDIT_CARD_TITLE',
+				type: 'CHANGE_CARD_TEXT',
 				payload: {
-					cardTitle: newTitle,
+					cardTitle: newText,
 					cardId: card._id,
 					listId,
 					boardId
@@ -68,7 +68,7 @@ class CardEditor extends Component {
 	};
 
 	handleChange = (event) => {
-		this.setState({ newTitle: event.target.value });
+		this.setState({ newText: event.target.value });
 	};
 
 	deleteCard = () => {
@@ -115,10 +115,10 @@ class CardEditor extends Component {
 	};
 
 	render() {
-		const { newTitle, isCalendarOpen, isColorPickerOpen, isTextareaFocused } = this.state;
+		const { newText, isCalendarOpen, isColorPickerOpen, isTextareaFocused } = this.state;
 		const { boundingRect, card } = this.props;
 
-		const checkBoxes = findCheckBoxes(newTitle);
+		const checkBoxes = findCheckBoxes(newText);
 		console.log('checkBoxes,', checkBoxes);
 
 		const isCardNearRightBorder = window.innerWidth - boundingRect.right < boundingRect.left;
@@ -181,7 +181,7 @@ class CardEditor extends Component {
 					<Textarea
 						autoFocus
 						useCacheForDOMMeasurements
-						value={newTitle}
+						value={newText}
 						onChange={this.handleChange}
 						onKeyDown={this.handleKeyDown}
 						className="modal-textarea"

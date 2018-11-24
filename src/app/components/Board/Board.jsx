@@ -108,7 +108,7 @@ class Board extends Component {
 			target.className !== 'list-wrapper' &&
 			target.className !== 'lists' &&
 			target.className !== 'open-composer-button' &&
-			target.className !== 'list-title-button'
+			target.className !== 'list-text-button'
 		) {
 			return;
 		}
@@ -124,7 +124,7 @@ class Board extends Component {
 		return (
 			<div className={classnames('board', boardColor)}>
 				<Helmet>
-					<title>{boardTitle} | trello.horis</title>
+					<text>{boardTitle} | trello.horis</text>
 				</Helmet>
 				<Header />
 				<BoardHeader />
@@ -165,7 +165,7 @@ const mapStateToProps = (state, ownProps) => {
 	const board = state.boardsById[boardId];
 	return {
 		lists: board.lists.map((listId) => state.listsById[listId]),
-		boardTitle: board.title,
+		boardTitle: board.text,
 		boardColor: board.color,
 		boardId
 	};

@@ -6,7 +6,7 @@ import { StaticRouter } from 'react-router';
 import { Helmet } from 'react-helmet';
 import { resetContext } from 'react-beautiful-dnd';
 import App from '../app/components/App';
-import rootReducer from "../app/reducers";
+import rootReducer from '../app/reducers';
 
 const manifest = JSON.parse(readFileSync(`./dist/public/manifest.json`, 'utf8'));
 
@@ -43,7 +43,7 @@ const renderPage = (req, res) => {
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png" />
         <meta property="og:image" content="https://trello.horis/static/favicons/og-kanban-logo.png">
         <link rel="stylesheet" href=${manifest['main.css']}>
-        ${helmet.title.toString()}
+        ${helmet.text.toString()}
       </head>
       <body>
         <div id="app">${appString}</div>

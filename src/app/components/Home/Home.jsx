@@ -15,7 +15,7 @@ class Home extends Component {
 			PropTypes.shape({
 				_id: PropTypes.string.isRequired,
 				color: PropTypes.string.isRequired,
-				title: PropTypes.string.isRequired
+				text: PropTypes.string.isRequired
 			}).isRequired
 		).isRequired,
 		history: PropTypes.object.isRequired
@@ -25,7 +25,7 @@ class Home extends Component {
 		return (
 			<div>
 				<Helmet>
-					<title>Home | trello.horis</title>
+					<text>Home | trello.horis</text>
 				</Helmet>
 				<Header />
 				<div className="home">
@@ -39,11 +39,11 @@ class Home extends Component {
 										'board-link',
 										board.color
 									)}
-									to={`/b/${board._id}/${slugify(board.title, {
+									to={`/b/${board._id}/${slugify(board.text, {
 										lower: true
 									})}`}
 								>
-									{board.title}
+									{board.text}
 								</Link>
 							))}
 							<BoardAdder history={history} />

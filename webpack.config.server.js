@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+
 module.exports = {
 	name: 'server',
 	target: 'node',
@@ -24,26 +25,31 @@ module.exports = {
 				loader: 'ignore-loader'
 			},
 			{
-				test: /\.(png|jpg|gif|svg)$/,
+				test: /\.(png|jpg|gif)$/,
 				use: [
 					{
 						loader: 'url-loader',
 						options: {
 							emitFile: false,
 							limit: 4096,
-							name: '[name].[hash].[ext]',
+							name: '[name].[hash:6].[ext]',
 							publicPath: '/static/images/'
-						}
-					},
-					{
-						loader: 'image-webpack-loader',
-						options: {
-							mozjpeg: {
-								enabled: false
-							}
 						}
 					}
 				]
+			},
+			{
+				test: /\.svg$/,
+				use: {
+					loader: 'svg-url-loader',
+					options: {
+						noquotes: true,
+						emitFile: false,
+						limit: 4096,
+						name: '[name].[hash:6].[ext]',
+						outputPath: 'images/'
+					}
+				}
 			}
 		]
 	},

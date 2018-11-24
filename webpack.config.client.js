@@ -5,10 +5,11 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+
 module.exports = {
 	name: 'client',
 	target: 'web',
-    entry: "./src/client.jsx",
+	entry: './src/client.jsx',
 	output: {
 		path: path.join(__dirname, 'dist/public'),
 		publicPath: '/static/',

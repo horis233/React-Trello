@@ -18,12 +18,12 @@ class ListTitle extends Component {
 		super(props);
 		this.state = {
 			isOpen: false,
-			newTitle: props.listTitle
+			newText: props.listTitle
 		};
 	}
 
 	handleChange = (event) => {
-		this.setState({ newTitle: event.target.value });
+		this.setState({ newText: event.target.value });
 	};
 
 	handleKeyDown = (event) => {
@@ -36,20 +36,20 @@ class ListTitle extends Component {
 	};
 
 	handleSubmit = () => {
-		const { newTitle } = this.state;
+		const { newText } = this.state;
 		const { listTitle, listId, dispatch } = this.props;
-		if (newTitle === '') return;
-		if (newTitle !== listTitle) {
+		if (newText === '') return;
+		if (newText !== listTitle) {
 			dispatch({
 				type: 'EDIT_LIST_TITLE',
-				payload: { listTitle: newTitle, listId }
+				payload: { listTitle: newText, listId }
 			});
 		}
 		this.setState({ isOpen: false });
 	};
 
 	revertTitle = () => {
-		this.setState({ newTitle: this.props.listTitle, isOpen: false });
+		this.setState({ newText: this.props.listTitle, isOpen: false });
 	};
 
 	deleteList = () => {
@@ -72,19 +72,19 @@ class ListTitle extends Component {
 	};
 
 	render() {
-		const { isOpen, newTitle } = this.state;
+		const { isOpen, newText } = this.state;
 		const { dragHandleProps, listTitle } = this.props;
 		return (
-			<div className="list-title">
+			<div className="list-text">
 				{isOpen ? (
-					<div className="list-title-textarea-wrapper">
+					<div className="list-text-textarea-wrapper">
 						<Textarea
 							autoFocus
 							useCacheForDOMMeasurements
-							value={newTitle}
+							value={newText}
 							onChange={this.handleChange}
 							onKeyDown={this.handleKeyDown}
-							className="list-title-textarea"
+							className="list-text-textarea"
 							onBlur={this.handleSubmit}
 							spellCheck={false}
 						/>
@@ -99,7 +99,7 @@ class ListTitle extends Component {
 							this.handleButtonKeyDown(event);
 							dragHandleProps.onKeyDown(event);
 						}}
-						className="list-title-button"
+						className="list-text-button"
 					>
 						{listTitle}
 					</div>

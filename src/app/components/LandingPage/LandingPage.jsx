@@ -20,7 +20,7 @@ class LandingPage extends Component {
 	render = () => (
 		<div className="landing-page">
 			<Helmet>
-				<title>Sign in | trello.horis</title>
+				<text>Sign in | trello.horis</text>
 			</Helmet>
 			<div className="landing-page-info-wrapper">
 				<div className="landing-page-info">

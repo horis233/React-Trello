@@ -14,7 +14,7 @@ class Header extends Component {
 		const { user } = this.props;
 		return (
 			<header>
-				<Link to="/" className="header-title">
+				<Link to="/" className="header-text">
 					<img src={kanbanLogo} alt="kanban live logo" />
 					&nbsp;kanban.live
 				</Link>
@@ -24,7 +24,7 @@ class Header extends Component {
 							src={user.imageUrl}
 							alt={user.name}
 							className="user-thumbnail"
-							title={user.name}
+							text={user.name}
 						/>
 					) : (
 						<FaUserSecret className="guest-icon" />
