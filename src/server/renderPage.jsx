@@ -1,17 +1,17 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router';
 import { Helmet } from 'react-helmet';
 import { resetContext } from 'react-beautiful-dnd';
 import App from '../app/components/App';
-import reducers from '../app/reducers/reducers';
+import rootReducer from "../app/reducers";
 
 const manifest = JSON.parse(readFileSync(`./dist/public/manifest.json`, 'utf8'));
 
 const renderPage = (req, res) => {
-	const store = createStore(combineReducers(reducers), req.initialState);
+	const store = createStore(rootReducer, req.initialState);
 	const context = {};
 
 	resetContext();
