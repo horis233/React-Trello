@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Wrapper, Menu, MenuItem } from "react-aria-menubutton";
 import FaTrash from "react-icons/lib/fa/trash";
+import "./BoardDeleter.scss";
+
 
 class BoardDeleter extends Component {
   static propTypes = {
@@ -21,8 +23,7 @@ class BoardDeleter extends Component {
     history.push("/");
   };
 
-  render = () => {
-    return (
+  render = () => (
       <Wrapper
         className="board-deleter-wrapper"
         onSelection={this.handleSelection}
@@ -39,7 +40,6 @@ class BoardDeleter extends Component {
         </Menu>
       </Wrapper>
     );
-  };
 }
 
 export default withRouter(connect()(BoardDeleter));
