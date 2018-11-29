@@ -1,17 +1,17 @@
 @import "../../variables.scss";
- .options-list {
+.options-list {
   display: flex;
   flex-direction: column;
   margin: 0 8px;
   flex-shrink: 0;
-   @media (max-width: 550px) {
+  @media (max-width: 550px) {
     flex-direction: row;
     width: 100%;
     justify-content: center;
     margin: 0;
   }
 }
- .options-list-button {
+.options-list-button {
   margin: 0 3px;
   display: flex;
   align-items: center;
@@ -25,21 +25,21 @@
   border-radius: 3px;
   margin-bottom: 4px;
 }
- .options-list-button:hover,
+.options-list-button:hover,
 .options-list-button:focus {
   background: white;
 }
- .modal-icon {
+.modal-icon {
   margin-bottom: 3px;
   flex-shrink: 0;
 }
- .calendar-modal {
+.calendar-modal {
   position: absolute;
   left: 50%;
   top: 50%;
   // transform: translate(-50%, -50%);
 }
- .calendar-underlay {
+.calendar-underlay {
   z-index: 3;
   position: fixed;
   top: 0;
@@ -47,13 +47,13 @@
   right: 0;
   bottom: 0;
 }
- .calendar {
+.calendar {
   border-radius: 3px;
   background: white;
   display: flex;
   flex-direction: column;
 }
- .calendar-buttons {
+.calendar-buttons {
   display: flex;
   justify-content: space-around;
   margin-bottom: 8px;
@@ -62,26 +62,26 @@
     height: 30px;
     border: 0;
     border-radius: 3px;
-     font-size: 14px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
     transition: background 0.2s;
   }
-   button:hover {
+  button:hover {
     background: #bbb;
   }
-   .calendar-save-button {
+  .calendar-save-button {
     background: $success-button-color;
     color: white;
   }
-   .calendar-save-button:hover {
+  .calendar-save-button:hover {
     background: $success-button-color-hover;
   }
 }
- .modal-color-picker-wrapper {
+.modal-color-picker-wrapper {
   position: relative;
 }
- .modal-color-picker {
+.modal-color-picker {
   background: white;
   color: black;
   position: absolute;
@@ -98,7 +98,7 @@
   font-weight: 700;
   text-align: center;
 }
- .color-picker-color {
+.color-picker-color {
   height: 36px;
   width: 36px;
   border-radius: 3px;

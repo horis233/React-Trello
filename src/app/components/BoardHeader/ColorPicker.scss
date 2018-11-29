@@ -1,9 +1,9 @@
 @import "../../variables.scss";
- .color-picker-wrapper {
+.color-picker-wrapper {
   position: relative;
   font-size: 16px;
 }
- .color-picker {
+.color-picker {
   display: flex;
   align-items: center;
   color: $white;
@@ -13,11 +13,11 @@
   transition: background 0.1s;
   cursor: pointer;
 }
- .color-picker:hover,
+.color-picker:hover,
 .color-picker:focus {
   background: $transparent-black;
 }
- .color-picker-menu {
+.color-picker-menu {
   position: absolute;
   margin-top: 4px;
   top: 100%;
@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
 }
- .color-picker-item {
+.color-picker-item {
   height: 40px;
   margin: 5px;
   box-sizing: border-box;
