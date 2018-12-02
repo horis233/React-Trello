@@ -1,107 +1,125 @@
 @import "../../variables.scss";
 .options-list {
-  display: flex;
-  flex-direction: column;
-  margin: 0 8px;
-  flex-shrink: 0;
-  @media (max-width: 550px) {
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-    margin: 0;
-  }
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+
+	margin: 0 8px;
+	@media (max-width: 550px) {
+		flex-direction: row;
+		justify-content: center;
+
+		width: 100%;
+		margin: 0;
+	}
 }
 .options-list-button {
-  margin: 0 3px;
-  display: flex;
-  align-items: center;
-  font-size: inherit;
-  background: rgba(255, 255, 255, 0.8);
-  color: black;
-  border: 0;
-  cursor: pointer;
-  padding: 0 6px;
-  height: 33px;
-  border-radius: 3px;
-  margin-bottom: 4px;
+	display: flex;
+	align-items: center;
+
+	height: 33px;
+	margin: 0 3px;
+	margin-bottom: 4px;
+	padding: 0 6px;
+
+	cursor: pointer;
+
+	color: black;
+	border: 0;
+	border-radius: 3px;
+	background: rgba(255, 255, 255, 0.8);
+
+	font-size: inherit;
 }
 .options-list-button:hover,
 .options-list-button:focus {
-  background: white;
+	background: white;
 }
 .modal-icon {
-  margin-bottom: 3px;
-  flex-shrink: 0;
+	flex-shrink: 0;
+
+	margin-bottom: 3px;
 }
 .calendar-modal {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  // transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	// transform: translate(-50%, -50%);
 }
 .calendar-underlay {
-  z-index: 3;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+	position: fixed;
+	z-index: 3;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 .calendar {
-  border-radius: 3px;
-  background: white;
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
+
+	border-radius: 3px;
+	background: white;
 }
 .calendar-buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 8px;
-  button {
-    width: 120px;
-    height: 30px;
-    border: 0;
-    border-radius: 3px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  button:hover {
-    background: #bbb;
-  }
-  .calendar-save-button {
-    background: $success-button-color;
-    color: white;
-  }
-  .calendar-save-button:hover {
-    background: $success-button-color-hover;
-  }
+	display: flex;
+	justify-content: space-around;
+
+	margin-bottom: 8px;
+	button {
+		width: 120px;
+		height: 30px;
+
+		cursor: pointer;
+		transition: background 0.2s;
+
+		border: 0;
+		border-radius: 3px;
+
+		font-size: 14px;
+		font-weight: 700;
+	}
+	button:hover {
+		background: #bbb;
+	}
+	.calendar-save-button {
+		color: white;
+		background: $success-button-color;
+	}
+	.calendar-save-button:hover {
+		background: $success-button-color-hover;
+	}
 }
 .modal-color-picker-wrapper {
-  position: relative;
+	position: relative;
 }
 .modal-color-picker {
-  background: white;
-  color: black;
-  position: absolute;
-  margin-top: 4px;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  border-radius: 3px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
-  padding: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  font-weight: 700;
-  text-align: center;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+
+	display: flex;
+	flex-wrap: wrap;
+
+	width: 120px;
+	margin-top: 4px;
+	padding: 5px;
+
+	transform: translateX(-50%);
+	text-align: center;
+
+	color: black;
+	border-radius: 3px;
+	background: white;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+
+	font-weight: 700;
 }
 .color-picker-color {
-  height: 36px;
-  width: 36px;
-  border-radius: 3px;
-  margin: 2px;
-  border: 1px #999 solid;
+	width: 36px;
+	height: 36px;
+	margin: 2px;
+
+	border: 1px #999 solid;
+	border-radius: 3px;
 }

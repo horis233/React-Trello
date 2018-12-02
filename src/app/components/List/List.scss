@@ -1,83 +1,96 @@
 @import "../../variables.scss";
 
 .list-wrapper {
-  height: 100%;
-  user-select: none;
-  display: inline-flex;
-  flex-direction: column;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
+	display: inline-flex;
+	flex-direction: column;
+
+	height: 100%;
+
+	-webkit-user-select: none;
+	user-select: none;
+	user-select: none;
+
+	-webkit-touch-callout: none;
 }
 
 .list {
-  min-height: 0px; // fix flexbox browser incostiency
-  width: $list-width;
-  border-radius: $list-radius;
-  box-sizing: border-box;
-  font-size: 14px;
-  margin: 0 5px 0 5px;
-  display: inline-flex;
-  flex-direction: column;
-  max-height: 100%;
-  transition: box-shadow 0.15s, background 0.3s;
+	display: inline-flex;
+	flex-direction: column;
+
+	box-sizing: border-box;
+	width: $list-width;
+	min-height: 0px; // fix flexbox browser incostiency
+	max-height: 100%;
+	margin: 0 5px 0 5px;
+
+	transition: box-shadow 0.15s, background 0.3s;
+
+	border-radius: $list-radius;
+
+	font-size: 14px;
 }
 
 .blue .list {
-  background: $transparent-blue;
+	background: $transparent-blue;
 }
 .green .list {
-  background: $transparent-green;
+	background: $transparent-green;
 }
 .red .list {
-  background: $transparent-red;
+	background: $transparent-red;
 }
 .pink .list {
-  background: $transparent-pink;
+	background: $transparent-pink;
 }
 
 .list--drag {
-  box-shadow: 1px 3px 8px 2px rgba(0, 0, 0, 0.3) !important;
+	box-shadow: 1px 3px 8px 2px rgba(0, 0, 0, 0.3) !important;
 }
 
 .cards-wrapper {
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin: 0 3px 6px 3px;
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	height: 100%;
+	margin: 0 3px 6px 3px;
 }
 
 .cards-wrapper::-webkit-scrollbar {
-  width: 8px;
-  background-color: $transparent-black;
-  border-radius: 2px;
+	width: 8px;
+
+	border-radius: 2px;
+	background-color: $transparent-black;
 }
 
 .cards-wrapper::-webkit-scrollbar-thumb {
-  background: $transparent-white;
-  border-radius: 2px;
+	border-radius: 2px;
+	background: $transparent-white;
 }
 .cards {
-  min-height: 1px;
-  margin-bottom: 3px;
+	min-height: 1px;
+	margin-bottom: 3px;
 }
 
 .open-composer-button {
-  margin-top: 6px;
-  align-self: center;
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
-  background: $transparent-black;
-  color: $white;
-  font-size: 28px;
-  border: none;
-  cursor: pointer;
-  border-radius: $list-radius;
-  transition: background 0.1s;
+	align-self: center;
+	flex-shrink: 0;
+
+	width: 38px;
+	height: 38px;
+	margin-top: 6px;
+
+	cursor: pointer;
+	transition: background 0.1s;
+
+	color: $white;
+	border: none;
+	border-radius: $list-radius;
+	background: $transparent-black;
+
+	font-size: 28px;
 }
 
 .open-composer-button:hover,
 .open-composer-button:focus {
-  background: $less-transparent-black;
+	background: $less-transparent-black;
 }

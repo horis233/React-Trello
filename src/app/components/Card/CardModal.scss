@@ -1,52 +1,64 @@
 .modal-underlay {
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 3;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
+	position: fixed;
+	z-index: 3;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	opacity: 0;
+	background: rgba(0, 0, 0, 0.6);
 }
 .ReactModal__Overlay--after-open {
-  opacity: 1;
-  transition: opacity 0.15s;
+	transition: opacity 0.15s;
+
+	opacity: 1;
 }
 .ReactModal__Overlay--before-close {
-  opacity: 0;
+	opacity: 0;
 }
 .modal {
-  display: flex;
-  align-items: flex-start;
-  position: absolute;
-  outline: 0;
-  height: 0;
+	position: absolute;
+
+	display: flex;
+	align-items: flex-start;
+
+	height: 0;
+
+	outline: 0;
 }
 .modal-textarea-wrapper {
-  background: white;
-  border-radius: 3px;
-  box-sizing: border-box;
-  // padding: 6px 8px;
-  margin-bottom: 6px;
-  display: flex;
-  flex-shrink: 0;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: background 0.2s;
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	justify-content: space-between;
+
+	box-sizing: border-box;
+	// padding: 6px 8px;
+	margin-bottom: 6px;
+
+	transition: background 0.2s;
+
+	border-radius: 3px;
+	background: white;
 }
 .modal-textarea {
-  line-height: inherit;
-  flex-grow: 1;
-  border-radius: inherit;
-  overflow: hidden;
-  width: 100%;
-  border: 0;
-  box-sizing: border-box;
-  font-family: inherit;
-  font-size: 16px;
-  padding: 10px 8px;
-  color: inherit;
-  background: inherit;
-  resize: none;
-  outline: none;
+	overflow: hidden;
+	flex-grow: 1;
+
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px 8px;
+
+	resize: none;
+
+	color: inherit;
+	border: 0;
+	border-radius: inherit;
+	outline: none;
+	background: inherit;
+
+	font-family: inherit;
+	font-size: 16px;
+	line-height: inherit;
 }

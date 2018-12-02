@@ -1,89 +1,112 @@
 @import "../../variables.scss";
 .list-header {
-  display: inline-flex;
-  flex-shrink: 0;
-  font-size: 18px;
-  border-top-right-radius: $list-radius;
-  border-top-left-radius: $list-radius;
+	display: inline-flex;
+	flex-shrink: 0;
+
+	border-top-left-radius: $list-radius;
+	border-top-right-radius: $list-radius;
+
+	font-size: 18px;
 }
 .list-title-button {
-  overflow-wrap: break-word;
-  flex-grow: 1;
-  padding: 10px;
-  font-weight: 700;
-  color: $white;
-  border: none;
-  cursor: pointer !important;
-  min-width: 50%;
-  border-top-left-radius: inherit;
+	flex-grow: 1;
+
+	min-width: 50%;
+	padding: 10px;
+
+	cursor: pointer !important;
+
+	color: $white;
+	border: none;
+	border-top-left-radius: inherit;
+
+	font-weight: 700;
+
+	overflow-wrap: break-word;
 }
 .list-title-textarea-wrapper {
-  padding: 4px 4px 4px 4px;
-  width: 100%;
+	width: 100%;
+	padding: 4px 4px 4px 4px;
 }
 .list-title-textarea {
-  float: left;
-  border-radius: 3px;
-  padding: 6px;
-  overflow: hidden;
-  width: 100%;
-  border: 0;
-  box-sizing: border-box;
-  font-family: inherit;
-  line-height: inherit;
-  font-size: 18px;
-  font-weight: 700;
-  color: $black-text;
-  resize: none;
+	float: left;
+	overflow: hidden;
+
+	box-sizing: border-box;
+	width: 100%;
+	padding: 6px;
+
+	resize: none;
+
+	color: $black-text;
+	border: 0;
+	border-radius: 3px;
+
+	font-family: inherit;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: inherit;
 }
 .delete-list-wrapper {
-  position: relative;
-  align-self: flex-start;
+	position: relative;
+
+	align-self: flex-start;
 }
 .delete-list-button {
-  margin: 4px;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-radius: $list-radius;
-  color: $white;
-  cursor: pointer;
-  font-size: 16px;
+	display: flex;
+	align-items: center;
+
+	margin: 4px;
+	padding: 10px;
+
+	cursor: pointer;
+
+	color: $white;
+	border-radius: $list-radius;
+
+	font-size: 16px;
 }
 .delete-list-button:hover,
 .delete-list-button:focus {
-  background: $transparent-black;
+	background: $transparent-black;
 }
 .delete-list-button {
-  cursor: pointer;
+	cursor: pointer;
 }
 .delete-list-menu {
-  z-index: 1;
-  background: $white;
-  color: black-text;
-  position: absolute;
-  margin-top: 4px;
-  top: 100%;
-  left: -60px;
-  right: -60px;
-  border-radius: 3px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
-  font-weight: 700;
-  text-align: center;
+	position: absolute;
+	z-index: 1;
+	top: 100%;
+	right: -60px;
+	left: -60px;
+
+	display: flex;
+	flex-direction: column;
+
+	margin-top: 4px;
+	padding: 5px;
+
+	text-align: center;
+
+	color: black-text;
+	border-radius: 3px;
+	background: $white;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
+
+	font-weight: 700;
 }
 .delete-list-confirm {
-  background: red;
-  color: white;
-  cursor: pointer;
-  padding: 8px 30px;
-  border-radius: 6px;
-  text-align: center;
-  margin-top: 5px;
+	margin-top: 5px;
+	padding: 8px 30px;
+
+	cursor: pointer;
+	text-align: center;
+
+	color: white;
+	border-radius: 6px;
+	background: red;
 }
 .delete-list-confirm:hover,
 .delete-list-confirm:focus {
-  background: darkred;
+	background: darkred;
 }

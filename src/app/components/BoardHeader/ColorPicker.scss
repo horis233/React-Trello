@@ -1,54 +1,63 @@
 @import "../../variables.scss";
 .color-picker-wrapper {
-  position: relative;
-  font-size: 16px;
+	position: relative;
+
+	font-size: 16px;
 }
 .color-picker {
-  display: flex;
-  align-items: center;
-  color: $white;
-  border-radius: 3px;
-  padding: 8px 10px 8px 10px;
-  justify-content: space-around;
-  transition: background 0.1s;
-  cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+
+	padding: 8px 10px 8px 10px;
+
+	cursor: pointer;
+	transition: background 0.1s;
+
+	color: $white;
+	border-radius: 3px;
 }
 .color-picker:hover,
 .color-picker:focus {
-  background: $transparent-black;
+	background: $transparent-black;
 }
 .color-picker-menu {
-  position: absolute;
-  margin-top: 4px;
-  top: 100%;
-  left: -20px;
-  right: -20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 3px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
-  color: white;
-  padding: 5px;
-  display: flex;
-  flex-direction: column;
+	position: absolute;
+	top: 100%;
+	right: -20px;
+	left: -20px;
+
+	display: flex;
+	flex-direction: column;
+
+	margin-top: 4px;
+	padding: 5px;
+
+	color: white;
+	border-radius: 3px;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6);
 }
 .color-picker-item {
-  height: 40px;
-  margin: 5px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  &.blue {
-    background: $blue;
-  }
-  &.green {
-    background: $green;
-  }
-  &.red {
-    background: $red;
-  }
-  &.pink {
-    background: $pink;
-  }
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	box-sizing: border-box;
+	height: 40px;
+	margin: 5px;
+
+	cursor: pointer;
+	&.blue {
+		background: $blue;
+	}
+	&.green {
+		background: $green;
+	}
+	&.red {
+		background: $red;
+	}
+	&.pink {
+		background: $pink;
+	}
 }
