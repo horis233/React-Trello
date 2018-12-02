@@ -23,10 +23,11 @@
 			{
 				"components": [ "Link" ],
 				"specialLink": [ "to", "hrefLeft", "hrefRight" ],
-				"aspects": [ "noHref", "invalidHref", "preferButton" ],
-				"react/require-default-props": 0,
-				"react/forbid-prop-types": 0
+				"aspects": [ "noHref", "invalidHref", "preferButton" ]
 			}
-		]
+		],
+		"react/require-default-props": 0,
+		"react/forbid-prop-types": 0,
+		"import/prefer-default-export": 0
 	}
 }
