@@ -18,12 +18,13 @@ class Home extends Component {
         title: PropTypes.string.isRequired
       }).isRequired
     ).isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    listsById: PropTypes.object.isRequired
   };
   render = () => {
     const { boards, listsById, history } = this.props;
     return (
-      <>
+      <div>
         <Helmet>
           <title>Home | kanban.live</title>
         </Helmet>
@@ -61,7 +62,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   };
 }
