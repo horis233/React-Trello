@@ -1,5 +1,6 @@
 @import "../../variables.scss";
 $board-width: 220px;
+$board-height: 120px;
 $board-margin: 5px;
 $main-margin: 40px;
 $create-board-bg: #ddd;
@@ -8,7 +9,7 @@ $create-board-focus-bg: #ccc;
 @mixin board-button {
 	box-sizing: border-box;
 	width: $board-width;
-	height: 120px;
+	height: $board-height;
 	margin: $board-margin;
 	padding: 10px;
 
@@ -150,7 +151,7 @@ $create-board-focus-bg: #ccc;
 .board-adder {
 	box-sizing: border-box;
 	width: $board-width;
-	height: 80px;
+	height: $board-height;
 	margin: $board-margin;
 	margin-bottom: 20px;
 	padding: 8px;

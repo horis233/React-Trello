@@ -45,13 +45,13 @@ class CardBadges extends Component {
 
 		return (
 			<div className="badge" style={{ background: dueDateColor }}>
-				<MdAlarm className="badge-icon" />
-				&nbsp;
+				<MdAlarm className="badge-icon" />&nbsp;
 				{dueDateString}
 			</div>
 		);
 	};
 
+	// Render badge showing amoung of checkboxes that are checked
 	renderTaskProgress = () => {
 		const { total, checked } = this.props.checkboxes;
 		if (total === 0) {
@@ -59,8 +59,7 @@ class CardBadges extends Component {
 		}
 		return (
 			<div className="badge" style={{ background: checked === total ? 'green' : '#444' }}>
-				<MdDoneAll className="badge-icon" />
-				&nbsp;
+				<MdDoneAll className="badge-icon" />&nbsp;
 				{checked}/{total}
 			</div>
 		);

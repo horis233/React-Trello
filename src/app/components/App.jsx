@@ -12,13 +12,13 @@ const App = ({ user, isGuest }) => {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/b/:boardId" component={BoardContainer} />{" "}
+        <Route path="/b/:boardId" component={BoardContainer} />
         <Redirect to="/" />
       </Switch>
     );
   }
-  // If not logged in, always redirect to landing page
 
+  // If not logged in, always redirect to landing page
   return (
     <Switch>
       <Route exact path="/" component={LandingPage} />

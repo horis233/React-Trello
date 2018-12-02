@@ -1,4 +1,5 @@
 import marked from 'marked';
+
 // Create HTML string from user generated markdown.
 // There is some serious hacks going on here with regards to checkboxes.
 // Checkboxes are not a feature of marked so are added manually with an id that
@@ -19,4 +20,5 @@ const formatMarkdown = (markdown) => {
 			return newString;
 		});
 };
+
 export default formatMarkdown;

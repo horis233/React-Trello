@@ -10,16 +10,6 @@ const boardsById = (state = {}, action) => {
         }
       };
     }
-    case "DELETE_LIST": {
-      const { listId: newListId, boardId } = action.payload;
-      return {
-        ...state,
-        [boardId]: {
-          ...state[boardId],
-          lists: state[boardId].lists.filter(listId => listId !== newListId)
-        }
-      };
-    }
     case "MOVE_LIST": {
       const { oldListIndex, newListIndex, boardId } = action.payload;
       const newLists = Array.from(state[boardId].lists);
@@ -28,6 +18,16 @@ const boardsById = (state = {}, action) => {
       return {
         ...state,
         [boardId]: { ...state[boardId], lists: newLists }
+      };
+    }
+    case "DELETE_LIST": {
+      const { listId: newListId, boardId } = action.payload;
+      return {
+        ...state,
+        [boardId]: {
+          ...state[boardId],
+          lists: state[boardId].lists.filter(listId => listId !== newListId)
+        }
       };
     }
     case "ADD_BOARD": {
@@ -42,11 +42,6 @@ const boardsById = (state = {}, action) => {
           color: "blue"
         }
       };
-    }
-    case "DELETE_BOARD": {
-      const { boardId } = action.payload;
-      const { [boardId]: deletedBoard, ...restOfBoards } = state;
-      return restOfBoards;
     }
     case "CHANGE_BOARD_TITLE": {
       const { boardTitle, boardId } = action.payload;
@@ -67,6 +62,11 @@ const boardsById = (state = {}, action) => {
           color
         }
       };
+    }
+    case "DELETE_BOARD": {
+      const { boardId } = action.payload;
+      const { [boardId]: deletedBoard, ...restOfBoards } = state;
+      return restOfBoards;
     }
     default:
       return state;

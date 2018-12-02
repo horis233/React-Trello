@@ -9,14 +9,17 @@
 	opacity: 0;
 	background: rgba(0, 0, 0, 0.6);
 }
+
 .ReactModal__Overlay--after-open {
 	transition: opacity 0.15s;
 
 	opacity: 1;
 }
+
 .ReactModal__Overlay--before-close {
 	opacity: 0;
 }
+
 .modal {
 	position: absolute;
 
@@ -27,6 +30,7 @@
 
 	outline: 0;
 }
+
 .modal-textarea-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -34,7 +38,6 @@
 	justify-content: space-between;
 
 	box-sizing: border-box;
-	// padding: 6px 8px;
 	margin-bottom: 6px;
 
 	transition: background 0.2s;
@@ -42,6 +45,7 @@
 	border-radius: 3px;
 	background: white;
 }
+
 .modal-textarea {
 	overflow: hidden;
 	flex-grow: 1;

@@ -66,7 +66,7 @@ class Board extends Component {
       source.droppableId !== destination.droppableId
     ) {
       dispatch({
-        type: "MOVE_CARDS",
+        type: "MOVE_CARD",
         payload: {
           sourceListId: source.droppableId,
           destListId: destination.droppableId,
@@ -79,7 +79,6 @@ class Board extends Component {
   };
 
   // The following three methods implement dragging of the board by holding down the mouse
-
   handleMouseDown = ({ target, clientX }) => {
     if (target.className !== "list-wrapper" && target.className !== "lists") {
       return;
@@ -114,8 +113,8 @@ class Board extends Component {
     }
   };
 
-  // Scroll page right or left as long as the mouse is not hovering a card-list (which could have vertical scroll)
   handleWheel = ({ target, deltaY }) => {
+    // Scroll page right or left as long as the mouse is not hovering a card-list (which could have vertical scroll)
     if (
       target.className !== "list-wrapper" &&
       target.className !== "lists" &&
@@ -135,7 +134,7 @@ class Board extends Component {
   render = () => {
     const { lists, boardTitle, boardId, boardColor } = this.props;
     return (
-      <div>
+      <>
         <div className={classnames("board", boardColor)}>
           <Helmet>
             <title>{boardTitle} | kanban.live</title>
@@ -174,14 +173,13 @@ class Board extends Component {
           </div>
           <div className="board-underlay" />
         </div>
-      </div>
+      </>
     );
   };
 }
 
 const mapStateToProps = (state, ownProps) => {
   const { board } = ownProps;
-
   return {
     lists: board.lists.map(listId => state.listsById[listId]),
     boardTitle: board.title,

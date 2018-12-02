@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .landing-page {
 	width: 100%;
 	height: 100%;
@@ -9,6 +11,7 @@
 	background-position: 50% 100%;
 	background-size: cover;
 
+	// Smaller image for smaller screens
 	@media (max-device-width: 1367px) {
 		background-image: url("../../../assets/images/postits-1366.jpg");
 	}
@@ -31,6 +34,7 @@
 .landing-page-heading {
 	display: flex;
 	align-items: center;
+
 	h1 {
 		font-size: 40px;
 	}
@@ -54,9 +58,7 @@
 }
 
 .signin-button {
-	display: flex;
 	display: inline-flex;
-	align-items: center;
 	align-items: center;
 	align-self: flex-start;
 	flex-shrink: 1;
@@ -80,15 +82,15 @@
 
 .twitter-button {
 	background: #1da1f2;
-}
 
-.twitter-button:hover,
-.twitter-button:focus {
-	background: #0090e2;
+	&:hover,
+	&:focus {
+		background: #0090e2;
+	}
 }
 
 .google-button {
-	color: #222222;
+	color: $black-text;
 	background: white;
 }
 
@@ -110,8 +112,8 @@
 }
 
 .guest-button {
-	color: #222;
-	background: #fff;
+	color: $black-text;
+	background: white;
 }
 
 .guest-button:hover,
