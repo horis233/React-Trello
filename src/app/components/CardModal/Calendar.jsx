@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DayPicker from 'react-day-picker';
-import './ReactDayPicker.css';
+import './ReactDayPicker.scss';
 
 class Calendar extends Component {
 	static propTypes = {
