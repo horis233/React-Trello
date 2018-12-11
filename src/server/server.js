@@ -5,6 +5,7 @@ import session from "express-session";
 import connectMongo from "connect-mongo";
 import compression from "compression";
 import helmet from "helmet";
+import enforce from "express-sslify";
 import favicon from "serve-favicon";
 import logger from "morgan";
 import dotenv from "dotenv";
@@ -25,7 +26,8 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
   const db = client.db(process.env.MONGODB_NAME);
 
   configurePassport(db);
-
+  
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(helmet());
   app.use(logger("tiny"));
   app.use(compression());
