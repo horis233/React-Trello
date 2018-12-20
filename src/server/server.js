@@ -27,15 +27,17 @@ MongoClient.connect(process.env.MONGODB_URL).then(client => {
 
   configurePassport(db);
 
-  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+  // Uncomment next line for production to force https redirect
+  // app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(helmet());
   app.use(logger("tiny"));
   app.use(compression());
   app.use(favicon("dist/public/favicons/favicon.ico"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-// aggressive cache static assets (1 year)
+  // aggressive cache static assets (1 year)
   app.use("/static", express.static("dist/public", { maxAge: "1y" }));
+
   // Persist session in mongoDB
   app.use(
     session({
