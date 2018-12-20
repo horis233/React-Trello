@@ -5,7 +5,7 @@ import session from "express-session";
 import connectMongo from "connect-mongo";
 import compression from "compression";
 import helmet from "helmet";
-import enforce from "express-sslify";
+// import enforce from "express-sslify";
 import favicon from "serve-favicon";
 import logger from "morgan";
 import dotenv from "dotenv";
