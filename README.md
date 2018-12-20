@@ -21,7 +21,7 @@ A server-rendered React app inspired by Trello.
 
 ### Development
 
-Setting up the full app with your own mongoDB instance and auth credentials for Twitter and Google sign-in requires significant effort. If you don't want to do that
+Setting up the full app with your own mongoDB instance and auth credentials for Twitter and Google sign-in requires significant effort. Use the simplified set up if you don't want to bother with that.
 
 #### Simplified setup
 
@@ -66,7 +66,7 @@ npm run serve
 
 For production deployment run:
 
-```
+```shell
 npm run build:prod
 npm run serve:prod
 ```
