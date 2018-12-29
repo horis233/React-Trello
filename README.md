@@ -26,9 +26,9 @@ Setting up the full app with your own mongoDB instance and auth credentials for 
 #### Simplified setup
 
 ```shell
-# Clone the simple-dev branch which does not include db and social sign-in stuff
-git clone https://github.com/yogaboll/react-kanban.git -b simple-dev
-cd react-kanban
+# Clone the project
+git clone https://github.com/horis233/React-Trello.git
+cd React-Trello
 npm install
 npm run build
 # Open a second terminal window and run:
@@ -37,13 +37,6 @@ npm run serve
 
 The app will run on http://127.0.0.1:1337
 
-#### Full setup
-
-```shell
-git clone https://github.com/yogaboll/react-kanban.git
-cd react-kanban
-npm install
-```
 
 You need to add your own mongoDB url as well as auth credentials for the Google and Twitter sign in. You need to create a file with the name `.env` in the root directory with the following variables:
 
