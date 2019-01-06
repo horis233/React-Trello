@@ -1,13 +1,5 @@
-<!-- Description: A Trello-like application built with React and Redux. Take a look at the live website:  -->
-
-# React Kanban
-
-A server-rendered React app inspired by [Trello](https://trello.com/home).
-
-![react kanban example](https://github.com/yogaboll/react-kanban/blob/master/example.gif?raw=true)
-
-[Check out the live website](https://www.reactkanban.com)
-
+# React-Trello
+A server-rendered React app inspired by Trello.
 ### Features
 
 * It has most of the features available on Trello, like creating and editing new cards, dragging around cards and so on.
@@ -34,30 +26,17 @@ Setting up the full app with your own mongoDB instance and auth credentials for 
 #### Simplified setup
 
 ```shell
-# Clone the simple-dev branch which does not include db and social sign-in stuff
-git clone https://github.com/yogaboll/react-kanban.git -b simple-dev
-
-cd react-kanban
-
+# Clone the project
+git clone https://github.com/horis233/React-Trello.git
+cd React-Trello
 npm install
-
 npm run build
-
 # Open a second terminal window and run:
 npm run serve
 ```
 
 The app will run on http://127.0.0.1:1337
 
-#### Full setup
-
-```shell
-git clone https://github.com/yogaboll/react-kanban.git
-
-cd react-kanban
-
-npm install
-```
 
 You need to add your own mongoDB url as well as auth credentials for the Google and Twitter sign in. You need to create a file with the name `.env` in the root directory with the following variables:
 
@@ -69,7 +48,6 @@ TWITTER_API_SECRET
 GOOGLE_CLIENT_ID
 GOOGLE_CLIENT_SECRET
 SESSION_SECRET
-
 # Has to be port 1337
 ROOT_URL=http://127.0.0.1:1337
 ```
