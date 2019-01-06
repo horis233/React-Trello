@@ -3,30 +3,23 @@
 .list-wrapper {
   display: inline-flex;
   flex-direction: column;
-
   height: 100%;
-
-  -webkit-user-select: none;
   user-select: none;
-
+  -webkit-user-select: none;
   -webkit-touch-callout: none;
 }
 
 .list {
   display: inline-flex;
   flex-direction: column;
-
   box-sizing: border-box;
   width: $list-width;
   min-height: 0px; // fix flexbox browser incostiency
   max-height: 100%;
   margin: 0 5px 0 5px;
-
-  transition: box-shadow 0.15s, background 0.3s;
-
   border-radius: $list-radius;
-
   font-size: 14px;
+  transition: box-shadow 0.15s, background 0.3s;
 }
 
 .blue .list {
@@ -47,16 +40,14 @@
 }
 
 .cards-wrapper {
-  overflow-x: hidden;
-  overflow-y: auto;
-
   height: 100%;
   margin: 0 3px 6px 3px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .cards-wrapper::-webkit-scrollbar {
   width: 8px;
-
   border-radius: 2px;
   background-color: $transparent-black;
 }

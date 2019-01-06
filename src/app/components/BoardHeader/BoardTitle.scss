@@ -1,48 +1,38 @@
 @import "../../variables.scss";
 
 .board-title-button {
-	display: flex;
-
-	min-width: 0;
-	padding: 6px 10px 6px 10px;
-
-	cursor: pointer;
-	transition: background 0.1s;
-
-	border: 0;
-	border-radius: 3px;
-	background: transparent;
+  display: flex;
+  min-width: 0;
+  padding: 6px 10px 6px 10px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  transition: background 0.1s;
+  cursor: pointer;
 }
 
 .board-title-button:hover,
 .board-title-button:focus {
-	background: $transparent-black;
+  background: $transparent-black;
 }
 
 .board-title-text {
-	overflow: hidden;
-
-	margin: 0;
-
-	white-space: nowrap;
-	text-overflow: ellipsis;
-
-	color: $white;
-
-	font-size: 20px;
-
-	overflow-wrap: break-word;
+  margin: 0;
+  color: $white;
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  white-space: nowrap;
 }
 
 .board-title-input {
-	width: 100%;
-	padding: 6px 10px 6px 10px;
-
-	color: inherit;
-	border: 0;
-	background: inherit;
-
-	font-family: inherit;
-	font-size: 20px;
-	font-weight: 700;
+  width: 100%;
+  padding: 6px 10px 6px 10px;
+  border: 0;
+  color: inherit;
+  background: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: inherit;
 }
