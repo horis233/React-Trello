@@ -11,6 +11,7 @@ class BoardAdder extends Component {
     history: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
   };
+
   constructor() {
     super();
     this.state = { isOpen: false, title: "" };
