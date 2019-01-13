@@ -21,7 +21,7 @@ class CardAdder extends Component {
   }
 
   toggleCardComposer = () => {
-    const {isOpen} = this.state;
+    const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
   };
 
@@ -75,7 +75,11 @@ class CardAdder extends Component {
         </form>
       </ClickOutside>
     ) : (
-      <button onClick={this.toggleCardComposer} className="add-card-button" type="button">
+      <button
+        onClick={this.toggleCardComposer}
+        className="add-card-button"
+        type="button"
+      >
         +
       </button>
     );

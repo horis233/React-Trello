@@ -16,7 +16,7 @@ class LandingPage extends Component {
   };
 
   enterAsGuest = () => {
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     dispatch({ type: "ENTER_AS_GUEST" });
   };
 
@@ -70,7 +70,7 @@ class LandingPage extends Component {
             </div>
             <div className="guest-button-wrapper">
               <button
-              type="button"
+                type="button"
                 onClick={this.enterAsGuest}
                 className="signin-button guest-button"
               >

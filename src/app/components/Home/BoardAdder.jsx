@@ -18,7 +18,7 @@ class BoardAdder extends Component {
   }
 
   toggleOpen = () => {
-    const {isOpen} = this.state;
+    const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
   };
 
@@ -79,7 +79,11 @@ class BoardAdder extends Component {
         </form>
       </ClickOutside>
     ) : (
-      <button onClick={this.toggleOpen} className="add-board-button" type="button">
+      <button
+        onClick={this.toggleOpen}
+        className="add-board-button"
+        type="button"
+      >
         Add a new board...
       </button>
     );

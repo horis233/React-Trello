@@ -51,7 +51,7 @@ class ListTitle extends Component {
   };
 
   revertTitle = () => {
-    const {listTitle} = this.props;
+    const { listTitle } = this.props;
     this.setState({ newTitle: listTitle, isOpen: false });
   };
 
