@@ -75,7 +75,7 @@ class CardAdder extends Component {
         </form>
       </ClickOutside>
     ) : (
-      <button onClick={this.toggleCardComposer} className="add-card-button">
+      <button onClick={this.toggleCardComposer} className="add-card-button" type="button">
         +
       </button>
     );

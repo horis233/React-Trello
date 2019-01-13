@@ -79,7 +79,7 @@ class BoardAdder extends Component {
         </form>
       </ClickOutside>
     ) : (
-      <button onClick={this.toggleOpen} className="add-board-button">
+      <button onClick={this.toggleOpen} className="add-board-button" type="button">
         Add a new board...
       </button>
     );

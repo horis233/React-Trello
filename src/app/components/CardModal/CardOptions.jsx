@@ -98,7 +98,7 @@ class CardOptions extends Component {
         }}
       >
         <div>
-          <button onClick={this.deleteCard} className="options-list-button">
+          <button onClick={this.deleteCard} className="options-list-button" type="button">
             <div className="modal-icon">
               <FaTrash />
             </div>&nbsp;Delete
@@ -106,6 +106,7 @@ class CardOptions extends Component {
         </div>
         <div className="modal-color-picker-wrapper">
           <button
+          type="button"
             className="options-list-button"
             onClick={toggleColorPicker}
             onKeyDown={this.handleKeyDown}
@@ -132,6 +133,7 @@ class CardOptions extends Component {
                 {["white", "#6df", "#6f6", "#ff6", "#fa4", "#f66"].map(
                   color => (
                     <button
+                    type="button"
                       key={color}
                       style={{ background: color }}
                       className="color-picker-color"
@@ -144,7 +146,7 @@ class CardOptions extends Component {
           )}
         </div>
         <div>
-          <button onClick={this.toggleCalendar} className="options-list-button">
+          <button onClick={this.toggleCalendar} className="options-list-button" type="button">
             <div className="modal-icon">
               <MdAlarm />
             </div>&nbsp;Due date

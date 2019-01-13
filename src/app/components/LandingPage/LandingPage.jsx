@@ -70,6 +70,7 @@ class LandingPage extends Component {
             </div>
             <div className="guest-button-wrapper">
               <button
+              type="button"
                 onClick={this.enterAsGuest}
                 className="signin-button guest-button"
               >
