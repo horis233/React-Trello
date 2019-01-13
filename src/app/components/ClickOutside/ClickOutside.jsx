@@ -9,9 +9,14 @@ class ClickOutsideWrapper extends Component {
     children: PropTypes.element.isRequired
   };
 
-  handleClickOutside = () => this.props.handleClickOutside();
+  handleClickOutside = () => {
+    const {handleClickOutside} = this.props; 
+    return handleClickOutside();}
 
-  render = () => this.props.children;
+  render = () => {
+    const {children} = this.props;
+    return children;
+  }
 }
 
 export default onClickOutside(ClickOutsideWrapper);

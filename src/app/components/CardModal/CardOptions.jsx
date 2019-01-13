@@ -48,7 +48,8 @@ class CardOptions extends Component {
 
   handleKeyDown = event => {
     if (event.keyCode === 27) {
-      this.props.toggleColorPicker();
+      const {toggleColorPicker} = this.props;
+      toggleColorPicker();
       this.colorPickerButton.focus();
     }
   };
@@ -60,7 +61,8 @@ class CardOptions extends Component {
   };
 
   toggleCalendar = () => {
-    this.setState({ isCalendarOpen: !this.state.isCalendarOpen });
+    const isCalendarOpen = this.state;
+    this.setState({ isCalendarOpen: !isCalendarOpen });
   };
 
   render() {

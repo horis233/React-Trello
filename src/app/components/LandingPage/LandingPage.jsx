@@ -16,7 +16,8 @@ class LandingPage extends Component {
   };
 
   enterAsGuest = () => {
-    this.props.dispatch({ type: "ENTER_AS_GUEST" });
+    const {dispatch} = this.props;
+    dispatch({ type: "ENTER_AS_GUEST" });
   };
 
   render = () => (

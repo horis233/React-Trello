@@ -21,7 +21,8 @@ class CardAdder extends Component {
   }
 
   toggleCardComposer = () => {
-    this.setState({ isOpen: !this.state.isOpen });
+    const {isOpen} = this.state;
+    this.setState({ isOpen: !isOpen });
   };
 
   handleChange = event => {

@@ -71,7 +71,8 @@ class CardModal extends Component {
   };
 
   toggleColorPicker = () => {
-    this.setState({ isColorPickerOpen: !this.state.isColorPickerOpen });
+    const {isColorPickerOpen} = this.state;
+    this.setState({ isColorPickerOpen: !isColorPickerOpen });
   };
 
   handleRequestClose = () => {

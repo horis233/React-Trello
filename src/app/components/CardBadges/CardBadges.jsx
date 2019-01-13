@@ -54,7 +54,8 @@ class CardBadges extends Component {
 
   // Render badge showing amoung of checkboxes that are checked
   renderTaskProgress = () => {
-    const { total, checked } = this.props.checkboxes;
+    const { checkboxes } = this.props;
+    const { total, checked } = checkboxes;
     if (total === 0) {
       return null;
     }

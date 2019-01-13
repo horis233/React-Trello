@@ -30,7 +30,8 @@ class Card extends Component {
   }
 
   toggleCardEditor = () => {
-    this.setState({ isModalOpen: !this.state.isModalOpen });
+    const { isModalOpen } = this.state; 
+    this.setState({ isModalOpen: !isModalOpen });
   };
 
   handleClick = event => {

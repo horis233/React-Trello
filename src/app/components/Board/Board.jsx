@@ -106,7 +106,8 @@ class Board extends Component {
 
   // Remove drag event listeners
   handleMouseUp = () => {
-    if (this.state.startX) {
+    const { startX } = this.state;
+    if (startX) {
       window.removeEventListener("mousemove", this.handleMouseMove);
       window.removeEventListener("mouseup", this.handleMouseUp);
       this.setState({ startX: null, startScrollX: null });
