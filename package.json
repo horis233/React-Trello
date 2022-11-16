@@ -80,12 +80,12 @@
     "postcss-loader": "^2.1.6",
     "prettier": "^1.12.1",
     "sass-loader": "^7.0.3",
-    "svg-url-loader": "^2.3.2",
+    "svg-url-loader": "^8.0.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "webpack": "^4.42.0",
     "webpack-bundle-analyzer": "^3.6.1",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^3.3.12",
     "webpack-manifest-plugin": "^2.0.2",
     "webpack-node-externals": "^1.7.2"
   }
