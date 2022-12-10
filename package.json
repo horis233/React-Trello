@@ -21,7 +21,7 @@
     "connect-mongo": "^3.2.0",
     "date-fns": "^1.29.0",
     "dotenv": "^5.0.1",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "express-static-gzip": "^0.3.2",
     "helmet": "^3.12.1",
